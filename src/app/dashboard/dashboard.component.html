@@ -1,0 +1,16 @@
+<!-- dashboard root component -->
+<ng-template [ngIf]="urlMatch()">
+    <digi-header title="dashboard"></digi-header>
+</ng-template>
+
+<ng-template [ngIf]="true">
+    <div class="px-3" [ngClass]="urlMatch()?'main_header_tab':'main_header'">
+        <router-outlet></router-outlet>
+    </div>
+</ng-template>
+
+<ng-template [ngIf]="true">
+    <digi-tab-group></digi-tab-group>
+</ng-template>
+<!-- dashboard root component -->
+

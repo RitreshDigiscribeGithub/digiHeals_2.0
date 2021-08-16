@@ -1,0 +1,40 @@
+.call-pick-up-box {
+  background-image: url("/assets/images/call-placeholder.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+.floating {
+  animation-name: floating;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes floating {
+  from {
+    transform: translate(0, 0px);
+  }
+  65% {
+    transform: translate(0, 15px);
+  }
+  to {
+    transform: translate(0, 0px);
+  }
+}
+.call-info {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+.call-icon-bg {
+  padding: 4px;
+  width: 48px;
+  height: 48px;
+  background: rgba(0, 0, 0, 0.288);
+  border-radius: 14px;
+  border: none;
+}

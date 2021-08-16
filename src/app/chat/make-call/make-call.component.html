@@ -1,0 +1,55 @@
+<div class="call-pick-up-box">
+    <div nz-row nzJustify="space-between" nzAlign="bottom"  style="height: inherit;background-color: rgba(0, 0, 0, 0.336);">
+
+        <!-- calling.... -->
+        <ng-container *ngIf="calling">
+            <div nz-col nzSpan="24" class="text-center">
+                <img src="assets/icons/endcall.png" class="mb-5 floating"
+                (click)="dropCall()" alt="">
+            </div>
+            <span class="call-info">
+                <span fs="18px" fw="reg" class="d-block text-center"
+                color="white">
+                    Calling...</span>
+                <span fs="25px" fw="reg" class="d-block text-center"
+                color="white">
+                    Dr. Jenny Wilsson</span>
+            </span>
+        </ng-container>
+          <!-- calling.... -->
+     
+
+         <!-- call start-->
+         <ng-container  *ngIf="!calling">
+             <div nz-col [nzXs]="{ span: 20, offset: 2 }" class="mb-5">
+                <div nz-row nzAlign="middle">
+                    <div nz-col nzXs="24">
+                        <span fs="17px" fw="reg" class="d-block text-center mb-3"
+                        color="white">Dr. Jenny Wilsson</span>
+                    </div>
+                    <div nz-col nzXs="8" class="center-xy">
+                        <button class="call-icon-bg">
+                            <img src="assets/icons/mic_on_call.svg" alt="">
+                        </button>
+                    </div>
+                    <div nz-col nzXs="8" class="center-xy">
+                        <span class="d-block">
+                            <img src="assets/icons/endcall.png" 
+                            (click)="dropCall()" alt="">
+                         </span>
+                    </div>
+                    <div nz-col nzXs="8" class="center-xy">
+                        <button class="call-icon-bg">
+                            <img src="assets/icons/video_on_call.svg" 
+                            alt="">
+                        </button>
+                    </div>
+                  </div>
+                <!-- mic_on_call.svg -->
+            </div>
+         </ng-container>
+         <!-- call start-->
+    </div>
+</div>
+
+

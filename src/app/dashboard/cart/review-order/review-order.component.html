@@ -1,0 +1,131 @@
+<span fs="12px" fw="reg" class="d-block my-3">Medicine</span>
+<ng-container *ngFor="let item of [1,2,3]">
+    <div nz-row nzAlign="middle" [style]="preCard" class="py-3">
+        <div nz-col nzFlex="2" class="center-xy">
+            <span class="center-xy" [style]="IcoBg+'background: #CAF7F4;'">
+                <img src="assets/icons/medicine.svg" alt="">
+            </span>
+        </div>
+        <div nz-col nzFlex="5">
+            <span fs="14px" fw="reg" color="#12263C" class="d-block">
+                Cyclobenzaprine
+            </span>
+            <span fs="12px" fw="md" color="#9EAAB2" class="d-block">
+                Cholecalciferol (10% w/v)
+            </span>
+        </div>
+        <div nz-col nzFlex="2">
+            <span fs="14px" fw="md" color="#12263C" class="d-block">
+                Rs. 350
+            </span>
+        </div>
+    </div>
+    <nz-divider></nz-divider>
+</ng-container>
+
+
+<span fs="12px" fw="reg" class="d-block my-3">Diagnostic Test</span>
+<ng-container *ngFor="let item of [1,2]">
+    <div nz-row nzAlign="middle" [style]="preCard" class="py-3">
+        <div nz-col nzFlex="2" class="center-xy">
+            <span class="center-xy" [style]="IcoBg+'background: #F6E8E4;'">
+                <img src="assets/icons/lab.svg" alt="">
+            </span>
+        </div>
+        <div nz-col nzFlex="5">
+            <span fs="14px" fw="reg" color="#12263C" class="d-block">
+                OH Progesterone
+            </span>
+            <span fs="12px" fw="md" color="#9EAAB2" class="d-block mt-1">
+                Sample collection at home
+            </span>
+        </div>
+        <div nz-col nzFlex="2">
+            <span fs="14px" fw="md" color="#12263C" class="d-block">
+                Rs. 350
+            </span>
+        </div>
+    </div>
+    <nz-divider></nz-divider>
+</ng-container>
+
+
+<div nz-row nzJustify="space-around" nzAlign="middle" class="radio-card my-3">
+    <div nz-col nzFlex="1" class="center-xy">
+        <img src="assets/icons/plus.svg" alt="">
+    </div>
+    <div nz-col nzFlex="5">
+        <span fs="14px" fw="md" color="#12263C">Add Promo Code</span>
+    </div>
+</div>
+
+
+
+
+<div nz-row nzAlign="middle" class="my-3 p-2">
+
+    <div nz-col nzXs="18" class="center-y-start-x">
+        <span fs="14px" fw="reg" color="#12263C" class="mb-2">Subtotal</span>
+    </div>
+    <div nz-col nzXs="6" class="center-y-end-x">
+        <span fs="14px" fw="md" color="#12263C" class="mb-2">Rs. 2560</span>
+    </div>
+
+    <div nz-col nzXs="18">
+        <span fs="14px" fw="reg" color="#12263C">Delivery Charges</span>
+    </div>
+    <div nz-col nzXs="6" class="center-y-end-x">
+        <span fs="14px" fw="md" color="#12263C">Free</span>
+    </div>
+
+    <div nz-col nzXs="18">
+        <span fs="14px" fw="reg" color="#12263C">Home Collection Charges</span>
+    </div>
+    <div nz-col nzXs="6" class="center-y-end-x">
+        <span fs="14px" fw="md" color="#12263C">Rs. 60</span>
+    </div>
+
+    <div nz-col nzXs="18">
+        <span fs="14px" fw="reg" color="#12263C">Taxes</span>
+    </div>
+    <div nz-col nzXs="6" class="center-y-end-x">
+        <span fs="14px" fw="md" color="#12263C">Rs. 80</span>
+    </div>
+
+    <div nz-col nzXs="18">
+        <span fs="14px" fw="reg" color="#12263C">Platform Fee</span>
+    </div>
+    <div nz-col nzXs="6" class="center-y-end-x">
+        <span fs="14px" fw="md" color="#12263C">Rs. 20</span>
+    </div>
+</div>
+
+<nz-divider></nz-divider>
+<div nz-row nzJustify="space-around" nzAlign="middle" class="my-2 p-2">
+    <div nz-col nzXs="18">
+        <span fs="16px" fw="md" color="#12263C">Total</span>
+    </div>
+    <div nz-col nzXs="6" class="center-y-end-x">
+        <span fs="14px" fw="md" color="#12263C">Rs. 2720</span>
+    </div>
+</div>
+<nz-divider></nz-divider>
+
+<span fs="10px" fw="reg" class="d-block my-2">By placing order, you agree to DigiHeals’s privacy notice and conditions of use</span>
+
+<span fs="10px" fw="reg" class="d-block my-2" color="#9EAAB2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc, eget volutpat mi aliquam 
+    id aliquet fermentum. Eu vivamus facilisis malesuada hac amet. Ultrices aliquet eget 
+    vestibulum proin id fringilla cras urna. Hendrerit volutpat et urna aenean. At aenean 
+    egestas adipiscing odio enim, donec montes. Eu felis aliquam senectus Sed amet, vitae 
+    amet viverra massa sit molestie. Donec tellus fringilla ut cras tristique</span>
+
+<div class="mb-5">
+    <br><br>
+</div>
+
+<digi-affix>
+    <button nz-button digi-btn color="theme" routerLink="../dropOff">
+        Place Order
+    </button>
+</digi-affix>
+

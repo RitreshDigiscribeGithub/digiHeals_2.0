@@ -1,0 +1,93 @@
+<div nz-row nzAlign="middle" style="min-height: 63px;">
+    <div nz-col nzXs="12">
+        <button class="medicines-btn" 
+        [ngClass]="{'medicines-btn-active': tab==1}"
+        (click)="tab = 1">New Medicines</button>
+    </div>
+    <div nz-col nzXs="12">
+        <button class="medicines-btn"
+        [ngClass]="{'medicines-btn-active': tab==2}"
+        (click)="tab = 2">Past Medicines</button>
+    </div>
+</div>
+
+
+<div nz-row nzAlign="middle" [style]="preCard">
+    <div nz-col nzFlex="2" class="center-xy">
+        <span class="center-xy" [style]="icoBg">
+            <img src="assets/icons/prescription_from.svg" alt="">
+        </span>
+    </div>
+    <div nz-col nzFlex="5">
+        <span fs="12px" fw="reg" color="#9EAAB2" class="d-block">
+            Prescription from
+        </span>
+        <span fs="13px" fw="md" color="#12263C" class="d-block">
+            Dr. Jenny Wilson
+        </span>
+        <span fs="12px" fw="reg" color="#9EAAB2" class="d-block">
+            Tue, Aug 20, 10:30 AM
+        </span>
+    </div>
+    <div nz-col nzFlex="2">
+        <nz-tag fs="13px" fw="reg" color="#017273" [nzColor]="'#C0E5C6'">
+            3 Items
+        </nz-tag>
+    </div>
+</div>
+
+<!-- TODO New Medicines -->
+<ng-template [ngIf]="tab===1">
+   <!-- drug list -->
+<ng-container *ngFor="let item of [1,2,3,4,5,6]">
+
+    <div nz-row nzAlign="middle" class="py-4">
+        <div nz-col nzXs="24">
+            <span fs="13px" fw="md" class="d-block" color="#12263C">Methotrexate</span>
+            <span fs="13px" fw="md" class="d-block" color="#9EAAB2">Cholecalciferol (10% w/v)</span>
+            <span fs="12px" fw="md" class="d-block" color="#12263C">1 - 0 - 1 x 30 Days</span>
+        </div>
+        <div nz-col nzXs="9">
+            <span fs="15px" fw="md" class="d-block" color="#12263C">Rs. 350</span>
+        </div>
+        <div nz-col nzXs="8">
+            <span class="center-xy">
+                <div class="item-counter">
+                    <i nz-icon (click)="minus()" nzType="minus" nzTheme="outline"></i>
+                </div>
+                <input type="text" nz-input [value]="quantity"/>
+                <div class="item-counter">
+                    <i (click)="plus()" nz-icon nzType="plus" nzTheme="outline"></i>
+                </div>
+            </span>
+        </div>
+        <div nz-col nzXs="7" class="center-y-end-x">
+            <button nz-button style="background: #eeeeee;">Add</button>
+        </div>
+    </div>
+    <nz-divider></nz-divider>
+</ng-container>
+    <!-- drug list --> 
+</ng-template>
+
+
+<!-- TODO Past Medicines -->
+<ng-template [ngIf]="tab===2">
+    <!-- drug list -->
+ <ng-container *ngFor="let item of [1,2,3,4,5,6]">
+ 
+     <div nz-row nzAlign="middle" class="py-4">
+         <div nz-col nzXs="18">
+             <span fs="13px" fw="md" class="d-block" color="#12263C">Methotrexate</span>
+             <span fs="13px" fw="md" class="d-block" color="#9EAAB2">Cholecalciferol (10% w/v)</span>
+             <span fs="12px" fw="md" class="d-block" color="#12263C">1 - 0 - 1 x 30 Days</span>
+         </div>
+         <div nz-col nzXs="6" class="center-y-end-x">
+             <button nz-button style="background: #eeeeee;">Add</button>
+         </div>
+     </div>
+     <nz-divider></nz-divider>
+ </ng-container>
+     <!-- drug list --> 
+ </ng-template>
+ 

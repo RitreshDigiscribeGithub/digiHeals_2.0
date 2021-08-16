@@ -1,0 +1,11 @@
+<span fs="12px" fw="reg" class="d-block mt-2">{{duration}}&nbsp;&nbsp;
+    <nz-tag fs="11px" fw="reg" color="#2EBCA6" [nzColor]="'#CAF7F4'">3 slots</nz-tag>
+</span>
+<div nz-row [nzGutter]="[16,16]" class="my-2">
+    <ng-container *ngFor="let item of [1,2,3,4,5,6]">
+        <div nz-col nzXs="6">
+            <button class="time-slots" fs="12px" fw="md">8:00 AM</button>
+            <!-- active class: active-slots -->
+        </div>
+    </ng-container>
+</div>

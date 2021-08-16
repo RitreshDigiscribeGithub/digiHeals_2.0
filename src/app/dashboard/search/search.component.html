@@ -1,0 +1,28 @@
+<div class="mt-3">
+
+    <nz-input-group [nzPrefix]="searchTemp" [nzSize]="'large'">
+        <input fs="17px" fw="reg" type="text" nz-input placeholder="Search Doctors, Medicines, Services, Lab Test"
+            class="digi-input" nzBorderless />
+        <ng-template #searchTemp>
+            <i fs="17px" color="#9EAAB2" nz-icon nzType="search"></i>
+        </ng-template>
+    </nz-input-group>
+
+    <!-- result here -->
+    <!-- result here -->
+
+    <!-- recommendation list -->
+    <ng-container *ngFor="let heading of recommendation">
+        <div>
+            <span fs="16px" fw="md" color="#12263C" class="d-block my-3">
+                {{heading.heading}}
+            </span>
+            <ng-container *ngFor="let list of heading.list">
+                <span fs="14px" fw="reg" color="#12263C" class="d-block my-3">
+                    {{list}}
+                </span>
+            </ng-container>
+            <nz-divider></nz-divider>
+        </div>
+    </ng-container>
+</div>

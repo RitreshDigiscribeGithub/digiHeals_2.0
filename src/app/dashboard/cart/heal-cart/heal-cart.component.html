@@ -1,0 +1,53 @@
+<div nz-row class="cart-nav" nzAlign="middle">
+    <div nz-col nzXs="20">
+        <button class="heal-nav-btn" 
+        [ngClass]="{'btn-active': cartType==1}"
+        (click)="cartType=1">Medicines</button>&nbsp;&nbsp;
+        <button class="heal-nav-btn" 
+        [ngClass]="{'btn-active': cartType==2}"
+        (click)="cartType=2">Diagnostic Test</button>
+    </div>
+    <div nz-col nzXs="4">
+        <button class="heal-nav-btn">Fil</button>
+    </div>
+</div>
+
+
+<!-- <digi-prescription></digi-prescription> -->
+
+<ng-container *ngIf="cartType==1">
+    <digi-medicines></digi-medicines>
+</ng-container>
+
+<ng-container *ngIf="cartType==2">
+    <digi-diagnostic></digi-diagnostic>
+</ng-container>
+
+<div class="mb-5">
+    <br><br>
+</div>
+
+<!-- digi-affix use for fixed item -->
+<digi-affix>
+    <div nz-row class="action-group">
+        <div nz-col nzSpan="8" class="center-y-start-x">
+            <span>
+                <img src="assets/icons/plus.svg" class="d-block" alt="">
+                <span fs="12px" fw="reg" color="#12263C">Add an item</span>
+            </span>
+        </div>
+        <div nz-col nzSpan="8" class="center-xy">
+            <span>
+                <img src="assets/icons/sort.svg" class="d-block" alt="">
+                <span fs="12px" fw="reg" color="#12263C">Sort</span>
+            </span>
+        </div>
+        <div nz-col nzSpan="8" class="center-y-end-x">
+            <span routerLink="../allCart">
+                <img src="assets/icons/check.svg" class="d-block" alt="">
+                <span fs="12px" fw="reg" color="#12263C">Add all to cart</span>
+            </span>
+        </div>
+    </div>
+</digi-affix>
+<!-- digi-affix use for fixed item -->

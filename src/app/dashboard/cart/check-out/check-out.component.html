@@ -1,0 +1,164 @@
+<div nz-row [nzGutter]="[16,16]">
+    <div nz-col nzXs="24">
+        <span fs="16px" fw="md" color="#12263C" class="d-block my-2">Delivery Details</span>
+        <iframe [ngStyle]="{'border-radius': '6px'}"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4582816.0441649305!2d72.44234849426877!3d23.59652146295064!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDMwJzM0LjgiTiA3NcKwNDMnMjMuOCJF!5e0!3m2!1sen!2sin!4v1609488939678!5m2!1sen!2sin"
+            width="100%" height="140px" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+    </div>
+</div>
+
+<div nz-row class="my-3">
+    <div nz-col nzFlex="5">
+        <span>
+            <span fs="14px" fw="md" color="#9EAAB2" class="d-block">
+                Address</span>
+            <span fs="14px" fw="md" color="#12263C" class="d-block">
+                Bombay University 128</span>
+        </span>
+    </div>
+    <div nz-col nzFlex="3" class="center-y-end-x">
+        <span>
+            <span  fs="14px" fw="md" color="#9EAAB2">Change</span>
+            &nbsp;&nbsp;<img src="assets/icons/back_as_changes.svg" alt="">
+        </span>
+    </div>
+</div>
+<nz-divider></nz-divider>
+
+<div nz-row class="my-3">
+    <div nz-col nzFlex="5">
+        <span>
+            <span fs="14px" fw="md" color="#9EAAB2" class="d-block">
+                Drop Off</span>
+            <span fs="14px" fw="md" color="#12263C" class="d-block">
+                Leave it at my door</span>
+        </span>
+    </div>
+    <div nz-col nzFlex="3" class="center-y-end-x">
+        <span>
+            <span  fs="14px" fw="md" color="#9EAAB2">Add Details</span>
+            &nbsp;&nbsp;<img src="assets/icons/back_as_changes.svg" alt="">
+        </span>
+    </div>
+</div>
+<nz-divider></nz-divider>
+
+<span fs="16px" fw="md" color="#12263C" class="d-block my-3">
+    Delivery Times
+</span>
+
+<!-- radio list-->
+<label for="Standard" nz-row nzJustify="space-around" nzAlign="middle" class="radio-card my-2">
+    <div nz-col nzFlex="1" class="center-xy">
+        <input type="radio" name="rdo" id="Standard"/>
+    </div>
+    <div  nz-col nzFlex="5">
+        <span fs="14px" fw="md" color="#12263C">Standard</span>
+    </div>
+</label>
+
+<label for="time" nz-row nzJustify="space-around" nzAlign="middle" class="radio-card my-2">
+    <div nz-col nzFlex="1" class="center-xy">
+        <input type="radio" name="rdo" value="delivery" id="time" (change)="radioChange($event)"/>
+    </div>
+    <div nz-col nzFlex="5">
+        <span fs="14px" fw="md" color="#12263C">Schedule a time for delivery</span>
+    </div>
+    <div nz-col nzFlex="1" class="center-xy">
+        <img class="b-block" src="assets/icons/back_as_changes.svg" alt="">
+    </div>
+</label>
+
+<label for="Home" nz-row nzJustify="space-around" nzAlign="middle" class="radio-card my-2">
+    <div nz-col nzFlex="1" class="center-xy">
+        <input type="radio" name="rdo" id="Home"/>
+    </div>
+    <div nz-col nzFlex="5">
+        <span fs="14px" fw="md" color="#12263C">Schedule a time for Home collection</span>
+    </div>
+    <div nz-col nzFlex="1" class="center-xy">
+        <img class="b-block" src="assets/icons/back_as_changes.svg" alt="">
+    </div>
+</label>
+<!-- radio list-->
+
+<span fs="16px" fw="md" color="#12263C" class="d-block my-3">
+    Payment Method
+</span>
+<!-- radio list-->
+<label for="cod" nz-row nzJustify="space-around" nzAlign="middle" class="radio-card my-2">
+    <div nz-col nzFlex="1" class="center-xy">
+        <input type="radio" name="payment_method" id="cod"/>
+    </div>
+    <div  nz-col nzFlex="5">
+        <span fs="14px" fw="md" color="#12263C">Pay at home / Center Visit</span>
+    </div>
+</label>
+
+<label for="gpay" nz-row nzJustify="space-around" nzAlign="middle" class="radio-card my-2">
+    <div nz-col nzFlex="1" class="center-xy">
+        <input type="radio" name="payment_method" id="gpay"/>
+    </div>
+    <div nz-col nzFlex="5">
+        <span fs="14px" fw="md" color="#12263C">Google pay</span>
+    </div>
+</label>
+
+<label for="UPI" nz-row nzJustify="space-around" nzAlign="middle" class="radio-card my-2">
+    <div nz-col nzFlex="1" class="center-xy">
+        <input type="radio" name="payment_method" id="UPI"/>
+    </div>
+    <div nz-col nzFlex="5">
+        <span fs="14px" fw="md" color="#12263C">UPI / Netbanking</span>
+    </div>
+</label>
+
+<label for="cart" nz-row nzJustify="space-around" nzAlign="middle" class="radio-card my-2">
+    <div nz-col nzFlex="1" class="center-xy">
+        <input type="radio" name="payment_method" id="cart"/>
+    </div>
+    <div nz-col nzFlex="5">
+        <span fs="14px" fw="md" color="#12263C">Add Debit / Credit Card</span>
+    </div>
+    <div nz-col nzFlex="1" class="center-xy">
+        <img class="b-block" src="assets/icons/back_as_changes.svg" alt="">
+    </div>
+</label>
+
+<div class="mb-5">
+    <br><br>
+</div>
+
+<!-- radio list-->
+<digi-affix>
+    <div nz-row class="digi-tow-side-btn" nzAlign="middle" 
+    (click)="placeOrder()">
+        <div nz-col nzFlex="5">
+            <button fs="16px" fw="md">Rs. 2560</button>
+        </div>
+        <div nz-col nzFlex="5" class="center-y-end-x pr-2">
+            <span fs="16px" fw="md" color="white">Place Order</span>
+        </div>
+     </div>
+</digi-affix>
+
+
+
+<nz-drawer
+  [nzClosable]="false"
+  [nzVisible]="drawer"
+  [nzPlacement]="'bottom'"
+  [nzHeight]="'100%'"
+  [nzBodyStyle]="{'padding':'0px'}">
+  <ng-container *nzDrawerContent>
+
+    <digi-order-confirmed>
+        <!-- close btn -->
+        <img src="assets/icons/close.svg" class="mx-auto d-block" 
+        (click)="drawer=false" alt="">
+         <!-- close btn -->
+    </digi-order-confirmed>
+    
+  </ng-container>
+</nz-drawer>
+<!--  -->

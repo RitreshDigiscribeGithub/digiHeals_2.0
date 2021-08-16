@@ -1,0 +1,16 @@
+<div nz-row style="min-height: 100vh;">
+    <div nz-col 
+    [nzXs]="{ span: 24, offset: 0 }"
+    [nzSm]="{ span: 24, offset: 0 }" 
+    [nzMd]="{ span: 24, offset: 0 }"
+    [nzLg]="{ span: 16, offset: 4 }" 
+    [nzXl]="{ span: 16, offset: 4 }" 
+    [nzXXl]="{ span: 16, offset: 4 }">
+        <!-- header:dynamic title-->
+        <digi-header [title]="navTitle"></digi-header>
+        <!-- header -->
+        <!-- root component: auth components load here-->
+        <router-outlet></router-outlet>
+        <!--root component: auth components load here-->
+    </div>
+</div>

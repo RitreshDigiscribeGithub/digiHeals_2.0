@@ -1,0 +1,115 @@
+<span fs="12px" fw="reg" class="d-block my-3">Medicine</span>
+<ng-container *ngFor="let item of [1,2,3]">
+    <div nz-row nzAlign="middle" [style]="preCard" class="py-3">
+        <div nz-col nzFlex="2" class="center-xy">
+            <span class="center-xy" [style]="icoBg">
+                <img src="assets/icons/medicine.svg" alt="">
+            </span>
+        </div>
+        <div nz-col nzFlex="5">
+            <span fs="14px" fw="reg" color="#12263C" class="d-block">
+                Cyclobenzaprine
+            </span>
+            <span fs="12px" fw="md" color="#9EAAB2" class="d-block">
+                Cholecalciferol (10% w/v)
+            </span>
+        </div>
+        <div nz-col nzFlex="2">
+            <span fs="14px" fw="md" color="#12263C" class="d-block">
+                Rs. 350
+            </span>
+        </div>
+        <div nz-col nzXs="24" class="mt-2">
+            <div nz-row>
+                <div nz-col nzFlex="auto">
+                    <div nz-row>
+                        <div nz-col nzXs="4"></div>
+                        <div nz-col nzXs="9">
+                            <span class="center-xy">
+                                <div class="item-counter">
+                                    <i nz-icon (click)="minus()" nzType="minus" nzTheme="outline"></i>
+                                </div>
+                                <input type="text" nz-input [value]="quantity"/>
+                                <div class="item-counter">
+                                    <i (click)="plus()" nz-icon nzType="plus" nzTheme="outline"></i>
+                                </div>
+                            </span>
+                        </div>
+                        <div nz-col nzXs="11" class="center-xy">
+                            <button nz-button style="background: #eeeeee;">Save for later</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nz-divider></nz-divider>
+</ng-container>
+
+
+<span fs="12px" fw="reg" class="d-block my-3">Diagnostic Test</span>
+<ng-container *ngFor="let item of [1,2]">
+    <div nz-row nzAlign="middle" [style]="preCard" class="py-3">
+        <div nz-col nzFlex="2" class="center-xy">
+            <span class="center-xy" [style]="icoBg">
+                <img src="assets/icons/lab.svg" alt="">
+            </span>
+        </div>
+        <div nz-col nzFlex="5">
+            <span fs="14px" fw="reg" color="#12263C" class="d-block">
+                OH Progesterone
+            </span>
+            <span fs="12px" fw="md" color="#9EAAB2" class="d-block">
+                Dr Lal Pathlabs
+            </span>
+            <span fs="12px" fw="md" color="#9EAAB2" class="d-block mt-1">
+                Sample collection at home
+            </span>
+        </div>
+        <div nz-col nzFlex="2">
+            <span fs="14px" fw="md" color="#12263C" class="d-block">
+                Rs. 350
+            </span>
+        </div>
+        <div nz-col nzXs="24" class="mt-2">
+            <div nz-row>
+                <div nz-col nzFlex="auto">
+                    <div nz-row>
+                        <div nz-col nzXs="4"></div>
+                        <div nz-col nzXs="9">
+                            <span class="center-xy">
+                                <div class="item-counter">
+                                    <i nz-icon (click)="minus()" nzType="minus" nzTheme="outline"></i>
+                                </div>
+                                <input type="text" nz-input [value]="quantity"/>
+                                <div class="item-counter">
+                                    <i (click)="plus()" nz-icon nzType="plus" nzTheme="outline"></i>
+                                </div>
+                            </span>
+                        </div>
+                        <div nz-col nzXs="11" class="center-xy">
+                            <button nz-button style="background: #eeeeee;">Save for later</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nz-divider></nz-divider>
+</ng-container>
+
+<div class="mb-5">
+    <br><br>
+</div>
+ 
+<digi-affix>
+    <div nz-row class="digi-tow-side-btn" nzAlign="middle"
+    routerLink="../address">
+        <div nz-col nzFlex="5">
+            <button fs="16px" fw="md">Rs. 2560</button>
+        </div>
+        <div nz-col nzFlex="5" class="center-y-end-x pr-2">
+            <span fs="16px" fw="md" color="white">Continue</span>
+        </div>
+     </div>
+</digi-affix>

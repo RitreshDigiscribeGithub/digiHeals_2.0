@@ -1,0 +1,53 @@
+<span fs="18px" fw="reg" color="#12263C" class="d-block">
+    Your Doctor
+</span>
+<div class="my-3">
+    <nz-input-group [nzPrefix]="searchTemp" [nzSize]="'large'">
+        <input fs="17px" fw="reg" type="text" nz-input placeholder="Search Doctors" class="digi-input" nzBorderless />
+        <ng-template #searchTemp>
+            <i fs="17px" color="#9EAAB2" nz-icon nzType="search"></i>
+        </ng-template>
+    </nz-input-group>
+</div>
+
+<div nz-row class="my-3">
+    <div nz-col nzXs="12">
+        <button class="medicines-btn" [ngClass]="{'medicines-btn-active': tab==1}" (click)="tab = 1">Active</button>
+    </div>
+    <div nz-col nzXs="12">
+        <button class="medicines-btn" [ngClass]="{'medicines-btn-active': tab==2}" (click)="tab = 2">Archived</button>
+    </div>
+</div>
+
+<!-- TODO Active -->
+<ng-template [ngIf]="tab==1">
+    <div style="height: 73vh;overflow-y: scroll;">
+
+        <!--  Doctors list -->
+        <ng-container *ngFor="let doctor of doctorsList">
+            <div nz-row nzAlign="middle" style="min-height: 72px;" (click)="toChat(doctor.username)">
+                <div nz-col nzFlex="2" class="center-xy">
+                    <img src="assets/images/user_placeholder_2.svg" class="img-res" alt="">
+                </div>
+                <div nz-col nzFlex="5">
+                    <span fs="16px" fw="reg" class="d-block" color="#12263C">
+                        Dr. {{doctor.name}}</span>
+                    <span fs="13px" fw="reg" class="d-block" color="#9EAAB2">
+                        I hope it goes well.</span>
+                </div>
+                <div nz-col nzFlex="2" class="center-y-end-x">
+                    <div class="text-end">
+                        <span fs="13px" fw="reg" color="#12263C" class="b-block">Yesterday</span>
+                        <span fs="12px" fw="reg" color="white" class="chat-num center-xy">4</span>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <!--  Doctors list -->
+    </div>
+</ng-template>
+
+<!-- TODO Archived -->
+<ng-template [ngIf]="tab==2">
+    tab {{tab}}
+</ng-template>

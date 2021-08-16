@@ -1,0 +1,23 @@
+<div nz-row nzAlign="middle" style="height: 100vh;" class="px-3">
+    <div nz-col 
+    [nzXs]="{ span: 24, offset: 0 }" 
+    [nzSm]="{ span: 24, offset: 0 }" 
+    [nzMd]="{ span: 24, offset: 0 }"
+    [nzLg]="{ span: 16, offset: 4 }" 
+    [nzXl]="{ span: 16, offset: 4 }" 
+    [nzXXl]="{ span: 16, offset: 4 }">
+        <div nz-row>
+            <div nz-col nzXs="24" style="min-height: 300px;">
+                <img src="assets/images/logo.svg" class="mx-auto d-block width-70" alt="">
+            </div>
+            <div nz-col nzXs="24" class="mt-4">
+                <button nz-button digi-btn color="theme"
+                (click)="setLang('english')">English</button>
+            </div>
+            <div nz-col nzXs="24" class="mt-4">
+                <button nz-button digi-btn color="theme"
+                (click)="setLang('hindi')">Hindi</button>
+            </div>
+        </div>
+    </div>
+</div>

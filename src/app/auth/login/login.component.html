@@ -1,0 +1,34 @@
+<div nz-row class="px-3">
+  <div nz-col nzSpan="24" class="center-xy" style="min-height: 254px;">
+    <img src="assets/images/phoneVector.svg" class="mx-auto d-block witdh-60" alt="">
+  </div>
+  <div nz-col nzSpan="24" class="center-xy" style="min-height: 70px;">
+    <nz-input-group [nzSize]="'large'">
+      <div nz-row nzAlign="middle" style="min-height: 50px;">
+        <div nz-col nzSpan="5">
+          <nz-select [ngModel]="'+91'" [nzBorderless]="true">
+            <nz-option nzLabel="+91" nzValue="+91"></nz-option>
+            <nz-option nzLabel="+93" nzValue="+93"></nz-option>
+            <nz-option nzLabel="+86" nzValue="+86"></nz-option>
+          </nz-select>
+        </div>
+        <div nz-col nzSpan="19">
+          <input type="text" nz-input placeholder="Enter Phone Number" nzBorderless />
+        </div>
+      </div>
+    </nz-input-group>
+  </div>
+  <div nz-col nzSpan="24" class="center-xy"  style="min-height: 70px;">
+    <span fs="14px" fw="md" class="d-block text-center">We need your phone number so we can register and send you an
+      authentication code</span>
+  </div>
+  <div nz-col nzSpan="24" class="center-xy" style="min-height: 122px;">
+    <button nz-button digi-btn color="theme" (click)="continueNow()">Continue</button>
+  </div>
+</div>
+
+
+
+
+
+

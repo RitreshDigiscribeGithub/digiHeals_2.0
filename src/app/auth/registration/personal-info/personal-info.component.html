@@ -1,0 +1,82 @@
+<div nz-row nzAlign="bottom">
+
+    <!-- TODO part-1 -->
+    <ng-container *ngIf="part==1">
+        <div nz-col nzXs="24" class="text-center py-2">
+            <div class="profile">
+                <img src="assets/images/user_placeholder.svg" class="rounded" alt="" width="90">
+                <div class="icon-bg">
+                    <img src="assets/icons/camera.svg" class="rounded" alt="" width="22">
+                </div>
+            </div>
+        </div>
+    
+        <div nz-col nzXs="24">
+            <digi-input label="Full Name">
+              <input nz-input class="digi-input" nzSize="large" nzBorderless/>
+            </digi-input>
+
+            <digi-input label="Select Gender">
+                <nz-select nzSize="large" nzBorderless class="in-select">
+                    <nz-option nzValue="jack" nzLabel="male"></nz-option>
+                    <nz-option nzValue="lucy" nzLabel="female"></nz-option>
+                    <nz-option nzValue="other" nzLabel="other"></nz-option>
+                </nz-select>
+             </digi-input>
+           
+             <digi-input label="Date of Birth">
+                <nz-date-picker (ngModelChange)="onChange($event)" [nzSize]="'large'" ></nz-date-picker>
+             </digi-input>
+           
+             <digi-input label="Marital Status">
+                <nz-select nzSize="large" nzBorderless class="in-select">
+                    <nz-option nzValue="married" nzLabel="Married"></nz-option>
+                    <nz-option nzValue="single" nzLabel="Single"></nz-option>
+                    <nz-option nzValue="widowed" nzLabel="Widowed"></nz-option>
+                    <nz-option nzValue="divorced" nzLabel="divorced"></nz-option>
+                    <nz-option nzValue="Separated" nzLabel="Separated"></nz-option>
+                </nz-select>
+             </digi-input>
+
+        </div>
+    </ng-container>
+    
+     <!-- TODO part-2 -->
+
+     <ng-container  *ngIf="part==2">
+        <div nz-col nzXs="24">
+            <digi-input label="* Email">
+                <input nz-input class="digi-input" nzSize="large" nzBorderless />
+            </digi-input>
+             
+            <digi-input label="* Mobile Number">
+                <input nz-input class="digi-input" nzSize="large" nzBorderless />
+            </digi-input>
+
+            <span fs="12px" fw="reg" class="d-block mt-2">Location</span>
+            <digi-input label="Address Line 1">
+                <input nz-input class="digi-input" nzSize="large" nzBorderless />
+            </digi-input>
+            
+            <digi-input label="* City">
+                <input nz-input class="digi-input" nzSize="large" nzBorderless />
+            </digi-input>
+
+            <digi-input label="Pincode">
+                <input nz-input class="digi-input" nzSize="large" nzBorderless />
+            </digi-input>
+        </div>
+     </ng-container>
+   
+    <div nz-col nzXs="24" class="mt-3">
+        <digi-affix toBottom="9%">
+            <div class="center-xy pt-2 pb-3">
+                <div class="indicator" (click)="part=1" 
+                [ngClass]="{'i-active': part==1}"></div>
+                <div class="indicator" (click)="part=2"
+                [ngClass]="{'i-active': part==2}"></div>
+            </div>
+        </digi-affix>
+    </div>
+  
+</div>

@@ -1,0 +1,36 @@
+<div nz-row nzJustify="center" nzAlign="middle" class="tab-container">
+    <!--  -->
+    <div nz-col nzFlex="5" class="text-center" (click)="tabNav('home')">
+        <img src="{{iconPath}}{{urlMetch('/home')?'a-':null}}home.svg" alt="">
+        <span fs="12px" fw="reg" class="d-block t-t-c mt-1" 
+        [color]="urlMetch('/home')?'#2795A0':'#D2D4E1'">home</span>
+    </div>
+
+    <!--  stroke-->
+    <div nz-col nzFlex="5" class="text-center" (click)="tabNav('search')">
+        <img src="{{iconPath}}{{urlMetch('/search')?'a-':null}}search.svg" alt="">
+        <span fs="12px" fw="reg" class="d-block t-t-c mt-1"
+        [color]="urlMetch('/search')?'#2795A0':'#D2D4E1'">search</span>
+    </div>
+
+    <!--  -->
+    <div nz-col nzFlex="5" class="text-center" (click)="tabNav('records')">
+        <img src="{{iconPath}}{{urlMetch('/records')?'a-':null}}records.svg" alt="">
+        <span fs="12px" fw="reg" class="d-block t-t-c mt-1"
+        [color]="urlMetch('/records')?'#2795A0':'#D2D4E1'">records</span>
+    </div>
+
+    <!--  -->
+    <div nz-col nzFlex="5" class="text-center" (click)="tabNav('cart')">
+        <img src="{{iconPath}}{{urlMetch('/cart')?'a-':null}}cart.svg" alt="">
+        <span fs="12px" fw="reg" class="d-block t-t-c mt-1"
+        [color]="urlMetch('/cart')?'#2795A0':'#D2D4E1'">cart</span>
+    </div>
+
+    <!--  -->
+    <div nz-col nzFlex="5" class="text-center" (click)="tabNav('profile')">
+        <img src="{{iconPath}}{{urlMetch('/profile')?'a-':null}}profile.svg" alt="">
+        <span fs="12px" fw="reg" class="d-block t-t-c mt-1"
+        [color]="urlMetch('/profile')?'#2795A0':'#D2D4E1'">profile</span>
+    </div>
+</div>

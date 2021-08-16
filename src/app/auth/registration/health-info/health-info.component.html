@@ -1,0 +1,59 @@
+<!-- <span fs="14px" fw="reg" class="d-block mt-3 mb-2 t-t-c">
+    select Option
+</span>
+<nz-radio-group>
+    <label nz-radio nzValue="A">Option A</label>
+    <label nz-radio nzValue="B">Option B</label>
+    <label nz-radio nzValue="C">Option C</label>
+</nz-radio-group>
+
+
+<span fs="14px" fw="reg" class="d-block mt-3 mb-2 t-t-c">
+    select Option
+</span>
+<nz-radio-group>
+    <label nz-radio class="d-block" nzValue="A">python</label>
+    <label nz-radio class="d-block"  nzValue="B">java</label>
+    <label nz-radio  class="d-block"  nzValue="C">JavaScript</label>
+</nz-radio-group> -->
+
+<digi-input label="Mention (in Kgs)">
+  <input nz-input class="digi-input" nzSize="large" nzBorderless />
+</digi-input>
+
+<digi-input label="Mention (in cms)">
+  <input nz-input class="digi-input" nzSize="large" nzBorderless />
+</digi-input>
+
+<digi-input label="Blood Group">
+  <nz-select nzSize="large" nzBorderless class="in-select">
+    <nz-option nzValue="A+" nzLabel="A+"></nz-option>
+    <nz-option nzValue="A-" nzLabel="A-"></nz-option>
+    <nz-option nzValue="B+" nzLabel="B+"></nz-option>
+    <nz-option nzValue="B-" nzLabel="B-"></nz-option>
+    <nz-option nzValue="O+" nzLabel="O+"></nz-option>
+    <nz-option nzValue="O-" nzLabel="O-"></nz-option>
+    <nz-option nzValue="AB+" nzLabel="AB+"></nz-option>
+    <nz-option nzValue="AB-" nzLabel="AB-"></nz-option>
+    <nz-option nzValue="I Don’t know" nzLabel="I Don’t know"></nz-option>
+  </nz-select>
+</digi-input>
+
+
+<digi-input label="Any Current Illness">
+  <input nz-input class="digi-input" nzSize="large" nzBorderless />
+</digi-input>
+
+<span fs="14px" fw="reg" class="d-block mt-3 mb-2 t-t-c">
+  Allergic to
+</span>
+<nz-select [(ngModel)]="listOfTagOptions" nzMode="tags" [nzTokenSeparators]="[',']" nzPlaceHolder="Select tags"
+  class="digi-input" nzBorderless [nzOpen]="false">
+
+  <digi-input label="Any Current Illness">
+    <input nz-input class="digi-input" nzSize="large" nzBorderless />
+  </digi-input>
+
+  <div class="mb-5">
+    <br><br><br><br>
+  </div>

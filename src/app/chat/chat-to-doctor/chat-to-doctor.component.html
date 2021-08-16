@@ -1,0 +1,115 @@
+<!-- doctor info card -->
+<div nz-row nzAlign="middle" style="min-height: 99px;border-bottom: 3px solid  #EEEEEE;">
+    <div nz-col nzFlex="1" class="center-xy">
+        <img src="assets/images/user_placeholder_2.svg" class="img-res" alt="">
+    </div>
+    <div nz-col nzFlex="3" class="center-xy">
+        <div>
+            <span fs="15px" fw="reg" class="d-block" color="#12263C">
+                Dr. Jenny Wilsson</span>
+            <span fs="12px" fw="reg" class="d-block" color="#9EAAB2">
+                General Medicine, MBBS</span>
+        </div>
+    </div>
+    <div nz-col nzFlex="2" class="center-xy">
+        <button class="call-btn" (click)="pickUpCall()">
+            <img src="assets/icons/call.svg" alt="">
+        </button>&nbsp;&nbsp;
+        <button class="call-btn" (click)="pickUpCall()">
+            <img src="assets/icons/video_call.svg" alt="">
+        </button>
+    </div>
+</div>
+
+<!-- doctor info card -->
+
+
+<!-- chat box -->
+<div style="height: calc(96vh - 99px); overflow-y: scroll;">
+    
+    <!-- date time line -->
+    <div class="text-center my-3">
+        <nz-tag fs="13px">Wed, 11 Aug</nz-tag>
+    </div>
+    <!-- date time line -->
+
+    <!-- chat as Dialog -->
+    <div nz-row class="dialog p-3 my-3">
+        <div nz-col nzXs="24">
+            <span fs="14px" fw="md" color="#12263C" class="d-block">
+                Do you have prescription?
+            </span>
+            <span fs="12px" fw="md" color="#9EAAB2" class="d-block mb-3">
+                Choose an option
+            </span>
+        </div>
+        <div nz-col nzXs="24">
+            <button fs="12px" fw="md" color="white" class="digi-bg">
+                SCAN
+            </button>&nbsp;&nbsp;&nbsp;
+            <button fs="12px" fw="md" color="black" class="digi-ligth-bg">
+                NO
+            </button>
+        </div>
+    </div>
+
+    <!-- receiving box -->
+    <div class="receiving center-xy my-3 p-2" 
+    [attr.data-time-receiving]="receivingTime">
+        <span fs="13px" fw="md" color="#12263C">
+            Hi!
+            Are you taking the
+            prescribed medicines</span>
+    </div>
+
+     <!-- sending box -->
+     <ng-container *ngFor="let x of pushText">
+        <div class="sending mt-5 p-2 text-start" 
+        [attr.data-time-send]="sendTime">
+            <span fs="13px" fw="md" color="white" class="d-block">
+                {{x.text}}</span>
+        </div>
+     </ng-container>
+     <!-- test -->
+
+     <div class="mb-5">
+        <br><br>
+    </div>
+</div>
+<!-- chat box -->
+
+
+
+<!-- typing bar -->
+<digi-affix toBottom="1%">
+    <div nz-row nzJustify="space-between" nzAlign="middle">
+        <div nz-col nzFlex="5">
+            <div class="input-bg p-1 center-y-start-x">
+                <span class="icon-bg center-xy">
+                    <img src="assets/icons/chat-type-add.svg" alt="">
+                </span>
+                <span>
+                    <input nz-input placeholder="Type your message..." nzSize="large" nzBorderless [(ngModel)]="text"/>
+                </span>
+            </div>
+        </div>
+        <div nz-col nzFlex="1" class="center-y-end-x">
+            <span class="icon-bg center-xy">
+                <img src="assets/icons/chat_mic.svg" 
+                (click)="sendtext({text:text})" alt="">
+            </span>
+        </div>
+    </div>
+</digi-affix>
+<!-- typing bar -->
+
+<nz-drawer
+  [nzClosable]="false"
+  [nzVisible]="callContainer"
+  [nzPlacement]="'bottom'"
+  [nzHeight]="'100%'"
+  [nzBodyStyle]="{'padding':'0px'}">
+  <ng-container *nzDrawerContent>
+    <digi-make-call (endCall)="dropCall($event)"></digi-make-call>
+  </ng-container>
+</nz-drawer>

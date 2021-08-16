@@ -1,0 +1,24 @@
+<div nz-row>
+    <div nz-col nzFlex="5" class="center-y-start-x">
+        <span fs="16px" fw="md" color="#12263C">Choose a date</span>
+    </div>
+    <div nz-col nzFlex="5" class="center-y-end-x">
+        <span fs="16px" fw="md" color="#12263C">August 2021</span>
+    </div>
+</div>
+
+<div class="mt-3">
+    <owl-carousel-o [options]="OwlConfig">
+        <ng-container *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]">
+            <ng-template carouselSlide>
+                <button class="date-slots">
+                    <!--add active class : active-slots-->
+                    <div class="text-center">
+                        <span fs="13px" fw="bold" class="d-block">mon</span>
+                        <span fs="13px" fw="bold" class="d-block">{{item}}</span>
+                    </div>
+                </button>
+            </ng-template>
+        </ng-container>
+    </owl-carousel-o>
+</div>

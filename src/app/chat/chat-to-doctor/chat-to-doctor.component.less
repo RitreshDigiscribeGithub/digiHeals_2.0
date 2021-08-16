@@ -1,0 +1,59 @@
+.call-btn {
+  width: 7.2vh;
+  height: 7.2vh;
+  background: #f1f1f1 !important;
+  border-radius: 14px;
+  border: none;
+}
+.receiving {
+  width: 70%;
+  min-height: 50px;
+  background: #f1f1f1;
+  border-radius: 0px 16px 16px 16px;
+  position: relative;
+}
+.receiving::before {
+  content: attr(data-time-receiving);
+  position: absolute;
+  bottom: -26px;
+  left: 8px;
+  font-family: "inter-reg";
+}
+.sending {
+  width: 70%;
+  min-height: 50px;
+  background: #2fbca7;
+  border-radius: 16px 16px 0px 16px;
+  margin-left: auto;
+  position: relative;
+}
+.sending::before {
+  content: attr(data-time-send);
+  position: absolute;
+  bottom: -26px;
+  right: 8px;
+  font-family: "inter-reg";
+}
+.dialog {
+  min-height: 50px;
+  background: #f1f1f1;
+  border-radius: 16px;
+  button {
+    padding: 12px 16px;
+    border: 1px solid #2795a0;
+    box-sizing: border-box;
+    border-radius: 6px;
+    min-height: 36px;
+  }
+}
+.icon-bg {
+  width: 48px;
+  height: 48px;
+  background: #104b60;
+  border-radius: 50%;
+}
+.input-bg {
+  display: flex;
+  background: #eeeeee;
+  border-radius: 25px;
+}
