@@ -18,7 +18,6 @@ export class MakeCallComponent implements OnInit {
     }, 4000);
 
   }
-
   dropCall() {
     this.endCall.emit(false)
   }

@@ -1,11 +1,10 @@
 <span fs="16px" fw="md" color="#12263C" class="d-block mt-2 mb-3">
-    Select a delivery address
+    Select a delivery address 
 </span>
-
 <ng-container *ngFor="let list of address_list; let i=index">
     <label for="label-id-{{i}}" nz-row nzJustify="space-around" class="my-2">
         <div nz-col nzXs="2" class="text-center">
-            <input nz-radio type="radio" name="rdo" id="label-id-{{i}}" class="hidden" [checked]="i==0"/>
+            <input nz-radio type="radio" name="rdo" id="label-id-{{i}}" class="hidden" (change)="getValue($event.target.value)" [value]="i"/>
         </div>
         <div nz-col nzXs="22">
             <span color="#12263C" class="d-block">
@@ -15,7 +14,8 @@
                    {{list.address}}
                </span>
             </span>
-            <span color="#12263C" class="d-block my-2">
+            <span color="#12263C" class="d-block my-2" 
+            *ngIf="value && value==i">
                 <button fs="14px" fw="reg" color="white" class="address-btn digi-bg" routerLink="../reviewOrder">
                     Deliver here
                 </button>&nbsp;&nbsp;
@@ -38,3 +38,5 @@
         Add New Address
     </button>
 </digi-affix>
+
+

@@ -12,8 +12,4 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  urlMatch(): boolean {
-    return (this._router.url === '/home') ? false : true;
-  }
 }

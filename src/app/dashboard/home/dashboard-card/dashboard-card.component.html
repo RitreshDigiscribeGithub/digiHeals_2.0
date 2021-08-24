@@ -1,0 +1,27 @@
+<div nz-row nzAlign="middle" class="card p-3 my-3" [ngStyle]="{
+'background-color': color,
+'min-height': '169px',
+'border-radius': '12px',
+'background-image': iconUrl,
+'background-size': iconWidth
+}">
+<div  *ngIf="tag" nz-col nzXs="24" class="mb-3">
+    <nz-tag [nzColor]="'#52BDFF'">{{tag}}</nz-tag>
+</div>
+    <div nz-col nzXs="24">
+        <span fs="17px" fw="reg" class="d-block mb-2"
+        [color]="(color=='#A293FA')?'white':'#12263C'">{{title}}</span>
+    </div>
+     <div *ngIf="list">
+         <ng-container *ngFor="let item of list">
+            <span fs="14px" fw="reg" class="d-block my-2"
+            [color]="(color=='#A293FA')?'white':'#12263C'">{{item}}</span>
+         </ng-container>
+     </div>
+    <div nz-col nzXs="24">
+        <span fs="14px" fw="reg" class="d-block mb-3">{{description}}</span>
+    </div>
+    <div nz-col nzXs="24">
+        <ng-content></ng-content>
+    </div>
+</div>

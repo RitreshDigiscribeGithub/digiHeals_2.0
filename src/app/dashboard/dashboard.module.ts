@@ -11,6 +11,7 @@ import { AppointmentComponent } from './appointment/appointment.component';
 import { FormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { antForDashboard } from '../shared/themes/antModule';
+import { DashboardCardComponent } from './home/dashboard-card/dashboard-card.component';
 
 const dashboardRoutes: Routes = [
   {
@@ -33,7 +34,8 @@ const dashboardRoutes: Routes = [
     ProfileComponent,
     RecordsComponent,
     SearchComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    DashboardCardComponent
   ],
   imports: [
     CommonModule,

@@ -5,7 +5,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class DynamicTitleService {
-  headerTitleSubject = new Subject<string>();
+  headerTitleSubject = new BehaviorSubject<string>("Wilsson Clinic Center");
   constructor() { }
 
   setHeaderTitle(param) {

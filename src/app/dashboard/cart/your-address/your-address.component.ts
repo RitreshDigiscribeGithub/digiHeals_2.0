@@ -24,5 +24,8 @@ export class YourAddressComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  value = ''
+  getValue(value) {
+    this.value = value;
+  }
 }

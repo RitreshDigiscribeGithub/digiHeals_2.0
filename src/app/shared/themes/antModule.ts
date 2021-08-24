@@ -12,6 +12,7 @@ import { NzRateModule } from "ng-zorro-antd/rate";
 import { NzSelectModule } from "ng-zorro-antd/select";
 import { NzTagModule } from "ng-zorro-antd/tag";
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 
 // Auth module
 export function antForAuth() {
@@ -20,7 +21,7 @@ export function antForAuth() {
 
 // Share Component module
 export function antForShareModule() {
-    return [NzButtonModule, NzLayoutModule, NzGridModule, NzFormModule, NzIconModule, NzCardModule, NzRateModule, NzTagModule];
+    return [NzButtonModule, NzLayoutModule, NzGridModule, NzFormModule, NzIconModule, NzCardModule, NzRateModule, NzTagModule,NzPageHeaderModule,NzDrawerModule];
 }
 
 // Dashboard module

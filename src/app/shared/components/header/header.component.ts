@@ -9,12 +9,24 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   @Input() public title: string;
   constructor(private _router: Router) { }
-
+  drawer: boolean = false;
   ngOnInit(): void {
   }
 
   backTo() {
 
+  }
+  menu_list: any[] = [
+    { name: 'Home', icon: 'home', path: 'home' },
+    { name: 'Health Records', icon: 'record', path: 'records' },
+    { name: 'Your Orders', icon: 'orders', path: 'cart' },
+    { name: 'Your Bookings', icon: 'bookings', path: 'appointment' },
+    { name: 'Your Account', icon: 'profile', path: 'profile' }
+  ]
+
+  nav(param) {
+    this._router.navigateByUrl(param)
+    this.drawer = false;
   }
 
   //only call on template
@@ -27,5 +39,9 @@ export class HeaderComponent implements OnInit {
     } else {
       return 'local-header';
     }
+  }
+
+  close() {
+    this.drawer = false;
   }
 }
