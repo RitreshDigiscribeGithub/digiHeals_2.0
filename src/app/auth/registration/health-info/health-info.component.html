@@ -39,20 +39,19 @@
   </nz-select>
 </digi-input>
 
-
-<digi-input label="Any Current Illness">
-  <input nz-input class="digi-input" nzSize="large" nzBorderless />
-</digi-input>
+<span fs="14px" fw="reg" class="d-block mt-3 mb-2 t-t-c">
+  Any Current Illness
+</span>
+<nz-select [(ngModel)]="listOfTagOptions" nzMode="tags" [nzTokenSeparators]="[',']" nzPlaceHolder="Select tags"
+  class="digi-input" nzBorderless [nzOpen]="false">
+</nz-select>
 
 <span fs="14px" fw="reg" class="d-block mt-3 mb-2 t-t-c">
   Allergic to
 </span>
 <nz-select [(ngModel)]="listOfTagOptions" nzMode="tags" [nzTokenSeparators]="[',']" nzPlaceHolder="Select tags"
   class="digi-input" nzBorderless [nzOpen]="false">
-
-  <digi-input label="Any Current Illness">
-    <input nz-input class="digi-input" nzSize="large" nzBorderless />
-  </digi-input>
+</nz-select>
 
   <div class="mb-5">
     <br><br><br><br>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { OwlOptions } from 'ngx-owl-carousel-o'; 
+import { OwlOptions } from 'ngx-owl-carousel-o';
+import { DynamicTitleService } from 'src/app/shared/utility/dynamic-title.service';
 
 @Component({
   selector: 'digi-profile',
@@ -42,9 +43,10 @@ export class ProfileComponent implements OnInit {
     nav: false
   }
 
-  constructor(private _router: Router) { }
+  constructor(private _router: Router, private _dynamicTitleService: DynamicTitleService) { }
 
   ngOnInit(): void {
+    this._dynamicTitleService.headerTitleSubject.next('Profile')
   }
 
   bookAppointment() {

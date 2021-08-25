@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DynamicTitleService } from '../shared/utility/dynamic-title.service';
 
 @Component({
   selector: 'digi-dashboard',
@@ -8,8 +9,15 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private _router: Router) { }
+  constructor(private _router: Router, private _dynamicTitleService: DynamicTitleService, private _cdRef: ChangeDetectorRef) { }
+
+  title = null;
 
   ngOnInit(): void {
+    this._dynamicTitleService.headerTitleSubject
+      .subscribe(title => {
+        this.title = title;
+        this._cdRef.detectChanges()
+      })
   }
 }

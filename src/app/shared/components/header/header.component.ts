@@ -24,6 +24,12 @@ export class HeaderComponent implements OnInit {
     { name: 'Your Account', icon: 'profile', path: 'profile' }
   ]
 
+  bottom_list: any[] = [
+    { name: 'Get Help', icon: 'help', events: () => { } },
+    { name: 'Terms of Service', icon: 'tos', events: () => { } },
+    { name: 'Privacy Policy', icon: 'tos', events: () => { } },
+    { name: 'Log out', icon: 'logout', events: () => { } }
+  ]
   nav(param) {
     this._router.navigateByUrl(param)
     this.drawer = false;

@@ -1,8 +1,8 @@
 <!-- dashboard root component -->
-<digi-header title="dashboard"></digi-header>
+<digi-header [title]="title"></digi-header>
 
 <ng-template [ngIf]="true">
-    <div class="main_header_tab px-3">
+    <div class="main_header_tab">
         <router-outlet></router-outlet>
     </div>
 </ng-template>

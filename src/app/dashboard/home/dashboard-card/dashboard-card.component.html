@@ -15,7 +15,7 @@
      <div *ngIf="list">
          <ng-container *ngFor="let item of list">
             <span fs="14px" fw="reg" class="d-block my-2"
-            [color]="(color=='#A293FA')?'white':'#12263C'">{{item}}</span>
+            [color]="(color=='#A293FA')?'white':'#12263C'" [innerHtml]="item"></span>
          </ng-container>
      </div>
     <div nz-col nzXs="24">

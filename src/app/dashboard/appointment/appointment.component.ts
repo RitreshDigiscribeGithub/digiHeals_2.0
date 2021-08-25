@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DynamicTitleService } from 'src/app/shared/utility/dynamic-title.service';
 
 @Component({
   selector: 'digi-appointment',
@@ -14,9 +15,10 @@ export class AppointmentComponent implements OnInit {
     rating: 5
   };
 
-  constructor() { }
+  constructor(private _dynamicTitleService: DynamicTitleService) { }
 
   ngOnInit(): void {
+    this._dynamicTitleService.headerTitleSubject.next('Book Appointment')
   }
 
 }

@@ -14,12 +14,12 @@
     <nz-page-header-title fs="16px" fw="reg" color="#FFFFFF">
 
       <!-- dynamic title -->
-      <ng-template [ngIf]="false">
-        Wilsson Clinic Center
+      <ng-template [ngIf]="title !=='dashboard'">
+        <span class="t-t-c">{{title}}</span>
       </ng-template>
       <!-- logo -->
-      <ng-template [ngIf]="true">
-        <img src="assets/icons/logo.svg" class="width-90" alt="">
+      <ng-template [ngIf]="title==='dashboard'">
+        <img src="assets/icons/header_icon/logo.png" class="d-block" width="130" alt="">
       </ng-template>
 
     </nz-page-header-title>
@@ -30,19 +30,30 @@
   </nz-page-header>
 </div>
 
-<nz-drawer [nzClosable]="false" [nzVisible]="drawer" [nzPlacement]="'right'" (nzOnClose)="close()" [nzWidth]="'85%'">
+<nz-drawer [nzClosable]="false" [nzVisible]="drawer" [nzPlacement]="'left'" (nzOnClose)="close()" [nzWidth]="'85%'" [nzBodyStyle]="{'padding':'0px'}">
   <ng-container *nzDrawerContent>
-
-    <div nz-row nzAlign="middle" *ngFor="let list of menu_list" class="mb-4">
-      <div nz-col nzFlex="1">
-        <img src="assets/icons/header_icon/{{list.icon}}.svg" alt="">
-      </div>
-      <div nz-col nzFlex="5" (click)="nav(list.path)">
-        <span fs="16px" fw="reg">{{list.name}}</span>
+    <div class="p-4">
+      <img src="assets/icons/header_icon/logo.png" width="160" 
+      class="mb-3" alt="">
+      <div nz-row nzAlign="middle" *ngFor="let list of menu_list" class="mt-4">
+        <div nz-col nzFlex="1">
+          <img src="assets/icons/header_icon/{{list.icon}}.svg" alt="">
+        </div>
+        <div nz-col nzFlex="5" (click)="nav(list.path)">
+          <span fs="16px" fw="reg">{{list.name}}</span>
+        </div>
       </div>
     </div>
-    <div>
-
+    
+    <div class="p-4 bottom-card">
+      <div nz-row nzAlign="middle" *ngFor="let list of bottom_list" class="mb-4">
+        <div nz-col nzFlex="1">
+          <img src="assets/icons/header_icon/{{list.icon}}.svg" alt="">
+        </div>
+        <div nz-col nzFlex="5" (click)="list.events">
+          <span fs="16px" fw="reg">{{list.name}}</span>
+        </div>
+      </div>
     </div>
   </ng-container>
 </nz-drawer>

@@ -18,6 +18,7 @@ const dashboardRoutes: Routes = [
     path: '', component: DashboardComponent,
     children: [
       { path: 'home', component: HomeComponent },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'search', component: SearchComponent },
       { path: 'records', component: RecordsComponent },
       { path: 'cart', loadChildren: () => import('./cart/cart.module').then(m => m.CartModule) },
