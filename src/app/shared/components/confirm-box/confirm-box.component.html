@@ -1,2 +1,15 @@
-
+<div nz-row  nzAlign="middle"  nzJustify="space-between"
+style="min-height: 60vh;">
+    <div nz-col [nzXs]="{ span: 18, offset: 3 }"
+    class="text-center">
+        <img [src]="image" 
+        class="img-res my-3" alt="">
+         <ng-content select="[body]"></ng-content>
+    </div>
+  </div>
+<!-- button -->
+  <digi-affix>
+    <ng-content select="[button]"></ng-content>
+</digi-affix>
+<!-- button -->
 

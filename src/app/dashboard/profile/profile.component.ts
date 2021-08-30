@@ -49,7 +49,10 @@ export class ProfileComponent implements OnInit {
     this._dynamicTitleService.headerTitleSubject.next('Profile')
   }
 
-  bookAppointment() {
-    this._router.navigate(['appointment'])
+  scheduleAppointment() {
+    this._router.navigateByUrl('appointment/schedule')
+  }
+  cilnicNow() {
+    this._router.navigateByUrl('appointment/clinic-center')
   }
 }

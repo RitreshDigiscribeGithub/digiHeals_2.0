@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'digi-confirm-box',
@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./confirm-box.component.less']
 })
 export class ConfirmBoxComponent implements OnInit {
+  @Input() public image: string;
+  @Input() public template: TemplateRef<any>;
 
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
   close() {

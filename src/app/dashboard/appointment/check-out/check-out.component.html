@@ -1,0 +1,115 @@
+<div class="px-3">
+
+    <div nz-row nzAlign="middle" class="clinic-vist-card px-3 mt-3">
+        <div nz-col nzXs="18">
+            <div>
+                <span fs="16px" fw="reg" color="#12263C" class="d-block">Dr. Jenny Wilson</span>
+                <span fs="12px" class="d-block">General Medicine</span>
+                <span fs="12px" class="d-block">Amet Minim Hospital, Mumbai</span>
+            </div>
+        </div>
+        <div nz-col nzXs="6" class="center-y-end-x">
+            <button nz-button digi-button-inline color="#FC8F1B">
+                Clinic Vist
+            </button>
+        </div>
+        <div nz-col nzXs="18">
+            <button nz-button digi-button-inline color="#54C1FC">
+                <img src="assets/icons/time.svg" alt="">&nbsp;
+                <span fs="14px">Tue, 20 Aug, 8:00 - 10:30 AM</span>
+            </button>
+        </div>
+        <div nz-col nzXs="6" class="center-y-end-x">
+            <button nz-button digi-button-inline color="#54C1FC">
+                <img src="assets/icons/edit.svg" alt="">
+            </button>
+        </div>
+    </div>
+
+    <label for="clinic" nz-row nzJustify="space-around" nzAlign="middle" class="radio-card my-2">
+        <div nz-col nzFlex="1" class="center-xy">
+            <input type="radio" name="payment_method" id="clinic"/>
+        </div>
+        <div nz-col nzFlex="5">
+            <span fs="14px" fw="md" color="#12263C">Pay at clinic</span>
+        </div>
+    </label>
+
+    <label for="online" nz-row nzJustify="space-around" nzAlign="middle" class="radio-card my-2">
+        <div nz-col nzFlex="1" class="center-xy">
+            <input type="radio" name="payment_method" id="online"/>
+        </div>
+        <div nz-col nzFlex="5">
+            <span fs="14px" fw="md" color="#12263C">Pay Online</span>
+        </div>
+    </label>
+
+    <!-- button -->
+    <digi-affix>
+        <div nz-row class="digi-tow-side-btn" nzAlign="middle">
+            <div nz-col nzFlex="5" (click)="clickBtn()">
+                <button fs="16px" fw="md">Rs. 450</button>
+            </div>
+            <div nz-col nzFlex="5" class="center-y-end-x pr-2">
+                <span fs="16px" fw="md" color="white">Pay Now</span>
+            </div>
+        </div>
+    </digi-affix>
+    <!-- button -->
+</div>
+
+<!-- confirm  -->
+<nz-drawer
+  [nzClosable]="false"
+  [nzVisible]="confirm"
+  [nzPlacement]="'bottom'"
+  [nzHeight]="'100%'"
+  [nzBodyStyle]="{'padding':'0px'}">
+  <ng-container *nzDrawerContent>
+    <digi-confirm-box image="assets/images/thanks_for_appoinment.png">
+
+        <ng-container body>
+            <span fs="16px" fw="reg" class="d-block my-3">Thank You</span>
+            <span fs="14px" fw="reg" class="d-block my-3">You have schedule an appointment on 12 Aug at 3:54 PM, Booking no. 012356</span>
+            <span fs="16px" fw="reg" class="d-block">You will recieve a notification once your appointment is confirmed</span>
+        </ng-container>
+
+        <ng-container button>
+            <button nz-button digi-btn color="theme">
+                Go To Health Updates
+            </button>
+        </ng-container>
+
+    </digi-confirm-box>
+  </ng-container>
+</nz-drawer>
+
+<!-- error  -->
+<nz-drawer
+  [nzClosable]="false"
+  [nzVisible]="isError"
+  [nzPlacement]="'bottom'"
+  [nzHeight]="'100%'"
+  [nzBodyStyle]="{'padding':'0px'}">
+  <ng-container *nzDrawerContent>
+    <digi-confirm-box image="assets/images/transaction_error.png">
+
+        <ng-container body>
+            <span fs="16px" fw="reg" class="d-block my-3">
+                Oops! that definitely should not happen
+            </span>
+            <span fs="14px" fw="reg" color="#9EAAB2" class="d-block my-3">
+                We’re sorry the transaction cannot be 
+                 processed, please try again later.
+            </span>
+        </ng-container>
+
+        <ng-container button>
+            <button nz-button digi-btn color="theme" (click)="isError = false">
+                Try Again
+            </button>
+        </ng-container>
+
+    </digi-confirm-box>
+  </ng-container>
+</nz-drawer>

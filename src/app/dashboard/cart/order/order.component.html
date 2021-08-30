@@ -1,0 +1,135 @@
+<div nz-row nzAlign="middle" class="prescription-card bg-ligth my-3">
+    <div nz-col nzFlex="2" class="center-xy">
+        <div class="center-xy" style="height: 48px;width: 53px;background: #CDECFF;">
+            <img src="assets/icons/prescription_from.svg" alt="">
+        </div>
+    </div>
+    <div nz-col nzFlex="5">
+        <span fs="12px" fw="reg" class="d-block" color="#9EAAB2">
+            Prescription from
+        </span>
+        <span fs="16px" fw="md" class="d-block">
+            Dr. Jenny Wisson
+        </span>
+        <span fs="14px" fw="reg" class="d-block" color="#2795A0">
+            Tue, 25 May 2021, 10:20 AM
+        </span>
+    </div>
+</div>
+
+<span fs="14px" fw="md" color="#12263C" class="d-block t-t-u my-2">
+    Blood Pressure
+</span>
+
+<div nz-row utility nzAlign="middle" bg="#EEEEEE" br="4px" minHeight="41px">
+    <div nz-col nzFlex="5">
+        <span fs="14px" fw="md" color="#12263C" class="d-block pl-2">
+            123 / 190 mm/Hg
+        </span>
+    </div>
+    <div nz-col nzFlex="5" class="center-y-end-x">
+        <span fs="14px" fw="md" color="#12263C" class="d-block">
+            Recorded: 25/5/21
+        </span>
+    </div>
+</div>
+
+<span fs="14px" fw="md" color="#12263C" class="d-block t-t-u my-2">
+    Heart Rate
+</span>
+
+<div nz-row utility nzAlign="middle" bg="#EEEEEE" br="4px" minHeight="41px">
+    <div nz-col nzFlex="5">
+        <span fs="14px" fw="md" color="#12263C" class="d-block pl-2">
+            123 / 190 mm/Hg
+        </span>
+    </div>
+    <div nz-col nzFlex="5" class="center-y-end-x">
+        <span fs="14px" fw="md" color="#12263C" class="d-block">
+            Recorded: 25/5/21
+        </span>
+    </div>
+</div>
+
+
+<!-- Medciations -->
+<span fs="14px" fw="md" color="#12263C" class="d-block t-t-u my-3">
+    Medciations
+</span>
+<div nz-row nzAlign="middle">
+    <div nz-col nzFlex="5">
+        <span fs="14px" fw="reg" color="#9EAAB2" class="d-block pl-2">
+            Medciations
+        </span>
+    </div>
+    <div nz-col nzFlex="5">
+        <span fs="14px" fw="reg" color="#9EAAB2" class="d-block">
+            Frquency
+        </span>
+    </div>
+</div>
+
+<ng-container *ngFor="let item of [1,2,3,4,5]">
+
+    <div nz-row nzAlign="middle" class="my-2" utility minHeight="55px">
+        <div nz-col nzFlex="2" class="center-xy">
+            <img src="assets/icons/medicine.svg" class="d-block" alt="">
+        </div>
+        <div nz-col nzFlex="5">
+            <span fs="14px" fw="md" class="d-block">
+                Methotrexate
+            </span>
+            <span fs="12px" fw="reg" color="#9EAAB2" class="d-block">
+                Cholecalciferol (10% w/v)
+            </span>
+        </div>
+        <div nz-col nzFlex="5">
+            <span fs="12px" fw="reg" color="#9EAAB2" class="d-block">
+                12 U - 10U - 10U x 60 Days
+            </span>
+        </div>
+    </div>
+</ng-container>
+
+<!-- Diagnostics Test  -->
+<span fs="14px" fw="md" color="#12263C" class="d-block t-t-u my-3">
+    Diagnostics Test
+</span>
+<div nz-row nzAlign="middle">
+    <div nz-col nzFlex="5">
+        <span fs="14px" fw="reg" color="#9EAAB2" class="d-block pl-2">
+            Test
+        </span>
+    </div>
+</div>
+<ng-container *ngFor="let item of [1,2,3,4,5]">
+
+    <div nz-row nzAlign="middle" class="my-2" utility minHeight="55px">
+        <div nz-col nzFlex="2" class="center-xy">
+            <img src="assets/icons/lab.svg" class="d-block" alt="">
+        </div>
+        <div nz-col nzFlex="5">
+            <span fs="14px" fw="md" class="d-block">
+                OH Progesterone
+            </span>
+            <span fs="12px" fw="reg" color="#9EAAB2" class="d-block">
+                Dr Lal Pathlabs
+            </span>
+        </div>
+        <div nz-col nzFlex="5">
+            <span fs="12px" fw="reg" color="#9EAAB2" class="d-block">
+                Sample collection at home
+            </span>
+        </div>
+    </div>
+</ng-container>
+
+<div class="mb-5">
+    <br><br>
+</div>
+
+<digi-affix>
+    <button nz-button digi-btn color="theme" routerLink="../partner">
+        Book Healthcare Services
+    </button>
+</digi-affix>

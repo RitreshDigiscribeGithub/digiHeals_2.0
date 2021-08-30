@@ -1,17 +1,18 @@
-<div nz-row nzAlign="middle" style="min-height: 130px;">
+<div nz-row nzAlign="middle" class="doctor-card" [ngStyle]="{'background': color?color:'unset'}">
     <div nz-col nzFlex="2" class="center-y-start-x">
-        <img [src]="data.photo" class="d-block img-res" alt="">
-    </div>  
+        <img [src]="data.photo" class="d-block" style="width: 75px;" alt="">
+    </div>     
     <div nz-col nzFlex="5">
-        <span fs="16px" fw="md" color="#12263C" class="d-block">
+        
+        <span fs="16px" fw="md" [color]="color?'white':'#12263C'" class="d-block">
           {{data.name}}
         </span>
-        <span fs="12px" fw="reg" color="#9EAAB2" class="d-block mt-2">
+        <span fs="12px" fw="reg" [color]="color?'white':'#9EAAB2'"  class="d-block">
             {{data.qualification}}
         </span>
-        <span fs="12px" fw="reg" color="#9EAAB2" class="d-block">
+        <!-- <span fs="12px" fw="reg" color="#9EAAB2" class="d-block">
             {{data.clinicName}}
-        </span>
+        </span> -->
         <div>
             <nz-rate [ngModel]="data.rating"></nz-rate>
             <span *ngIf="value" class="ant-rate-text">{{ value ? tooltips[value - 1] : '' }}</span>

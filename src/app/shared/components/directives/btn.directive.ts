@@ -5,6 +5,7 @@ import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
 })
 export class BtnDirective {
   @Input() public color: string;
+  @Input() public ghost: boolean;
   private element = this._eleRef.nativeElement;
 
   constructor(
@@ -13,10 +14,18 @@ export class BtnDirective {
   ) { }
 
   private setColor(param) {
-    if (param === 'theme') {
-      this._renderer.setStyle(this.element, 'background', '#104b60')
+    let isTheme = this.color == 'theme' ? '#104b60' : param
+    if (this.ghost) {
+      this._renderer.setStyle(this.element, 'background', 'white')
+      this._renderer.setStyle(this.element, 'border', `1.5px solid ${isTheme}`)
+      this._renderer.setStyle(this.element, 'color', `${isTheme}`)
     } else {
-      this._renderer.setStyle(this.element, 'background', param)
+      if (param === 'theme') {
+        this._renderer.setStyle(this.element, 'background', isTheme)
+        this._renderer.setStyle(this.element, 'color', '#ffffff')
+      } else {
+        this._renderer.setStyle(this.element, 'background', param)
+      }
     }
   }
 
@@ -24,8 +33,10 @@ export class BtnDirective {
     this._renderer.addClass(this.element, 'digi-button')
   }
 
-  ngAfterViewInit(): void {
+  ngAfterContentChecked(): void {
     this.setColor(this.color)
+  }
+  ngAfterViewInit(): void {
     this.btnClass()
   }
 }

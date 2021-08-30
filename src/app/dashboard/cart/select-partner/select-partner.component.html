@@ -1,0 +1,96 @@
+<span fs="14px" fw="reg" color="#2795A0" class="d-block my-2">
+    Diagnostic Cart
+</span>
+<div nz-row class="my-3">
+    <div nz-col nzXs="3">
+        <img src="assets/icons/checked.svg" class="mx-auto d-block" alt="">
+    </div>
+    <div nz-col nzXs="21">
+        <span  fs="13px" fw="reg" color="#12263C" class="d-block">Your Health Manager has prepared options for diagnostics order best options as per Dr. Jenny prescription dated 19 Jun 2021</span>
+    </div>
+</div>
+
+<ng-container *ngFor="let list of DiagnosticPartnerList">
+<div nz-row class="p-3 my-3" utility bg="#D7F0E4" minHeight="182px" br="10px">
+    <div nz-col nzFlex="3">
+        <span>
+            <nz-tag fs="14px" class="p-1" [nzColor]="'#34917E'">
+                upto 15% Off
+            </nz-tag>
+            <img [src]="list.logo" width="100" class="my-3" alt="">
+        </span>
+    </div>
+    <div nz-col nzFlex="5" class="px-2">
+        <span fs="17px" fw="md" color="#12263C" class="d-block">
+            {{list.name}}</span>
+        <span fs="14px" fw="md" class="d-block">
+            <del fs="13px" fw="md" color="red">MRP: Rs. {{list.del}}</del> Rs. {{list.price}}
+        </span>
+        <nz-tag fs="14px" class="p-1 width-100 text-center mt-2" [nzColor]="'#FFFFFF'" *ngIf="list.recommendation">
+           <span fs="12px" fw="md" color="#08192C">
+              Doctor recommendation
+            </span>
+        </nz-tag>
+    </div>
+    <div nz-col nzXs="24" class="center-y-end-x">
+        <button nz-button digi-button-inline color="theme" routerLink="../partner">
+            Select this Partner
+        </button>
+    </div>
+</div>
+</ng-container>
+
+
+
+<span fs="14px" fw="reg" color="#2795A0" class="d-block my-2">
+    Medication Cart
+</span>
+<div nz-row class="my-3">
+    <div nz-col nzXs="3">
+        <img src="assets/icons/checked.svg" class="mx-auto d-block" alt="">
+    </div>
+    <div nz-col nzXs="21">
+        <span  fs="13px" fw="reg" color="#12263C" class="d-block">Your Health Manager has prepared options for diagnostics order best options as per Dr. Jenny prescription dated 19 Jun 2021</span>
+    </div>
+</div>
+
+<ng-container *ngFor="let list of MedicationPartnerList">
+    <div nz-row class="p-3 my-3" utility bg="#D7F0E4" minHeight="182px" br="10px">
+        <div nz-col nzFlex="3">
+            <span>
+                <nz-tag fs="14px" class="p-1" [nzColor]="'#34917E'">
+                    upto 15% Off
+                </nz-tag>
+                <img [src]="list.logo" width="100" class="my-3" alt="">
+            </span>
+        </div>
+        <div nz-col nzFlex="5" class="px-2">
+            <span fs="17px" fw="md" color="#12263C" class="d-block">
+                {{list.name}}</span>
+            <span fs="14px" fw="md" class="d-block">
+                 Rs. {{list.price}}&nbsp;
+                <del fs="13px" fw="md" color="red">MRP: Rs. {{list.del}}</del> 
+            </span>
+            <nz-tag fs="14px" class="p-1 width-100 text-center mt-2" [nzColor]="'#FFFFFF'" *ngIf="list.recommendation">
+               <span fs="12px" fw="md" color="#08192C">
+                  Doctor recommendation
+                </span>
+            </nz-tag>
+        </div>
+        <div nz-col nzXs="24" class="center-y-end-x">
+            <button nz-button digi-button-inline color="theme" routerLink="../partner">
+                Select this Partner
+            </button>
+        </div>
+    </div>
+</ng-container>
+
+<div class="mb-5">
+    <br><br>
+</div>
+
+<digi-affix>
+    <button nz-button digi-btn color="theme" routerLink="../allCart">
+        Order Now
+    </button>
+</digi-affix>

@@ -13,6 +13,7 @@ import { NzSelectModule } from "ng-zorro-antd/select";
 import { NzTagModule } from "ng-zorro-antd/tag";
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 
 // Auth module
 export function antForAuth() {
@@ -21,7 +22,7 @@ export function antForAuth() {
 
 // Share Component module
 export function antForShareModule() {
-    return [NzButtonModule, NzLayoutModule, NzGridModule, NzFormModule, NzIconModule, NzCardModule, NzRateModule, NzTagModule,NzPageHeaderModule,NzDrawerModule];
+    return [NzButtonModule, NzLayoutModule, NzGridModule, NzFormModule, NzIconModule, NzCardModule, NzRateModule, NzTagModule, NzPageHeaderModule, NzDrawerModule];
 }
 
 // Dashboard module
@@ -29,9 +30,14 @@ export function antForDashboard() {
     return [NzInputModule, NzIconModule, NzDividerModule, NzGridModule, NzButtonModule, NzRateModule, NzTagModule];
 }
 
+// Appointment module
+export function antForAppointment() {
+    return [NzInputModule, NzIconModule, NzDividerModule, NzGridModule, NzButtonModule, NzRateModule, NzTagModule, NzDrawerModule];
+}
+
 // HealsCart module
 export function antForHealsCart() {
-    return [NzGridModule, NzTagModule, NzIconModule, NzInputModule, NzButtonModule, NzDividerModule, NzSelectModule, NzDrawerModule];
+    return [NzGridModule, NzTagModule, NzIconModule, NzInputModule, NzButtonModule, NzDividerModule, NzSelectModule, NzDrawerModule, NzCheckboxModule];
 }
 
 //Chat module

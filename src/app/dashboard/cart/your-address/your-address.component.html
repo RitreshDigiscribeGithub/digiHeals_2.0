@@ -34,9 +34,19 @@
 </div>
 
 <digi-affix>
-    <button nz-button digi-btn color="theme">
+    <button nz-button digi-btn color="theme" (click)="address_drawer = true">
         Add New Address
     </button>
 </digi-affix>
 
-
+<nz-drawer
+  [nzClosable]="false"
+  [nzVisible]="address_drawer"
+  [nzPlacement]="'bottom'"
+  [nzHeight]="'100%'"
+  [nzBodyStyle]="{'padding':'0px'}">
+  <ng-container *nzDrawerContent>
+    <digi-add-address (close)="close( address_drawer = $event)">
+    </digi-add-address>
+  </ng-container>
+</nz-drawer>

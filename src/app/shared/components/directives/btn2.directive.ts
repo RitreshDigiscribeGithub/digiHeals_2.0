@@ -23,9 +23,11 @@ export class Btn2Directive {
   private btnClass() {
     this._renderer.addClass(this.element, 'digi-button-inline')
   }
-
-  ngAfterViewInit(): void {
+  ngAfterContentChecked(): void {
     this.setColor(this.color)
+  }
+  ngAfterViewInit(): void {
+
     this.btnClass()
   }
 

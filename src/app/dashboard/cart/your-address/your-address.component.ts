@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./your-address.component.less']
 })
 export class YourAddressComponent implements OnInit {
+  address_drawer = false;
   address_list = [
     {
       heading: 'Esther Howard',
@@ -27,5 +28,8 @@ export class YourAddressComponent implements OnInit {
   value = ''
   getValue(value) {
     this.value = value;
+  }
+  close(ev) {
+    
   }
 }

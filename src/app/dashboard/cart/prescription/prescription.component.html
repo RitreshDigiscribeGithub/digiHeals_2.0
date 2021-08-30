@@ -1,19 +1,57 @@
-<div nz-row nzAlign="middle" style="min-height: 444px;">
-    <div nz-col [nzXs]="{ span: 22, offset: 1 }"
-    class="text-center">
-       <img src="assets/icons/no-prescription.svg" alt="">
-       <span fs="18px" fw="md" color="#12263C" class="d-block mt-3">
-           No prescription yet
-        </span>
-        <span fs="14px" fw="reg" color="#9EAAB2" class="d-block mt-3">
-            When your doctor prescribe your prescription, 
-            medicines and diagnosis will appear here
-         </span>
+<ng-container *ngIf="prescription; else elseTemplate">
+    <div nz-row nzAlign="middle" style="min-height: 444px;">
+        <div nz-col [nzXs]="{ span: 22, offset: 1 }"
+        class="text-center">
+           <img src="assets/icons/no-prescription.svg" alt="">
+           <span fs="18px" fw="md" color="#12263C" class="d-block mt-3">
+               No prescription yet
+            </span>
+            <span fs="14px" fw="reg" color="#9EAAB2" class="d-block mt-3">
+                When your doctor prescribe your prescription, 
+                medicines and diagnosis will appear here
+             </span>
+        </div>
     </div>
-</div>
+    
+    <digi-affix>
+        <button nz-button digi-btn color="theme">
+            Scan My Prescription
+        </button>
+    </digi-affix>
+</ng-container>
+<ng-template #elseTemplate>
+    <div nz-row>
+        <div nz-col nzXs="24" class="text-center">
+            <span fs="16px" fw="md" class="d-block my-3">
+                Your Prescription from Dr. Jenny is ready</span>
+            <img src="assets/icons/user_placeholder_2x.svg" 
+            class="d-block my-3" alt="">
+            <span fs="12px" fw="reg" color="#9EAAB2" class="d-block my-3">
+                Prescription from
+            </span>
+            <span fs="18px" fw="md" class="d-block my-2">
+                Dr. Jenny Wilsson
+            </span>
+            <span fs="14px" fw="reg" color="#2795A0" class="d-block">
+                Tue, 25 May 2021, 10:20 AM
+            </span>
+        </div>
+        <div nz-col nzXs="24" class="text-center mt-4">
+            <button nz-button digi-button-inline color="#CDECFF">
+                <span fs="14px" color="#12263C">View</span>
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button nz-button digi-button-inline color="#FEE1DD"
+            routerLink="../order">
+                <span fs="14px" color="#12263C">Order</span>
+            </button>
+        </div>
+    </div>
 
-<digi-affix>
-    <button nz-button digi-btn color="theme">
-        Scan My Prescription
-    </button>
-</digi-affix>
+    <digi-affix>
+        <button nz-button digi-btn color="theme">
+            Book Healthcare Services
+        </button>
+    </digi-affix>
+</ng-template>
+
+

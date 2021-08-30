@@ -7,7 +7,6 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RecordsComponent } from './records/records.component';
 import { SearchComponent } from './search/search.component';
-import { AppointmentComponent } from './appointment/appointment.component';
 import { FormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { antForDashboard } from '../shared/themes/antModule';
@@ -23,7 +22,7 @@ const dashboardRoutes: Routes = [
       { path: 'records', component: RecordsComponent },
       { path: 'cart', loadChildren: () => import('./cart/cart.module').then(m => m.CartModule) },
       { path: 'profile', component: ProfileComponent },
-      { path: 'appointment', component: AppointmentComponent },
+      { path: 'appointment', loadChildren: () => import('./appointment/appointment.module').then(m => m.AppointmentModule) },
     ]
   }
 ]
@@ -35,7 +34,6 @@ const dashboardRoutes: Routes = [
     ProfileComponent,
     RecordsComponent,
     SearchComponent,
-    AppointmentComponent,
     DashboardCardComponent
   ],
   imports: [

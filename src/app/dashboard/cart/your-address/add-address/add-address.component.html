@@ -1,0 +1,49 @@
+<digi-header title="Your Address"></digi-header>
+
+<div class="px-3">
+
+    <span fs="16px" fw="md" color="#12263C" class="d-block my-3">
+        Add New Delivery Address
+    </span>
+
+    <digi-input label="Full Name">
+        <input nz-input class="digi-input" nzSize="large" nzBorderless />
+    </digi-input>
+      
+    <digi-input label="Flat, House No., Building, Apartment">
+        <input nz-input class="digi-input" nzSize="large" nzBorderless />
+    </digi-input>
+
+    <digi-input label="Area, Street, Sector, Village">
+        <input nz-input class="digi-input" nzSize="large" nzBorderless />
+    </digi-input>
+
+    <digi-input label="Landmark">
+        <input nz-input class="digi-input" nzSize="large" nzBorderless />
+    </digi-input>
+
+    <digi-input label="City">
+        <input nz-input class="digi-input" nzSize="large" nzBorderless />
+    </digi-input>
+    
+    <digi-input label="Pincode">
+        <input nz-input class="digi-input" nzSize="large" nzBorderless />
+    </digi-input>
+
+    <digi-input label="State">
+        <nz-select nzSize="large" nzBorderless class="in-select">
+            <ng-container *ngFor="let list of states">
+                <nz-option [nzValue]="list.state" [nzLabel]="list.state">
+                </nz-option>
+            </ng-container>
+        </nz-select>
+      </digi-input>
+
+    <label class="my-3" nz-checkbox [(ngModel)]="checked">
+        Make this my default address
+    </label> 
+
+    <button nz-button digi-btn color="theme" (click)="submit()">
+        Add New Address
+    </button>
+</div>

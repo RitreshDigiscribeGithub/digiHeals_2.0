@@ -15,28 +15,36 @@ import { CheckOutComponent } from './check-out/check-out.component';
 import { AddedCartComponent } from './added-cart/added-cart.component';
 import { DropOffComponent } from './drop-off/drop-off.component';
 import { ScheduleTimeComponent } from './schedule-time/schedule-time.component';
+import { OrderComponent } from './order/order.component';
+import { SelectPartnerComponent } from './select-partner/select-partner.component';
+import { AddAddressComponent } from './your-address/add-address/add-address.component';
+import { FormsModule } from '@angular/forms';
 
 
 const cartRoutes: Routes = [
   {
     path: '', component: CartComponent,
     children: [
+      { path: 'prescription', component: PrescriptionComponent },
+      { path: '', redirectTo: 'prescription', pathMatch: 'full' },
       { path: 'healCart', component: HealCartComponent },
-      { path: '', redirectTo: 'healCart', pathMatch: 'full' },
+      { path: 'order', component: OrderComponent },
+      { path: 'partner', component: SelectPartnerComponent },
       { path: 'allCart', component: AddedCartComponent },
       { path: 'checkOut', component: CheckOutComponent },
       { path: 'address', component: YourAddressComponent },
       { path: 'dropOff', component: DropOffComponent },
       { path: 'reviewOrder', component: ReviewOrderComponent },
-      { path: 'schedule-time', component: ScheduleTimeComponent }
+      { path: 'schedule-time', component: ScheduleTimeComponent },
     ]
   }
 ]
 
 @NgModule({
-  declarations: [CartComponent, HealCartComponent, PrescriptionComponent, MedicinesComponent, DiagnosticComponent, ReviewOrderComponent, OrderConfirmedComponent, YourAddressComponent, CheckOutComponent, AddedCartComponent, DropOffComponent, ScheduleTimeComponent],
+  declarations: [CartComponent, HealCartComponent, PrescriptionComponent, MedicinesComponent, DiagnosticComponent, ReviewOrderComponent, OrderConfirmedComponent, YourAddressComponent, CheckOutComponent, AddedCartComponent, DropOffComponent, ScheduleTimeComponent, OrderComponent, SelectPartnerComponent, AddAddressComponent],
   imports: [
     CommonModule,
+    FormsModule,
     antForHealsCart(),
     RouterModule.forChild(cartRoutes),
     ShareComponentsModule

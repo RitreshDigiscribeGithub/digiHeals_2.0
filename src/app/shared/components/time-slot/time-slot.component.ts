@@ -7,9 +7,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TimeSlotComponent implements OnInit {
   @Input() public duration: string;
+  @Input('slots') public slots: any[];
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  isActive;
+  slot(i) {
+    this.isActive = i
+  }
 }

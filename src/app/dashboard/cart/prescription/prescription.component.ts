@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./prescription.component.less']
 })
 export class PrescriptionComponent implements OnInit {
-
+  prescription = false;
   constructor() { }
 
   ngOnInit(): void {
