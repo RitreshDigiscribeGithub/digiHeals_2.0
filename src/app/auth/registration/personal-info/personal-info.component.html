@@ -25,7 +25,25 @@
              </digi-input>
            
              <digi-input label="Date of Birth">
-                <nz-date-picker (ngModelChange)="onChange($event)" [nzSize]="'large'" ></nz-date-picker>
+                <div nz-row [nzGutter]="16">
+                    <div nz-col nzFlex="3">
+                        <nz-select nzPlaceHolder="day" nzBorderless class="in-select">
+                            <nz-option *ngFor="let p of dateObj.day()" [nzValue]="p" [nzLabel]="p"></nz-option>
+                          </nz-select>
+                    </div>
+                    <div nz-col nzFlex="3">
+                        <nz-select nzPlaceHolder="month" nzBorderless class="in-select">
+                            <nz-option *ngFor="let c of dateObj.month" [nzValue]="c" [nzLabel]="c"></nz-option>
+                          </nz-select>
+                    </div>
+                    <div nz-col nzFlex="3">
+                        <nz-select nzPlaceHolder="year" nzBorderless class="in-select">
+                            <nz-option *ngFor="let c of dateObj.years()" [nzValue]="c" [nzLabel]="c"></nz-option>
+                          </nz-select>
+                    </div>
+                  </div>
+               
+                 
              </digi-input>
            
              <digi-input label="Marital Status">
