@@ -1,0 +1,137 @@
+<div class="px-3">
+    <span fs="17px" fw="md" class="d-block mt-3">Good Morning</span>
+    <span fs="16px" fw="md" class="d-block mb-3">How are you feeling today?</span>
+
+    <div nz-row nzJustify="center">
+        <div nz-col nzFlex="5" class="center-xy">
+            <div>
+                <input type="radio" value="fine" name="feel" id="fine"
+                (change)="radio($event)">
+                <label utility bg="#CDECFF" br="4px" h="65px" w="65px" class="center-xy" for="fine">
+                    <img src="assets/icons/emo-fine.svg" width="38" alt="">
+                </label>
+                <span fs="14px" fw="md" class="d-block mt-2 
+                text-center">Fine</span>
+            </div>
+        </div>
+        <div nz-col nzFlex="5" class="center-xy">
+            <div>
+                <input type="radio" value="excellent" name="feel" id="excellent" (change)="radio($event)">
+                <label utility bg="#CAF7F4" br="4px" h="65px" w="65px" class="center-xy" for="excellent">
+                    <img src="assets/icons/emo-excellent.svg" width="38" alt="">
+                </label>
+                <span fs="14px" fw="md" class="d-block mt-2 text-center">Excellent</span>
+            </div>
+        </div>
+        <div nz-col nzFlex="5" class="center-xy">
+            <div>
+                <input type="radio" value="notWell" name="feel" id="notWell"
+                (change)="radio($event)">
+                <label utility bg="#DDDDFF" br="4px" h="65px" w="65px" class="center-xy" for="notWell">
+                    <img src="assets/icons/emo-not-well.svg" width="38" alt="">
+                </label>
+                <span fs="14px" fw="md" class="d-block mt-2 
+                text-center">Not well</span>
+            </div>
+        </div>
+        <div nz-col nzFlex="5" class="center-xy">
+            <div>
+                <input type="radio" value="Badly" name="feel" id="badly"
+                (change)="radio($event)">
+                <label utility bg="#FEE1DD" br="4px" h="65px" w="65px" class="center-xy" for="badly">
+                    <img src="assets/icons/emo-badly.svg" width="38" alt="">
+                </label>
+                <span fs="14px" fw="md" class="d-block mt-2 
+                text-center">Badly</span>
+            </div>
+        </div>
+    </div>
+
+    <span fs="16px" fw="md" class="d-block mt-4">Your health concerns</span>
+    <span fs="12px" fw="md" class="d-block mt-2">Tell the doctor about your problem, any symptoms,so they have the fuller picture</span>
+    <textarea nz-input placeholder="Type your message" 
+    [nzAutosize]="{ minRows: 3, maxRows: 5 }" utility  br="10px" class="mt-2"></textarea>
+
+    <!-- Attach Health updates -->
+    <span fs="16px" fw="md" class="d-block mt-4">Attach Health updates</span>
+
+    <ng-container *ngFor="let item of ListItems">
+        <div nz-row nzAlign="middle" class="my-3" utility  br="10px" 
+        border="1.5px solid #EEEEEE" minHeight="72px">
+            <div nz-col nzFlex="2" class="text-center">
+                <ng-template [ngIf]="item.extension=='pdf'">
+                    <img src="assets/icons/type-pdf.svg" alt="">
+                </ng-template>
+                <ng-template [ngIf]="item.type=='video'">
+                    <img src="assets/icons/type-vid.svg" alt="">
+                </ng-template>
+                <ng-template [ngIf]="item.type=='image'">
+                    <img [src]="item.img()" width="36" alt="">
+                </ng-template>
+                <ng-template [ngIf]="item.type=='audio'">
+                    <img src="assets/icons/rec_mic.svg" width="36" alt="">
+                </ng-template>
+            </div>
+            <div nz-col nzFlex="5">
+             <span fs="14px" fw="md" class="d-block">
+                 {{item.fileName | truncate:[14, '...']}}.{{item.extension}}</span>
+             <span fs="12px" fs="reg" color="#9EAAB2" class="d-block">
+                 {{item.date | date }}  {{item.size}}
+                </span>
+            </div>
+            <div nz-col nzFlex="2" class="text-center">
+                <span fs="14px" color="#F96363" class="d-block">Delete</span>
+            </div>
+        </div>
+    </ng-container>
+    
+    
+    <div nz-row nzJustify="center" class="my-5">
+        <div nz-col nzFlex="5" class="text-center">
+            <label for="Voice">
+                <img src="assets/icons/rec_mic.svg" width="38" alt="">
+            </label>
+            <input id="Voice" type="file" (change)="fileSave($event)" multiple="multiple" accept=".mp3,.wav">
+            <span fs="12px" fw="md" class="d-block mt-2">Voice</span>
+        </div>
+        <div nz-col nzFlex="5" class="text-center">
+            <label for="image">
+                <img src="assets/icons/rec_img.svg" width="38" alt="">
+            </label>
+            <input id="image" type="file" (change)="fileSave($event)" multiple="multiple" accept=".jpg,.png">
+            <span fs="12px" fw="md" class="d-block mt-2">Image</span>
+        </div>
+        <div nz-col nzFlex="5" class="text-center">
+            <label for="Video">
+                <img src="assets/icons/rec_vid.svg" width="38" alt="">
+            </label>
+            <input id="Video" type="file" (change)="fileSave($event)" multiple="multiple" accept=".mp4">
+            <span fs="12px" fw="md" class="d-block mt-2">Video</span>
+        </div>
+        <div nz-col nzFlex="5" class="text-center">
+            <label for="document">
+                <img src="assets/icons/rec_doc.svg" width="38" alt="">
+            </label>
+            <input id="document" type="file" (change)="fileSave($event)" multiple="multiple">
+            <span fs="12px" fw="md" class="d-block mt-2">Document</span>
+        </div>
+        <div nz-col nzFlex="5" class="text-center">
+            <label for="Rx">
+                <img src="assets/icons/rec_rx.svg" width="38" alt="">
+            </label>
+            <input id="Rx" type="file" (change)="fileSave($event)" multiple="multiple">
+            <span fs="12px" fw="md" class="d-block mt-2">Rx</span>
+        </div>
+    </div>
+
+    <div nz-row nzJustify="center" class="mt-5" [nzGutter]="16">
+        <div nz-col nzFlex="5">
+            <button nz-button digi-btn color="theme">Share</button>
+        </div> 
+        <div nz-col nzFlex="5">
+            <button nz-button digi-btn color="theme"
+            [ghost]="true">Skip</button>
+        </div> 
+    </div>
+</div>
+

@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { antForDashboard } from '../shared/themes/antModule';
 import { DashboardCardComponent } from './home/dashboard-card/dashboard-card.component';
+import { HealthRecordsComponent } from './health-records/health-records.component';
 
 const dashboardRoutes: Routes = [
   {
@@ -23,6 +24,7 @@ const dashboardRoutes: Routes = [
       { path: 'cart', loadChildren: () => import('./cart/cart.module').then(m => m.CartModule) },
       { path: 'profile', component: ProfileComponent },
       { path: 'appointment', loadChildren: () => import('./appointment/appointment.module').then(m => m.AppointmentModule) },
+      { path: 'health-records', component: HealthRecordsComponent }
     ]
   }
 ]
@@ -34,7 +36,8 @@ const dashboardRoutes: Routes = [
     ProfileComponent,
     RecordsComponent,
     SearchComponent,
-    DashboardCardComponent
+    DashboardCardComponent,
+    HealthRecordsComponent
   ],
   imports: [
     CommonModule,

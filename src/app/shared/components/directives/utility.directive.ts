@@ -8,9 +8,11 @@ export class UtilityDirective {
   @Input() public br: string;
   @Input() public minHeight: string;
   @Input() public w: string;
+  @Input() public h: string;
+  @Input() public border: string;
   private element = this._eleRef.nativeElement;
   // utility bg="red" br="" h="" w=""
-  // border-radius: 4px;min-height: 41px;
+  // border-radius: 4px;min-height: 41px; 
   constructor(
     private _renderer: Renderer2,
     private _eleRef: ElementRef
@@ -24,6 +26,12 @@ export class UtilityDirective {
         this._renderer.setStyle(this.element, 'border-radius', this.br)
       } if (this.minHeight) {
         this._renderer.setStyle(this.element, 'min-height', this.minHeight)
+      } if (this.w) {
+        this._renderer.setStyle(this.element, 'width', this.w)
+      } if (this.h) {
+        this._renderer.setStyle(this.element, 'height', this.h)
+      } if (this.border) {
+        this._renderer.setStyle(this.element, 'border', this.border)
       }
     } else {
       console.error(`please use directive with utility (bg="" br="" min_h="" w="")`);
