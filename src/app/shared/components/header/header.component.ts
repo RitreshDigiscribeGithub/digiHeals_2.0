@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
     { name: 'Get Help', icon: 'help', events: () => { } },
     { name: 'Terms of Service', icon: 'tos', events: () => { } },
     { name: 'Privacy Policy', icon: 'tos', events: () => { } },
-    { name: 'Log out', icon: 'logout', events: () => { } }
+    { name: 'Log out', icon: 'logout', events: () => { this.logOut() } }
   ]
   nav(param) {
     this._router.navigateByUrl(param)
@@ -47,6 +47,9 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  logOut() {
+    this._router.navigate(['auth'])
+  }
   close() {
     this.drawer = false;
   }

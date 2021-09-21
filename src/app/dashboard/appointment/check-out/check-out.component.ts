@@ -10,7 +10,7 @@ export class CheckOutComponent implements OnInit {
   confirm = false;
   isError = false;
   constructor(private _router: Router) { }
-
+ 
   ngOnInit(): void {
   }
   clickBtn() {
