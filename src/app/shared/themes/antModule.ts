@@ -16,6 +16,7 @@ import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
+
 // Auth module
 export function antForAuth() {
     return [NzLayoutModule, NzGridModule, NzInputModule, NzSelectModule, NzButtonModule, NzRadioModule, NzDatePickerModule];
