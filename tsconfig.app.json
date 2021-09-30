@@ -6,9 +6,10 @@
     "paths": {
       "@app/*": ["src/app/*"],
       "@env/*": ["src/environments/*"],
-      "@service/*": ["src/app/services/*"],
+      "@services/*": ["src/app/services/*"],
       "@interface/*": ["src/app/interface/*"],
-      "@assets/*": ["src/app/assets/*"]
+      "@assets/*": ["src/app/assets/*"],
+      "@guards/*":["src/app/guards/*"]
     },
     "outDir": "./out-tsc/app",
     "types": []
