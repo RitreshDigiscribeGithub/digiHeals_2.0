@@ -36,10 +36,6 @@ export class LoginComponent implements OnInit {
     this._dynamicTitle.setHeaderTitle('Phone Number');
   }
 
-  onSubmit() {
-    console.log(this.loginForm.value);
-  }
-
   formInit() {
     this.loginForm = this._fb.group({
       phoneNumber: [
