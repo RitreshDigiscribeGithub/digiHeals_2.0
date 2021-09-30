@@ -11,13 +11,16 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShareComponentsModule } from './shared/components/share-components.module';
+import { SplashScreenComponent } from './splash-screen/splash-screen.component';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
 
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SplashScreenComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +28,7 @@ registerLocaleData(en);
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NzProgressModule,
     BrowserAnimationsModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
