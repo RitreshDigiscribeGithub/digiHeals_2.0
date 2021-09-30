@@ -16,15 +16,15 @@ import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
-
+import { NzModalModule } from 'ng-zorro-antd/modal'
 // Auth module
 export function antForAuth() {
-    return [NzLayoutModule, NzGridModule, NzInputModule, NzSelectModule, NzButtonModule, NzRadioModule, NzDatePickerModule];
+    return [NzLayoutModule, NzGridModule, NzInputModule, NzSelectModule, NzButtonModule, NzRadioModule, NzDatePickerModule,NzModalModule];
 }
 
 // Share Component module
 export function antForShareModule() {
-    return [NzButtonModule, NzLayoutModule, NzGridModule, NzFormModule, NzIconModule, NzCardModule, NzRateModule, NzTagModule, NzPageHeaderModule, NzDrawerModule];
+    return [NzButtonModule, NzLayoutModule, NzGridModule, NzFormModule, NzIconModule, NzCardModule, NzRateModule, NzTagModule, NzPageHeaderModule, NzDrawerModule,NzModalModule];
 }
 
 // Dashboard module

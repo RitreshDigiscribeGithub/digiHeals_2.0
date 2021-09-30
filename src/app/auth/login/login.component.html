@@ -1,32 +1,84 @@
-<div nz-row class="px-3">
-  <div nz-col nzSpan="24" class="center-xy" style="min-height: 254px;">
-    <img src="assets/images/phoneVector.svg" class="mx-auto d-block witdh-60" alt="">
-  </div>
-  <div nz-col nzSpan="24" class="center-xy" style="min-height: 70px;">
-    <nz-input-group [nzSize]="'large'">
-      <div nz-row nzAlign="middle" style="min-height: 50px;">
-        <div nz-col nzSpan="5">
-          <nz-select [ngModel]="'+91'" [nzBorderless]="true">
-            <nz-option nzLabel="+91" nzValue="+91"></nz-option>
-          </nz-select>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div nz-row class="px-3">
+    <div nz-col nzSpan="24" class="center-xy" style="min-height: 254px">
+      <img
+        src="assets/images/phoneVector.svg"
+        class="mx-auto d-block witdh-60"
+        alt=""
+      />
+    </div>
+    <div nz-col nzSpan="24" class="center-xy" style="min-height: 70px">
+      <nz-input-group [nzSize]="'large'">
+        <div nz-row nzAlign="middle" style="min-height: 50px">
+          <div nz-col nzSpan="5">
+            <nz-select
+              [ngModel]="'+91'"
+              [nzBorderless]="true"
+              formControlName="phoneNumberPrefix"
+            >
+              <nz-option nzLabel="+91" nzValue="+91"></nz-option>
+              <nz-option nzLabel="+62" nzValue="+62"></nz-option>
+              <nz-option nzLabel="+92" nzValue="+91"></nz-option>
+              <nz-option nzLabel="+880" nzValue="+880"></nz-option>
+            </nz-select>
+          </div>
+          <div nz-col nzSpan="19">
+            <input
+              type="text"
+              nz-input
+              placeholder="Enter Phone Number"
+              nzBorderless
+              formControlName="phoneNumber"
+              maxlength="10"
+              required
+            />
+          </div>
         </div>
-        <div nz-col nzSpan="19">
-          <input type="text" nz-input placeholder="Enter Phone Number" nzBorderless />
-        </div>
-      </div>
-    </nz-input-group>
+      </nz-input-group>
+    </div>
+    <div nz-col nzSpan="24">
+      <input type="checkbox" id="policy" formControlName="agree" />
+      <label for="policy"
+        >&nbsp; I hereby accept the
+        <a href="javascript:void(0)" (click)="showTerms()">Terms of use </a> and
+        <a href="javascript:void(0)" (click)="showPrivacy()"
+          >Privacy Policy
+        </a></label
+      >
+    </div>
+    <div nz-col nzSpan="24" class="center-xy" style="min-height: 70px">
+      <span fs="14px" fw="md" class="d-block text-center"
+        >We need your phone number so we can register and send you an
+        authentication code</span
+      >
+    </div>
+    <div nz-col nzSpan="24" class="center-xy" style="min-height: 122px">
+      <button
+        type="submit"
+        [disabled]="loginForm.invalid"
+        nz-button
+        digi-btn
+        color="theme"
+      >
+        {{ isLoading ? "Loading..." : "Continue" }}
+      </button>
+    </div>
   </div>
-  <div nz-col nzSpan="24" class="center-xy"  style="min-height: 70px;">
-    <span fs="14px" fw="md" class="d-block text-center">We need your phone number so we can register and send you an
-      authentication code</span>
-  </div>
-  <div nz-col nzSpan="24" class="center-xy" style="min-height: 122px;">
-    <button nz-button digi-btn color="theme" (click)="continueNow()">Continue</button>
-  </div>
-</div>
-
-
-
-
-
-
+</form>
+<!-- privacy_policy and Terms -->
+<nz-modal
+  [(nzVisible)]="agreeModal"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
+  [nzClosable]="false"
+>
+  <ng-template #modalContent>
+    <digi-privacy-policy *ngIf="isPrivacyDisplay"></digi-privacy-policy>
+    <digi-terms-of-use *ngIf="isTermofUseDigi"> </digi-terms-of-use>
+  </ng-template>
+  <ng-template #modalFooter>
+    <button nz-button nzBlock nzType="primary" (click)="custAgree()">
+      I Agree
+    </button>
+  </ng-template>
+</nz-modal>

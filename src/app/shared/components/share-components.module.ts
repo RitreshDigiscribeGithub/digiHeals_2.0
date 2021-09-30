@@ -19,11 +19,13 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { ConfirmBoxComponent } from './confirm-box/confirm-box.component';
 import { Btn2Directive } from './directives/btn2.directive';
 import { UtilityDirective } from './directives/utility.directive';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
 
-const components = [CalendarComponent, SanitizeHtmlPipe, TruncatePipe, BtnDirective, HeaderComponent, FontDirective, InputComponent, TabGroupComponent, AffixComponent, CardComponent, DoctorCardProfileComponent, TimeSlotComponent, Btn2Directive, ConfirmBoxComponent, UtilityDirective];
+const components = [CalendarComponent, SanitizeHtmlPipe, TruncatePipe, BtnDirective, HeaderComponent, FontDirective, InputComponent, TabGroupComponent, AffixComponent, CardComponent, DoctorCardProfileComponent, TimeSlotComponent, Btn2Directive, ConfirmBoxComponent, UtilityDirective,TermsOfUseComponent,PrivacyPolicyComponent];
 
 @NgModule({
-  declarations: [components, DialogBoxComponent,],
+  declarations: [components, DialogBoxComponent],
   imports: [
     CommonModule,
     FormsModule,
