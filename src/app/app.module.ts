@@ -20,13 +20,16 @@ import { LazyService } from './services/lazy.service';
 import { DgPaymentServiceService } from './services/patient-service/dg-payment-service.service';
 import { PatientService } from './services/patient-service/patient.service';
 import { ExternalLibraryService } from './services/patient-service/utilsPayment';
+import { SplashScreenComponent } from './splash-screen/splash-screen.component';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
 
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SplashScreenComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +37,7 @@ registerLocaleData(en);
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NzProgressModule,
     BrowserAnimationsModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US },

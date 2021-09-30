@@ -1,0 +1,11 @@
+<ng-template [ngIf]="showSplash">
+    <div nz-row nzJustify="space-around" nzAlign="middle" class="splash center-xy">
+        <div nz-col [nzXs]="{span:20,offset:0}" [nzSm]="{span:20,offset:0}"
+        class="center-xy">
+            <div style="width: 80%;">
+                <img src="assets/images/logo.svg" class="mx-auto d-block width-100 mb-3" alt="">
+                <nz-progress [nzPercent]="count" nzSize="small" nzWidth="30px" [nzShowInfo]="false" [nzStrokeWidth]="3" [nzStrokeColor]="'#2795a0'"></nz-progress>
+            </div>
+        </div>
+    </div>
+</ng-template>
