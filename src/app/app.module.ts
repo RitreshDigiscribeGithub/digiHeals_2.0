@@ -13,6 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShareComponentsModule } from './shared/components/share-components.module';
 import { SplashScreenComponent } from './splash-screen/splash-screen.component';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
+import { AuthGuard } from './auth/guards/auth.guard';
+import { LoginAuthGuard } from './auth/guards/login-auth-guard.service';
 
 
 registerLocaleData(en);
@@ -31,7 +33,7 @@ registerLocaleData(en);
     NzProgressModule,
     BrowserAnimationsModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [{ provide: NZ_I18N, useValue: en_US },AuthGuard,LoginAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -21,7 +21,7 @@ const authRoues: Routes = [
       { path: 'login', component: LoginComponent },
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'verifyCode', component: OtpScreenComponent },
-      { path: 'registration', component: RegistrationComponent },
+      { path: 'register/:mobile', component: RegistrationComponent },
     ],
   },
 ];

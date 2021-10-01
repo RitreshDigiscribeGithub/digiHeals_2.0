@@ -57,8 +57,7 @@ export class LoginComponent implements OnInit {
     new Observable((observer: Observer<MyValidationErrors | null>) => {
       if (this.loginForm.value.agree) {
         this.isLoading = true;
-        let mobNo = control.value; //phone number
-        let reqUrl = HttpConstants.otp.sendOtp + mobNo;
+        let reqUrl = HttpConstants.otp.sendOtp + control.value;
         this._baseHttpService
           .makeHttpRequest<boolean>({
             method: 'get',
@@ -71,13 +70,13 @@ export class LoginComponent implements OnInit {
                 duplicated: { en: `Something went wrong please try again` },
               });
             } else {
+              this.loginForm.controls['phoneNumber'].disable();
               const { data, errors } = res;
               if (data['status']) {
                 this.genOtpRes = data['otp'];
                 this._msg.create('success', 'OTP sent on Mobile Number.', {
                   nzDuration: 3000,
                 });
-                this.loginForm.controls['phoneNumber'].disable();
                 observer.next(null);
                 this._router.navigate(['/auth/verifyCode'], {
                   state: { data: this.genOtpRes, mobile: control.value },
