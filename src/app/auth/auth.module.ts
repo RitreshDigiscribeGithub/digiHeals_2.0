@@ -16,6 +16,7 @@ import { MessageService } from '@services/message.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { DynamicTitleService } from '@app/shared/utility/dynamic-title.service';
 
 const authRoues: Routes = [
   {
@@ -25,10 +26,10 @@ const authRoues: Routes = [
       { path: 'login', component: LoginComponent },
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'verifyCode', component: OtpScreenComponent },
-      { path: 'registration', component: RegistrationComponent }
-    ]
-  }
-]
+      { path: 'registration', component: RegistrationComponent },
+    ],
+  },
+];
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ const authRoues: Routes = [
     RegistrationComponent,
     AuthComponent,
     PersonalInfoComponent,
-    HealthInfoComponent
+    HealthInfoComponent,
   ],
   imports: [
     CommonModule,
@@ -48,8 +49,13 @@ const authRoues: Routes = [
     RouterModule.forChild(authRoues),
     NzFormModule,
     ReactiveFormsModule,
-
   ],
-  providers:[MessageService,NzNotificationService,NzMessageService,NzModalService]
+  providers: [
+    MessageService,
+    NzNotificationService,
+    NzMessageService,
+    NzModalService,
+    DynamicTitleService,
+  ],
 })
-export class AuthModule { }
+export class AuthModule {}

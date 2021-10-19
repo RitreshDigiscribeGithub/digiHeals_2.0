@@ -17,7 +17,7 @@ export class OverviewComponent implements OnInit {
   constructor(private _dynamicTitleService: DynamicTitleService) { }
 
   ngOnInit(): void {
-    this._dynamicTitleService.setPageTitle('Appointment Overview')
+    this._dynamicTitleService.setHeaderTitle('Appointment Overview')
   }
 
 }

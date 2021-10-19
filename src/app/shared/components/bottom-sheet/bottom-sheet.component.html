@@ -1,0 +1,23 @@
+<nz-drawer
+  [nzClosable]="true"
+  [nzVisible]="isOpen"
+  [nzPlacement]="'bottom'"
+  [nzBodyStyle]="{ padding: '5px' }"
+  [nzTitle]="title"
+  (nzOnClose)="toggle.emit(false)"
+  [nzHeight]="height"
+>
+  <ng-container *nzDrawerContent>
+    <ng-content></ng-content>
+  </ng-container>
+</nz-drawer>
+
+<!-- Todo: how to use in 
+1  component.ts :  
+    open = false; 
+
+2  component.html :  
+  <digi-bottom-sheet [isOpen]="open" (toggle)="open = $event" title="">
+    ------temple here------
+ </digi-bottom-sheet>
+-->

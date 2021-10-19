@@ -1,0 +1,52 @@
+<owl-carousel-o [options]="swiperConfig" (translated)="carouselEvent($event)">
+  <ng-container *ngFor="let item of dataArray; let i = index">
+    <ng-template carouselSlide>
+      <div class="mb-4">
+        <digi-doctor-card-profile
+          [data]="item"
+          [color]="i == activeSilde && activeColor"
+        >
+        </digi-doctor-card-profile>
+      </div>
+    </ng-template>
+  </ng-container>
+</owl-carousel-o>
+
+<!-- Todo: how to use in 
+1  component.ts :  
+   num; 
+    slide(e){
+    this.num =e;
+    }
+   breakpoint = {
+      responsive: {
+         0: { items: 1 },
+         400: { items: 1 },
+        740: { items: 1 },
+        940: { items: 4 },
+      },
+  };
+  scrollConfig(breakpoint): OwlOptions {
+    return {
+      loop: false,
+      mouseDrag: false,
+      touchDrag: true,
+      pullDrag: true,
+      dots: false,
+      navSpeed: 700,
+      navText: ['', ''],
+      nav: false,
+      ...breakpoint,
+    };
+  }
+
+2  component.html :  
+   <digi-doctors-slider
+      [swiperConfig]="scrollConfig(breakpoint)"
+      [dataArray]="doctorArray"
+      [activeColor]="'#2795A0'"
+      (slideNum)="slide($event)"
+      [activeSilde]="num"
+    ></digi-doctors-slider>
+-->
+

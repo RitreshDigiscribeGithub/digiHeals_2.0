@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DynamicHeaderService } from './dynamic-header.service';
 
 describe('DynamicHeaderService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

@@ -5,15 +5,27 @@ import { DynamicTitleService } from '../shared/utility/dynamic-title.service';
 @Component({
   selector: 'digi-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.less']
+  styleUrls: ['./dashboard.component.less'],
 })
 export class DashboardComponent implements OnInit {
+  constructor(
+    private _router: Router,
+    public _cdRef: ChangeDetectorRef,
+    private _dynamicTitleService: DynamicTitleService
+  ) {}
 
-  constructor(private _router: Router, private _dynamicTitleService: DynamicTitleService, private _cdRef: ChangeDetectorRef) { }
+  title = '';
 
-  title = null;
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-   
+  ngAfterViewChecked() {
+    this.setHeaderTitle();
+  }
+
+  setHeaderTitle() {
+    this._dynamicTitleService.headerTitleSubject.subscribe((title) => {
+      this.title = title;
+      this._cdRef.detectChanges();
+    });
   }
 }

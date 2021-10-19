@@ -14,7 +14,7 @@
             {{data.clinicName}}
         </span> -->
         <div>
-            <nz-rate [ngModel]="data.rating"></nz-rate>
+            <nz-rate [ngModel]="data.rating" nzDisabled></nz-rate>
             <span *ngIf="value" class="ant-rate-text">{{ value ? tooltips[value - 1] : '' }}</span>
         </div>
     </div>

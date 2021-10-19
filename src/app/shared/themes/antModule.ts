@@ -24,7 +24,7 @@ export function antForAuth() {
 
 // Share Component module
 export function antForShareModule() {
-    return [NzButtonModule, NzLayoutModule, NzGridModule, NzFormModule, NzIconModule, NzCardModule, NzRateModule, NzTagModule, NzPageHeaderModule, NzDrawerModule];
+    return [NzButtonModule, NzLayoutModule, NzGridModule, NzFormModule, NzIconModule, NzCardModule, NzRateModule, NzTagModule, NzPageHeaderModule, NzDrawerModule,NzRadioModule];
 }
 
 // Dashboard module

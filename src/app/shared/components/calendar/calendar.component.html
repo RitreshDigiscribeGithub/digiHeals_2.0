@@ -1,24 +1,43 @@
 <div nz-row>
-    <div nz-col nzFlex="5" class="center-y-start-x">
-        <span fs="16px" fw="md" color="#12263C">Choose a date</span>
-    </div>
-    <div nz-col nzFlex="5" class="center-y-end-x">
-        <span fs="16px" fw="md" color="#12263C">August 2021</span>
-    </div>
+  <div nz-col nzFlex="5" class="center-y-start-x">
+    <span fs="16px" fw="md" color="#12263C" *ngIf="selectMonth">
+      {{selectMonth}} 2021</span>
+  </div>
+  <div nz-col nzFlex="5" class="center-y-end-x">
+    <span fs="16px" fw="md" color="#00ACFF" (click)="open = true">
+      Choose a date</span>
+  </div>
 </div>
 
 <div class="mt-3">
-    <owl-carousel-o [options]="OwlConfig">
-        <ng-container *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]">
-            <ng-template carouselSlide>
-                <button class="date-slots">
-                    <!--add active class : active-slots-->
-                    <div class="text-center">
-                        <span fs="13px" fw="bold" class="d-block">mon</span>
-                        <span fs="13px" fw="bold" class="d-block">{{item}}</span>
-                    </div>
-                </button>
-            </ng-template>
-        </ng-container>
-    </owl-carousel-o>
+  <owl-carousel-o [options]="OwlConfig">
+    <ng-container *ngFor="let item of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">
+      <ng-template carouselSlide>
+        <button class="date-slots">
+          <!--add active class : active-slots-->
+          <div class="text-center">
+            <span fs="13px" fw="bold" class="d-block">mon</span>
+            <span fs="13px" fw="bold" class="d-block">{{ item }}</span>
+          </div>
+        </button>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
 </div>
+
+<digi-bottom-sheet [isOpen]="open" (toggle)="open = $event" title="Select a date month : {{selectMonth}}" height="30vh"
+>
+<div nz-row [nzGutter]="[8,8]">
+  <ng-container *ngFor="let month of dateObj.month; let i = index">
+    <div nz-col nzXs="6">
+      <label nz-button [for]="'month'+i+1" digi-btn color="#2795A0" 
+      [ghost]="selectMonth !== month" nzSize="small">
+        <span fs="13px" fw="reg" class="d-block"
+        [color]="selectMonth === month ? 'white' : '#2795A0'">{{ month }}</span>
+        <input type="radio" [value]="month" [id]="'month'+i+1" name="month" [hidden]="true" (change)="datePicker($event.target.value)" />
+      </label>
+    </div>
+  </ng-container>
+</div>
+ 
+</digi-bottom-sheet>

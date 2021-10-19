@@ -1,85 +1,111 @@
+<div class="px-2">
+  <digi-doctors-slider
+    [swiperConfig]="OwlConfig"
+    [dataArray]="doctorArray"
+    [activeColor]="'#2795A0'"
+  ></digi-doctors-slider>
+</div>
+
 <div nz-row class="cart-nav px-2" nzAlign="middle">
-    <div nz-col nzXs="18">
-        <button nz-button digi-button-inline 
-        [ngClass]="tab==1?'btn-active ':'btn'"
-        (click)="tab=1">Upcoming</button>&nbsp;&nbsp; 
-        <button nz-button digi-button-inline 
-        [ngClass]="tab==2?'btn-active ':'btn'"
-        (click)="tab=2">Last appointment</button>
-    </div>
-    <div nz-col nzXs="6" class="center-y-end-x">
-        <button nz-button digi-button-inline color="#EEEEEE">
-            <span fs="12px" color="#12263C">See all</span>
-        </button>
-    </div>
+  <div nz-col nzXs="18">
+    <button
+      nz-button
+      digi-button-inline
+      [ngClass]="tab == 1 ? 'btn-active ' : 'btn'"
+      (click)="tab = 1"
+    >
+      Upcoming</button
+    >&nbsp;&nbsp;
+    <button
+      nz-button
+      digi-button-inline
+      [ngClass]="tab == 2 ? 'btn-active ' : 'btn'"
+      (click)="tab = 2"
+    >
+      Last appointment
+    </button>
+  </div>
+  <div nz-col nzXs="6" class="center-y-end-x">
+    <button nz-button digi-button-inline color="#EEEEEE">
+      <span fs="12px" color="#12263C">See all</span>
+    </button>
+  </div>
 </div>
 
 <div class="px-3">
+  <div nz-row nzAlign="middle" class="clinic-vist-card px-3 mt-3">
+    <div nz-col nzXs="18">
+      <div>
+        <span fs="16px" fw="reg" color="#12263C" class="d-block"
+          >Dr. Jenny Wilson</span
+        >
+        <span fs="12px" class="d-block">General Medicine</span>
+        <span fs="12px" class="d-block">Amet Minim Hospital, Mumbai</span>
+      </div>
+    </div>
+    <div nz-col nzXs="6" class="center-y-end-x">
+      <button nz-button digi-button-inline color="#FC8F1B">Clinic Vist</button>
+    </div>
+    <div nz-col nzXs="18">
+      <button nz-button digi-button-inline color="#54C1FC">
+        <img src="assets/icons/time.svg" alt="" />&nbsp;
+        <span fs="14px">Tue, 20 Aug, 8:00 - 10:30 AM</span>
+      </button>
+    </div>
+    <div nz-col nzXs="6" class="center-y-end-x">
+      <button nz-button digi-button-inline color="#54C1FC">
+        <img src="assets/icons/edit.svg" alt="" />
+      </button>
+    </div>
+  </div>
 
-    <div nz-row nzAlign="middle" class="clinic-vist-card px-3 mt-3">
-        <div nz-col nzXs="18">
-            <div>
-                <span fs="16px" fw="reg" color="#12263C" class="d-block">Dr. Jenny Wilson</span>
-                <span fs="12px" class="d-block">General Medicine</span>
-                <span fs="12px" class="d-block">Amet Minim Hospital, Mumbai</span>
+  <div nz-row nzAlign="middle" class="my-4">
+    <div nz-col nzXs="12">
+      <span fs="16px" fw="reg">Specialist</span>
+    </div>
+    <div nz-col nzXs="12" class="center-y-end-x">
+      <button nz-button digi-button-inline color="#EEEEEE">
+        <span fs="14px" color="#12263C">See all</span>
+      </button>
+    </div>
+    <div nz-col nzXs="24" class="mt-3">
+      <owl-carousel-o [options]="OwlConfig">
+        <ng-container *ngFor="let list of iconList">
+          <ng-template carouselSlide>
+            <div class="specialist-card center-xy ml-1 mr-1">
+              <span>
+                <img
+                  src="assets/icons/{{ list.icon }}.svg"
+                  class="mx-auto d-block mb-2"
+                  alt=""
+                  height="37"
+                />
+                <span
+                  fs="12px"
+                  fw="reg"
+                  [color]="list.color"
+                  class="text-center d-block"
+                  >{{ list.text }}</span
+                >
+              </span>
             </div>
-        </div>
-        <div nz-col nzXs="6" class="center-y-end-x">
-            <button nz-button digi-button-inline color="#FC8F1B">
-                Clinic Vist
-            </button>
-        </div>
-        <div nz-col nzXs="18">
-            <button nz-button digi-button-inline color="#54C1FC">
-                <img src="assets/icons/time.svg" alt="">&nbsp;
-                <span fs="14px">Tue, 20 Aug, 8:00 - 10:30 AM</span>
-            </button>
-        </div>
-        <div nz-col nzXs="6" class="center-y-end-x">
-            <button nz-button digi-button-inline color="#54C1FC">
-               <img src="assets/icons/edit.svg" alt="">
-            </button>
-        </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
     </div>
-   
-    <div nz-row nzAlign="middle" class="my-4">
-        <div nz-col nzXs="12">
-           <span fs="16px" fw="reg">Specialist</span> 
-        </div>
-        <div nz-col nzXs="12" class="center-y-end-x">
-            <button nz-button digi-button-inline color="#EEEEEE">
-                <span fs="14px" color="#12263C">See all</span>
-            </button>
-        </div>
-        <div nz-col nzXs="24" class="mt-3">
-            <owl-carousel-o [options]="OwlConfig">
-                <ng-container *ngFor="let list of iconList">
-                    <ng-template carouselSlide>
-                        <div class="specialist-card center-xy ml-1 mr-1">
-                            <span>
-                             <img src="assets/icons/{{list.icon}}.svg" class="mx-auto d-block mb-2" alt="" height="37">
-                             <span fs="12px" fw="reg" [color]="list.color" class="text-center d-block">{{list.text}}</span>
-                            </span>
-                        </div>
-                    </ng-template>
-                </ng-container>
-            </owl-carousel-o>
-        </div>
-    </div>
+  </div>
 
-
-    <div nz-row nzAlign="middle" class="my-4">
-        <div nz-col nzXs="24">
-            <span fs="16px" fw="reg" class="d-block mb-2">Top Doctors</span> 
-         </div>
-         <div nz-col nzXs="24">
-             <ng-container *ngFor="let item of [1,2,3,4]">
-                <div class="my-2">
-                    <digi-doctor-card-profile [data]="doctorData">
-                    </digi-doctor-card-profile>
-                 </div>
-             </ng-container>
-         </div>
+  <div nz-row nzAlign="middle" class="my-4">
+    <div nz-col nzXs="24">
+      <span fs="16px" fw="reg" class="d-block mb-2">Top Doctors</span>
     </div>
-  
+    <div nz-col nzXs="24">
+      <ng-container *ngFor="let item of [1, 2, 3, 4]">
+        <div class="my-2">
+          <digi-doctor-card-profile [data]="doctorData">
+          </digi-doctor-card-profile>
+        </div>
+      </ng-container>
+    </div>
+  </div>
 </div>

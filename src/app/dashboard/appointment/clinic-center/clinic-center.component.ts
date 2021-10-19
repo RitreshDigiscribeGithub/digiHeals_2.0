@@ -5,17 +5,34 @@ import { DynamicTitleService } from 'src/app/shared/utility/dynamic-title.servic
 @Component({
   selector: 'digi-clinic-center',
   templateUrl: './clinic-center.component.html',
-  styleUrls: ['./clinic-center.component.less']
+  styleUrls: ['./clinic-center.component.less'],
 })
 export class ClinicCenterComponent implements OnInit {
   tab: number = 1;
-  iconList: any[] = [
-    { icon: 'cardio', text: 'Cardio', color: '#50BAF4' },
-    { icon: 'heart', text: 'Heart', color: '#FEA6A2' },
-    { icon: 'kidney', text: 'Kidney', color: '#816BF2' },
-    { icon: 'eye', text: 'Eyes', color: '#52CCBD' },
-    { icon: 'dental', text: 'Dentist', color: '#FEA6A2' },
-  ]
+  doctorArray = [
+    {
+      photo: 'assets/images/user_placeholder.svg',
+      name: 'Dr. Jenny Wilsson',
+      qualification: 'General Medicine, MBBS, FCPS',
+      clinicName: 'Amet Minim Hospita',
+      rating: 3.2,
+    },
+    {
+      photo: 'assets/images/user_placeholder.svg',
+      name: 'Dr. Jenny Wilsson',
+      qualification: 'General Medicine, MBBS, FCPS',
+      clinicName: 'Amet Minim Hospita',
+      rating: 5,
+    },
+    {
+      photo: 'assets/images/user_placeholder.svg',
+      name: 'Dr. Jenny Wilsson',
+      qualification: 'General Medicine, MBBS, FCPS',
+      clinicName: 'Amet Minim Hospita',
+      rating: 2.4,
+    },
+  ];
+
   OwlConfig: OwlOptions = {
     loop: false,
     mouseDrag: false,
@@ -26,31 +43,32 @@ export class ClinicCenterComponent implements OnInit {
     navText: ['', ''],
     responsive: {
       0: {
-        items: 4
+        items: 1,
       },
       400: {
-        items: 5
+        items: 2,
       },
       740: {
-        items: 3
+        items: 3,
       },
       940: {
-        items: 4
-      }
+        items: 4,
+      },
     },
-    nav: false
-  }
-
-  doctorData = {
-    photo: 'assets/images/user_placeholder.svg',
-    name: 'Dr. Jenny Wilsson',
-    qualification: 'General Medicine, MBBS, FCPS',
-    rating: 4
+    nav: false,
   };
-  constructor(private _dynamicTitleService: DynamicTitleService) { }
+
+  iconList: any[] = [
+    { icon: 'cardio', text: 'Cardio', color: '#50BAF4' },
+    { icon: 'heart', text: 'Heart', color: '#FEA6A2' },
+    { icon: 'kidney', text: 'Kidney', color: '#816BF2' },
+    { icon: 'eye', text: 'Eyes', color: '#52CCBD' },
+    { icon: 'dental', text: 'Dentist', color: '#FEA6A2' },
+  ];
+ 
+  constructor(private _dynamicTitleService: DynamicTitleService) {}
 
   ngOnInit(): void {
-    this._dynamicTitleService.setPageTitle('Wilsson Clinic Center')
+    this._dynamicTitleService.setHeaderTitle('Wilsson Clinic Center');
   }
-
 }

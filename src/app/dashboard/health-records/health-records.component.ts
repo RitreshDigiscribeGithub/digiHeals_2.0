@@ -1,17 +1,30 @@
 import { Component, OnInit } from '@angular/core';
+import { DynamicTitleService } from '@app/shared/utility/dynamic-title.service';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 
 @Component({
   selector: 'digi-health-records',
   templateUrl: './health-records.component.html',
-  styleUrls: ['./health-records.component.less']
+  styleUrls: ['./health-records.component.less'],
 })
 export class HealthRecordsComponent implements OnInit {
-  constructor() { }
+  constructor(private titleService: DynamicTitleService) {}
   ListItems: any[] = [
-    { type: 'application', extension: 'pdf', fileName: 'File_Name', size: '2.4 Mb', date: new Date() },
-    { type: 'video', extension: 'mp4', fileName: 'File_Name', size: '2.4 Mb', date: new Date() }
-  ]
+    {
+      type: 'application',
+      extension: 'pdf',
+      fileName: 'File_Name',
+      size: '2.4 Mb',
+      date: new Date(),
+    },
+    {
+      type: 'video',
+      extension: 'mp4',
+      fileName: 'File_Name',
+      size: '2.4 Mb',
+      date: new Date(),
+    },
+  ];
 
   imgPreview = null;
 
@@ -19,8 +32,8 @@ export class HealthRecordsComponent implements OnInit {
     const selectFile = fsEvent.target.files;
 
     for (let i = 0; i < selectFile.length; i++) {
-      const types = selectFile[i].type.split('/')[0]
-      const extension = selectFile[i].type.split('/')[1]
+      const types = selectFile[i].type.split('/')[0];
+      const extension = selectFile[i].type.split('/')[1];
       let reader = new FileReader();
       reader.readAsDataURL(selectFile[i]);
 
@@ -30,17 +43,17 @@ export class HealthRecordsComponent implements OnInit {
         fileName: selectFile[i].name.replace(`.${extension}`, ' '),
         size: selectFile[i].size,
         date: selectFile[i].lastModifiedDate,
-        img: () => types === 'image' ? (reader.onload = () => reader.result)() : null
-      })
+        img: () =>
+          types === 'image' ? (reader.onload = () => reader.result)() : null,
+      });
     }
     console.log(selectFile);
   }
-
 
   radio(e) {
     console.log(e.target.value);
   }
   ngOnInit(): void {
+    this.titleService.setHeaderTitle('health records');
   }
-
 }
