@@ -46,7 +46,7 @@ export class ProfileComponent implements OnInit {
   constructor(private _router: Router, private _dynamicTitleService: DynamicTitleService) { }
 
   ngOnInit(): void {
-    this._dynamicTitleService.headerTitleSubject.next('Profile')
+    this._dynamicTitleService.setPageTitle('Profile')
   }
 
   scheduleAppointment() {

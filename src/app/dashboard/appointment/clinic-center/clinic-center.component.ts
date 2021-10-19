@@ -50,7 +50,7 @@ export class ClinicCenterComponent implements OnInit {
   constructor(private _dynamicTitleService: DynamicTitleService) { }
 
   ngOnInit(): void {
-    this._dynamicTitleService.headerTitleSubject.next('Wilsson Clinic Center')
+    this._dynamicTitleService.setPageTitle('Wilsson Clinic Center')
   }
 
 }

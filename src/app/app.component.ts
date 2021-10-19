@@ -47,10 +47,7 @@ export class AppComponent {
       if (data && !patient) {
         this.getDoctorLandingPageData(data);
         this.doctorService.username = data;
-      } else if(patient){
-        this.refreshUserInfo(patient.patient_phone,patient.patient_id)
-
-      }
+      } 
 
       if( domain && domain === 'digiheals' && this.router.url === '' || this.router.url === '/') {
         this.router.navigate(['/home'])

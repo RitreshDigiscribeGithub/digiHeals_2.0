@@ -7,10 +7,15 @@ import { AuthComponent } from './auth.component';
 import { ShareComponentsModule } from '../shared/components/share-components.module';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PersonalInfoComponent } from './registration/personal-info/personal-info.component';
 import { HealthInfoComponent } from './registration/health-info/health-info.component';
 import { antForAuth } from '../shared/themes/antModule';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { MessageService } from '@services/message.service';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 const authRoues: Routes = [
   {
@@ -41,6 +46,10 @@ const authRoues: Routes = [
     NgOtpInputModule,
     ShareComponentsModule,
     RouterModule.forChild(authRoues),
-  ]
+    NzFormModule,
+    ReactiveFormsModule,
+
+  ],
+  providers:[MessageService,NzNotificationService,NzMessageService,NzModalService]
 })
 export class AuthModule { }

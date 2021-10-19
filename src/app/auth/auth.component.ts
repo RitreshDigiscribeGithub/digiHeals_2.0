@@ -14,14 +14,12 @@ export class AuthComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.setHeaderTitle()
+    this.setHeaderTitle();
+
+    
   }
   
   setHeaderTitle() {
-    this._dynamicTitle.headerTitleSubject
-      .subscribe(out => {
-        this.navTitle = out;
-        this._cdRef.detectChanges()
-      })
+    this._dynamicTitle.setPageTitle('DigiHeals :: Login')
   }
 }

@@ -10,7 +10,7 @@ export class HealCartComponent implements OnInit {
   cartType: number = 1;
   constructor(private _dynamicTitleService:DynamicTitleService) { }
   ngOnInit(): void {
-    this._dynamicTitleService.headerTitleSubject.next('Heal Cart')
+    this._dynamicTitleService.setPageTitle('Heal Cart')
   }
 
 }

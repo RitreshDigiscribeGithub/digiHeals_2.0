@@ -12,6 +12,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { antForDashboard } from '../shared/themes/antModule';
 import { DashboardCardComponent } from './home/dashboard-card/dashboard-card.component';
 import { HealthRecordsComponent } from './health-records/health-records.component';
+import { AuthGuard } from '@guards/auth-guard.service';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import { NzResultModule } from 'ng-zorro-antd/result';
 
 const dashboardRoutes: Routes = [
   {
@@ -23,7 +26,7 @@ const dashboardRoutes: Routes = [
       { path: 'records', component: RecordsComponent },
       { path: 'cart', loadChildren: () => import('./cart/cart.module').then(m => m.CartModule) },
       { path: 'profile', component: ProfileComponent },
-      { path: 'appointment', loadChildren: () => import('./appointment/appointment.module').then(m => m.AppointmentModule) },
+      { path: 'appointment', loadChildren: () => import('./appointment/appointment.module').then(m => m.AppointmentModule),canActivate: [AuthGuard]},
       { path: 'health-records', component: HealthRecordsComponent }
     ]
   }
@@ -45,7 +48,9 @@ const dashboardRoutes: Routes = [
     CarouselModule,
     ShareComponentsModule,
     antForDashboard(),
-    RouterModule.forChild(dashboardRoutes)
+    RouterModule.forChild(dashboardRoutes),
+    NzSkeletonModule,
+    NzResultModule
   ]
 })
 export class DashboardModule { }

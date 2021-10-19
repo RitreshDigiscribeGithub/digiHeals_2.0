@@ -15,7 +15,7 @@ export class RegistrationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this._dynamicTitle.setHeaderTitle('registration')
+    this._dynamicTitle.setPageTitle('registration')
   }
   continue() {
     this._router.navigateByUrl('home');

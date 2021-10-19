@@ -1,7 +1,7 @@
 <div class="pt-1 pb-5" style="background: #104B60;">
    <span class="d-block mb-5 px-4">
       <span fs="16px" fw="reg" class="d-block text-center my-3"
-      color="white">Welcome to Dr Jenny Wilsson clinic Center</span>
+      color="white">Welcome to Dr {{doctor.doc_first_name}} {{doctor.doc_last_name}} clinic Center</span>
       <div class="px-3">
          <button nz-button digi-btn color="#2795A0">
             <img src="assets/icons/dashboard_icon/light-prescription.svg" alt="">&nbsp; &nbsp;
@@ -14,12 +14,12 @@
 <div class="px-3" style="position: relative;top: -73px;">
 
    <!-- Book an Appointment -->
-   <digi-dashboard-card title="Like to consult Dr Jenny Wilsson" description="Click on Book Appointment to schedule your
+   <digi-dashboard-card title="Like to consult Dr {{doctor.doc_first_name}} {{doctor.doc_last_name}}" description="Click on Book Appointment to schedule your
 appointment with the doctor hassle free" color="#A293FA" icon="appointment" iconWidth="30%">
       <div nz-row>
          <div nz-col nzXs="18">
             <button digi-button-inline nz-button color="#4D4CAE" 
-            routerLink="../appointment/schedule">
+              (click)="goToPage('../appointment/schedule')" >
                Book an Appointment
             </button>
          </div>
@@ -65,7 +65,7 @@ with doctor when you need anytime" color="#9BDAA2" icon="whatsApp" iconWidth="30
       <div nz-row>
          <div nz-col nzXs="18">
             <button digi-button-inline nz-button color="#34917E">
-               Connect to WahtsApp
+               Connect to WhatsApp
             </button>
          </div>
          <div nz-col nzXs="6">
@@ -92,6 +92,8 @@ with doctor when you need anytime" color="#9BDAA2" icon="whatsApp" iconWidth="30
    <!-- Check Doctor Profile -->
 
    <!--  Appointment is scheduled:I’ve Arrived -->
+   <ng-container *ngIf="todaysAppointment && todaysAppointment.isCheckin === false">
+   
    <digi-dashboard-card title="Your Appointment is scheduled with 
 Dr Jenny at 5:30 PM, 20 Sep" description="Click on arrived and we will let the doctor know you have arrived"
       color="#FFEAD3">
@@ -110,6 +112,9 @@ Dr Jenny at 5:30 PM, 20 Sep" description="Click on arrived and we will let the d
       </div>
    </digi-dashboard-card>
    <!--  Appointment is scheduled:I’ve Arrived -->
+</ng-container>
+
+<ng-container *ngIf="todaysAppointment && todaysAppointment.isCheckin === true">
 
    <!-- Appointment is scheduled:Start Consultation -->
    <digi-dashboard-card title="Your Appointment is scheduled with 
@@ -128,10 +133,11 @@ Dr Jenny at 5:30 PM, 20 Sep" description="Click on arrived and we will let the d
          </div>
       </div>
    </digi-dashboard-card>
+   </ng-container>
    <!-- Appointment is scheduled:Start Consultation -->
 
    <!-- Thank You -->
-   <digi-dashboard-card title="Dr Jenny will attend you shortly" description="Dear Sara Howard, thank you for your patience
+   <digi-dashboard-card title="Dr {{doctor.doc_first_name}} {{doctor.doc_last_name}} will attend you shortly" description="Dear Sara Howard, thank you for your patience
 please wait until ypur name is called out" color="#FFD2DD" icon="dr-icon" iconWidth="20%">
       <div nz-row>
          <div nz-col nzXs="18">
@@ -162,7 +168,7 @@ doctor know how are doing today" color="#F5E0BA" icon="hart" iconWidth="18%">
    <!-- Update My Health -->
 
    <!-- View My Prescription -->
-   <digi-dashboard-card title="Your prescription from Dr Jenny Wilsson
+   <digi-dashboard-card title="Your prescription from {{doctor.doc_first_name}} {{doctor.doc_last_name}}
 is ready to view" description="Click below to view your prescription" color="#FFEAD3" icon="prescription"
       iconWidth="18%">
       <div nz-row>
@@ -179,18 +185,10 @@ is ready to view" description="Click below to view your prescription" color="#FF
 
    <!-- Health Manager -->
    <digi-dashboard-card title="How are you feeling today?" [list]="
-[
-'Ms <strong>Uma Jangam</strong> is your health manager, She will be
-helping you manage your healthcare hassel free',
-
+['Ms <strong>Uma Jangam</strong> is your health manager', 'She will be helping you manage your healthcare hassel free',
 'Book <strong>follow</strong> up appointments',
-
-'She will assist you to organise prescribed medicines
-for you at your doorsteps at discounted price',
-
-'Assist you with booking diagnostics prescribed by
-the doctor at discounted price'
-
+'She will assist you to organise prescribed medicines for you at your doorsteps at discounted price',
+'Assist you with booking diagnostics prescribed by the doctor at discounted price'
 ]" tag="Health Manager" color="#CBEBFF" icon="health-manager" iconWidth="18%">
       <div nz-row>
          <div nz-col nzXs="18">
@@ -253,7 +251,7 @@ the doctor at discounted price'
    <!-- Book Diagnostics Now -->
 
    <!-- Scan QR code -->
-   <digi-dashboard-card title="Dr Jenny Wilsson Health Assistant will 
+   <digi-dashboard-card title="Dr {{doctor.doc_first_name}} {{doctor.doc_last_name}} Health Assistant will 
 always be there for you 24x7"
       description="Connect with your doctor for health updates Get 100% genuine medicine delivered at your doorstep
 Book Diagnostics services from best in class NABL accredited labs Access your health records anytime anywhere Book follow up appointments"
@@ -270,10 +268,11 @@ Book Diagnostics services from best in class NABL accredited labs Access your he
    <!-- Scan QR code -->
 
    <!-- scroll Health Partners -->
-   <div nz-row class="p-2" style="background: white;border-radius: 12px;">
+
+   <div nz-row class="p-2" style="background: white;border-radius: 12px;" *ngIf="doctorPartners.length > 0">
       <div nz-col nzXs="24">
          <span fs="17px" fw="reg" class="d-block">
-            Dr Jenny Wilsson’s Health Partners
+            Dr {{doctor.doc_first_name}} {{doctor.doc_last_name}} Health Partners
          </span>
       </div>
       <div nz-col nzXs="24">
@@ -284,16 +283,16 @@ Book Diagnostics services from best in class NABL accredited labs Access your he
       <div nz-col nzXs="24">
          <!--  -->
          <owl-carousel-o [options]="OwlConfig">
-            <ng-container *ngFor="let partner of health_Partners">
+            <ng-container *ngFor="let partner of doctorPartners">
                <ng-template carouselSlide>
 
                   <div nz-row nzAlign="middle" nzJustify="center" class="diagnostics-card m-1">
                      <div nz-col nzXs="17">
-                        <img src="assets/icons/dashboard_icon/{{partner.logo}}.png" width="160" alt="">
+                        <img [src]="partner.partnerLogoUrl" width="160" alt="">
                      </div>
                      <div nz-col nzXs="24" class="text-center">
                         <span fs="13px" fw="reg" class="d-block mt-3">
-                           {{partner.name}}</span>
+                           {{partner.partnerName}}</span>
                         <span fs="13px" fw="reg" class="d-block" color="#2795A0">upto 14% off</span>
                      </div>
                   </div>

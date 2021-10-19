@@ -14,10 +14,6 @@ export class DashboardComponent implements OnInit {
   title = null;
 
   ngOnInit(): void {
-    this._dynamicTitleService.headerTitleSubject
-      .subscribe(title => {
-        this.title = title;
-        this._cdRef.detectChanges()
-      })
+   
   }
 }

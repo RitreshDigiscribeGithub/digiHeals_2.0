@@ -50,7 +50,7 @@ export class ScheduleComponent implements OnInit {
   constructor(private _dynamicTitleService: DynamicTitleService) { }
 
   ngOnInit(): void {
-    this._dynamicTitleService.headerTitleSubject.next('Schedule Appointment')
+    this._dynamicTitleService.setPageTitle('Schedule Appointment')
   }
 
   isActive;

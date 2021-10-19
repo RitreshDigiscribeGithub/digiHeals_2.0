@@ -2,20 +2,31 @@
   <div nz-col nzSpan="24" class="center-xy" style="min-height: 254px;">
     <img src="assets/images/phoneVector.svg" class="mx-auto d-block witdh-60" alt="">
   </div>
+  <form nz-form class="login-form mar-30 width-100" [formGroup]="validateForm">
+
+
   <div nz-col nzSpan="24" class="center-xy" style="min-height: 70px;">
+    <nz-form-item class="width-100">
+      <nz-form-control [nzSpan]="24" nzHasFeedback [nzValidateStatus]="validateForm.controls['phoneNumber']"
+        nzErrorTip="Please input your phone number!" nzValidateStatus="validating" nzValidatingTip="Validating...">
+
     <nz-input-group [nzSize]="'large'">
       <div nz-row nzAlign="middle" style="min-height: 50px;">
         <div nz-col nzSpan="5">
-          <nz-select [ngModel]="'+91'" [nzBorderless]="true">
+          <nz-select formControlName="phoneNumberPrefix" [nzBorderless]="true">
             <nz-option nzLabel="+91" nzValue="+91"></nz-option>
           </nz-select>
         </div>
         <div nz-col nzSpan="19">
-          <input type="text" nz-input placeholder="Enter Phone Number" nzBorderless />
+          <input type="text" nz-input placeholder="Enter Phone Number" class="phoneInput" nzBorderless  formControlName="phoneNumber" id="phoneNumber" nz-input inputmode="numeric" maxlength="10" required/>
         </div>
       </div>
     </nz-input-group>
+    </nz-form-control>
+    </nz-form-item>
   </div>
+  </form>
+
   <div nz-col nzSpan="24" class="center-xy"  style="min-height: 70px;">
     <span fs="14px" fw="md" class="d-block text-center">We need your phone number so we can register and send you an
       authentication code</span>
