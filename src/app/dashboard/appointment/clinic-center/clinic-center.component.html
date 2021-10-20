@@ -1,6 +1,6 @@
 <div class="px-2">
   <digi-doctors-slider
-    [swiperConfig]="OwlConfig"
+    [swiperConfig]="scrollConfig(breakpoint1)"
     [dataArray]="doctorArray"
     [activeColor]="'#2795A0'"
   ></digi-doctors-slider>
@@ -69,7 +69,7 @@
       </button>
     </div>
     <div nz-col nzXs="24" class="mt-3">
-      <owl-carousel-o [options]="OwlConfig">
+      <owl-carousel-o [options]="scrollConfig(breakpoint2)">
         <ng-container *ngFor="let list of iconList">
           <ng-template carouselSlide>
             <div class="specialist-card center-xy ml-1 mr-1">
@@ -100,9 +100,9 @@
       <span fs="16px" fw="reg" class="d-block mb-2">Top Doctors</span>
     </div>
     <div nz-col nzXs="24">
-      <ng-container *ngFor="let item of [1, 2, 3, 4]">
+      <ng-container *ngFor="let item of doctorArray">
         <div class="my-2">
-          <digi-doctor-card-profile [data]="doctorData">
+          <digi-doctor-card-profile [data]="item">
           </digi-doctor-card-profile>
         </div>
       </ng-container>

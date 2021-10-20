@@ -32,32 +32,36 @@ export class ClinicCenterComponent implements OnInit {
       rating: 2.4,
     },
   ];
-
-  OwlConfig: OwlOptions = {
-    loop: false,
-    mouseDrag: false,
-    touchDrag: true,
-    pullDrag: true,
-    dots: false,
-    navSpeed: 700,
-    navText: ['', ''],
+  //
+  breakpoint1 = {
     responsive: {
-      0: {
-        items: 1,
-      },
-      400: {
-        items: 2,
-      },
-      740: {
-        items: 3,
-      },
-      940: {
-        items: 4,
-      },
+      0: { items: 1 },
+      400: { items: 1 },
+      740: { items: 1 },
+      940: { items: 4 },
     },
-    nav: false,
   };
-
+  breakpoint2 = {
+    responsive: {
+      0: { items: 3 },
+      400: { items: 3 },
+      740: { items: 3 },
+      940: { items: 4 },
+    },
+  };
+  scrollConfig(breakpoint): OwlOptions {
+    return {
+      loop: false,
+      mouseDrag: false,
+      touchDrag: true,
+      pullDrag: true,
+      dots: false,
+      navSpeed: 700,
+      navText: ['', ''],
+      nav: false,
+      ...breakpoint,
+    };
+  }
   iconList: any[] = [
     { icon: 'cardio', text: 'Cardio', color: '#50BAF4' },
     { icon: 'heart', text: 'Heart', color: '#FEA6A2' },
@@ -65,7 +69,7 @@ export class ClinicCenterComponent implements OnInit {
     { icon: 'eye', text: 'Eyes', color: '#52CCBD' },
     { icon: 'dental', text: 'Dentist', color: '#FEA6A2' },
   ];
- 
+
   constructor(private _dynamicTitleService: DynamicTitleService) {}
 
   ngOnInit(): void {

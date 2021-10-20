@@ -111,20 +111,18 @@
   height="100vh"
 >
   <ng-container *ngFor="let item of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">
-    <div nz-row nzAlign="middle" class="info_box p-3 my-3">
-      <div nz-col nzFlex="5">
-        <span>
-          <span fs="15px" fw="md" class="d-block">Michael Fassbender </span>
-          <span fs="12px" fw="reg" color="#b1afaf" class="d-block">
-            29/04/2021
-          </span>
-        </span>
-      </div>
-      <div nz-col nzFlex="auto" class="center-y-end-x">
-        <button nz-button nzSize="small" nzType="link" (click)="open = false">
-          action
-        </button>
-      </div>
-    </div>
+    <digi-patient-list-item [dataArray]="item">
+      <span (click)="open = false"> action</span>
+    </digi-patient-list-item>
   </ng-container>
+  <div class="mb-5">
+    <br /><br />
+  </div>
+  <!-- button -->
+  <digi-affix [toBottom]="'1%'">
+    <button nz-button digi-btn color="theme" (click)="open = false">
+      select patient
+    </button>
+  </digi-affix>
+  <!-- button -->
 </digi-bottom-sheet>
