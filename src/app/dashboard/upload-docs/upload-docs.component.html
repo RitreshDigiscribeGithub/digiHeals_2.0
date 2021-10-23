@@ -1,0 +1,123 @@
+<div class="px-3">
+  <!-- Attach Health updates -->
+  <span fs="16px" fw="md" class="d-block mt-4">Attach Health updates</span>
+
+  <ng-container *ngFor="let item of ListItems">
+    <div
+      nz-row
+      nzAlign="middle"
+      class="my-3"
+      utility
+      br="10px"
+      border="1.5px solid #EEEEEE"
+      minHeight="72px"
+    >
+      <div nz-col nzFlex="2" class="text-center">
+        <ng-template [ngIf]="item.extension == 'pdf'">
+          <img src="assets/icons/type-pdf.svg" alt="" />
+        </ng-template>
+        <ng-template [ngIf]="item.type == 'video'">
+          <img src="assets/icons/type-vid.svg" alt="" />
+        </ng-template>
+        <ng-template [ngIf]="item.type == 'image'">
+          <img [src]="item.img()" width="36" alt="" />
+        </ng-template>
+        <ng-template [ngIf]="item.type == 'audio'">
+          <img src="assets/icons/rec_mic.svg" width="36" alt="" />
+        </ng-template>
+      </div>
+      <div nz-col nzFlex="5">
+        <span fs="14px" fw="md" class="d-block">
+          {{ item.fileName | truncate: [14, "..."] }}.{{ item.extension }}</span
+        >
+        <span fs="12px" fs="reg" color="#9EAAB2" class="d-block">
+          {{ item.date | date }} {{ item.size }}
+        </span>
+      </div>
+      <div nz-col nzFlex="2" class="text-center">
+        <span fs="14px" color="#F96363" class="d-block">Delete</span>
+      </div>
+    </div>
+  </ng-container>
+
+  <divider [spacing]="120"></divider>
+
+  <digi-affix [toBottom]="'8%'">
+    <div class="bg-ligth py-3">
+      <div nz-row nzJustify="center" class="my-2">
+        <div nz-col nzFlex="5" class="text-center">
+          <label for="Voice">
+            <img src="assets/icons/rec_mic.svg" width="38" alt="" />
+          </label>
+          <input
+            id="Voice"
+            type="file"
+            (change)="fileSave($event)"
+            multiple="multiple"
+            accept=".mp3,.wav"
+          />
+          <span fs="12px" fw="md" class="d-block mt-2">Voice</span>
+        </div>
+        <div nz-col nzFlex="5" class="text-center">
+          <label for="image">
+            <img src="assets/icons/rec_img.svg" width="38" alt="" />
+          </label>
+          <input
+            id="image"
+            type="file"
+            (change)="fileSave($event)"
+            multiple="multiple"
+            accept=".jpg,.png"
+          />
+          <span fs="12px" fw="md" class="d-block mt-2">Image</span>
+        </div>
+        <div nz-col nzFlex="5" class="text-center">
+          <label for="Video">
+            <img src="assets/icons/rec_vid.svg" width="38" alt="" />
+          </label>
+          <input
+            id="Video"
+            type="file"
+            (change)="fileSave($event)"
+            multiple="multiple"
+            accept=".mp4"
+          />
+          <span fs="12px" fw="md" class="d-block mt-2">Video</span>
+        </div>
+        <div nz-col nzFlex="5" class="text-center">
+          <label for="document">
+            <img src="assets/icons/rec_doc.svg" width="38" alt="" />
+          </label>
+          <input
+            id="document"
+            type="file"
+            (change)="fileSave($event)"
+            multiple="multiple"
+          />
+          <span fs="12px" fw="md" class="d-block mt-2">Document</span>
+        </div>
+        <div nz-col nzFlex="5" class="text-center">
+          <label for="Rx">
+            <img src="assets/icons/rec_rx.svg" width="38" alt="" />
+          </label>
+          <input
+            id="Rx"
+            type="file"
+            (change)="fileSave($event)"
+            multiple="multiple"
+          />
+          <span fs="12px" fw="md" class="d-block mt-2">Rx</span>
+        </div>
+      </div>
+
+      <div nz-row nzJustify="center" class="mt-3" [nzGutter]="16">
+        <div nz-col nzFlex="5">
+          <button nz-button digi-btn color="theme">Share</button>
+        </div>
+        <div nz-col nzFlex="5">
+          <button nz-button digi-btn color="theme" [ghost]="true">Skip</button>
+        </div>
+      </div>
+    </div>
+  </digi-affix>
+</div>

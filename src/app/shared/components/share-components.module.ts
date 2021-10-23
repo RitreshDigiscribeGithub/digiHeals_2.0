@@ -22,6 +22,7 @@ import { UtilityDirective } from './directives/utility.directive';
 import { DoctorsSliderComponent } from './doctors-slider/doctors-slider.component';
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
 import { PatientListItemComponent } from './patient-list-item/patient-list-item.component';
+import { DividerComponent } from './divider/divider.component';
 
 const components = [
   CalendarComponent,
@@ -42,6 +43,7 @@ const components = [
   DoctorsSliderComponent,
   BottomSheetComponent,
   PatientListItemComponent,
+  DividerComponent,
 ];
 
 @NgModule({
