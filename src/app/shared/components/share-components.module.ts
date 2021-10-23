@@ -23,6 +23,7 @@ import { DoctorsSliderComponent } from './doctors-slider/doctors-slider.componen
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
 import { PatientListItemComponent } from './patient-list-item/patient-list-item.component';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { DividerComponent } from './divider/divider.component';
 
 const components = [
   CalendarComponent,
@@ -43,6 +44,7 @@ const components = [
   DoctorsSliderComponent,
   BottomSheetComponent,
   PatientListItemComponent,
+  DividerComponent,
 ];
 
 @NgModule({
