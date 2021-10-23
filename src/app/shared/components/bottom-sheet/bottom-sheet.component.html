@@ -1,23 +1,78 @@
-<nz-drawer
-  [nzClosable]="true"
-  [nzVisible]="isOpen"
-  [nzPlacement]="'bottom'"
-  [nzBodyStyle]="{ padding: '5px' }"
-  [nzTitle]="title"
-  (nzOnClose)="toggle.emit(false)"
-  [nzHeight]="height"
->
+<nz-drawer [nzClosable]="true" [nzVisible]="isOpen" [nzPlacement]="'bottom'" [nzBodyStyle]="{ padding: '5px' }"
+  [nzTitle]="title" (nzOnClose)="toggle.emit(false)" [nzHeight]="height">
   <ng-container *nzDrawerContent>
-    <ng-content></ng-content>
+
+  <ng-container *ngIf="type == 'patient'">
+
+    <div nz-row nzAlign="middle" class="record-list py-2 px-2" *ngFor="let item of patients" (click)="changePatient(item)">
+      <div nz-col nzFlex="1">
+        <nz-avatar nzIcon="user" [nzSize]="40" style="background-color:#fde3cf;" *ngIf="!item?.patient_img_path">
+        </nz-avatar>
+        <nz-avatar nzIcon="user" [nzSize]="40" *ngIf="item?.patient_img_path" [nzSrc]="item.patient_img_path">
+        </nz-avatar>
+
+      </div>
+
+      <div nz-col nzFlex="5">
+        <span>
+          <span fs="15px" fw="md" class="d-block"> {{item.patient_title ? item.patient_title : ''}}
+            {{item.patient_name}} {{item.patient_last_name}}</span>
+          <span fs="12px" fw="reg" color="#b1afaf" class="d-block">
+            {{item.patient_id}}
+          </span>
+        </span>
+      </div>
+      <div nz-col nzFlex="auto" class="center-y-end-x">
+        <ng-container *ngIf="item.patient_id && selectedPatient">
+          <button nz-button nzSize="small" nzType="link" *ngIf="selectedPatient.patient_id === item.patient_id">
+            Selected <i nz-icon nzType="check-circle" nzTheme="outline"></i>
+          </button>
+        </ng-container>
+      </div>
+    </div>
+
+    <br><br><br>
+
+    <digi-affix [toBottom]="'1%'">
+      <button nz-button digi-btn color="theme">
+        Add New Patient
+      </button>
+    </digi-affix>
+    
+    </ng-container>
+
+
+    <ng-container *ngIf="type === 'clinic'">
+
+      <ng-container  *ngFor="let item of doctor.clinics" > 
+        <div nz-row nzAlign="middle" class="record-list py-2 px-2" (click)="changeClinic(item)">
+        <div nz-col nzFlex="1">
+          <nz-avatar nzIcon="user" [nzSize]="40" style="background-color:#fde3cf;"> </nz-avatar>
+          </div>
+  
+        <div nz-col nzFlex="5">
+          <span>
+            <span fs="15px" fw="md" class="d-block"> {{item.doc_clinic_name}} </span>
+            <span fs="12px" fw="reg" color="#b1afaf" class="d-block">
+              {{item.address_line_1}}, {{item.address_line_2}}
+            </span>
+          </span>
+        </div>
+        <div nz-col nzFlex="auto" class="center-y-end-x">
+          <ng-container *ngIf="doctor.actualClinic">
+            <button nz-button nzSize="small" nzType="link" *ngIf="doctor.actualClinic.doc_id === item.doc_id">
+              Selected <i nz-icon nzType="check-circle" nzTheme="outline"></i>
+            </button>
+          </ng-container>
+        </div>
+      </div>
   </ng-container>
+
+      <br><br><br>
+  
+          
+      </ng-container>
+
+  </ng-container>
+
 </nz-drawer>
-
-<!-- Todo: how to use in 
-1  component.ts :  
-    open = false; 
-
-2  component.html :  
-  <digi-bottom-sheet [isOpen]="open" (toggle)="open = $event" title="">
-    ------temple here------
- </digi-bottom-sheet>
--->

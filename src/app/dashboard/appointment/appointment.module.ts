@@ -9,6 +9,11 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { OverviewComponent } from './overview/overview.component';
 import { CheckOutComponent } from './check-out/check-out.component';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { MessageService } from '@services/message.service';
+import { NzNotificationModule, NzNotificationService } from 'ng-zorro-antd/notification';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 const appointmentRoutes: Routes = [
   {
@@ -31,7 +36,11 @@ const appointmentRoutes: Routes = [
     ShareComponentsModule,
     CarouselModule,
     antForAppointment(),
-    RouterModule.forChild(appointmentRoutes)
-  ]
+    RouterModule.forChild(appointmentRoutes),
+    NzAlertModule,
+    NzSpinModule,
+    NzNotificationModule
+  ],
+  providers:[MessageService,NzNotificationService,NzModalService]
 })
 export class AppointmentModule { }

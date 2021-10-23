@@ -8,6 +8,8 @@ import { BaseHttpService } from '@services/base-http.service';
 import { DoctorService } from '@services/doctor-service/doctor.service';
 import { HttpConstants } from '@services/http-constants';
 import { PatientService } from '@services/patient-service/patient.service';
+import { MessageService } from '../../services/message.service';
+import { AuthGuard } from '../../guards/auth-guard.service';
 
 @Component({
   selector: 'digi-otp-screen',
@@ -41,9 +43,6 @@ export class OtpScreenComponent implements OnInit {
   timeLeft = 30;
   doctor: Doctor;
   allDoctors: LandingPageData[] = [];
-  msg: any;
-
-  auth: any;
 
   constructor(
     private _dynamicTitle: DynamicTitleService,
@@ -51,7 +50,9 @@ export class OtpScreenComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private http: BaseHttpService,
     private doctorService: DoctorService,
-    private patientService: PatientService
+    private patientService: PatientService,
+    private msg:MessageService,
+    private auth:AuthGuard
   ) {
     if (!this._router.getCurrentNavigation().extras.state) {
       this.goBack();

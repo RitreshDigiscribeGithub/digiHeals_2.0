@@ -50,7 +50,7 @@ export class AppComponent {
       } 
 
       if( domain && domain === 'digiheals' && this.router.url === '' || this.router.url === '/') {
-        this.router.navigate(['/home'])
+      //  this.router.navigate(['/home'])
        }
 
     }

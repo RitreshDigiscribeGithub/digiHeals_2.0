@@ -6,6 +6,9 @@ import {
   EventEmitter,
   ChangeDetectorRef,
 } from '@angular/core';
+import { DoctorService } from '@services/doctor-service/doctor.service';
+import { Doctor } from '../../../interface/doctor';
+import { LandingPageData } from '../../../interface/landingData';
 
 @Component({
   selector: 'digi-doctors-slider',
@@ -13,17 +16,33 @@ import {
   styleUrls: ['./doctors-slider.component.less'],
 })
 export class DoctorsSliderComponent implements OnInit {
-  @Input() public swiperConfig;
-  @Input('dataArray') public dataArray: any[];
-  @Output() public slideNum = new EventEmitter<number>();
-  @Input() public activeColor: string;
-  @Input() public activeSilde;
+  activeColor: string = '#2795A0';
+  activeSilde:number;
+  allDoctorSub:any;
+  allDoctors:LandingPageData[] = [];
+  color: string = '#2795A0';
 
-  constructor(private _cdrf: ChangeDetectorRef) {}
+  swiperConfig =  {
+    responsive: {
+      0: { items: 1 },
+      400: { items: 1 },
+      740: { items: 1 },
+      940: { items: 4 },
+    },
+  };
+
+
+  constructor(private _cdrf: ChangeDetectorRef, private doctorService:DoctorService) {}
   carouselEvent(e) {
-    this.slideNum.emit(e.startPosition);
+   this.activeSilde = e;
+
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.allDoctorSub =   this.doctorService.data$.subscribe(r =>{
+      this.allDoctors = r;
+    })
+
+  }
 
   ngAfterViewInit(): void {}
 }

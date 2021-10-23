@@ -56,11 +56,6 @@ export class HomeComponent implements OnInit {
     nav: false,
   };
 
-  health_Partners: any[] = [
-    { name: 'SRL Diagnostics', logo: 'srl-logo' },
-    { name: 'Suburban Diagnostics', logo: 'suburban' },
-    { name: 'Dr Lal Pathlabs', logo: 'lal' },
-  ];
 
   patientSub: any;
   doctorSub: any;

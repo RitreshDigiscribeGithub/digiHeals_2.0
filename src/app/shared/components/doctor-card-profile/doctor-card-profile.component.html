@@ -1,21 +1,22 @@
 <div nz-row nzAlign="middle" class="doctor-card" [ngStyle]="{'background': color?color:'unset'}">
     <div nz-col nzFlex="2" class="center-y-start-x">
-        <img [src]="data.photo" class="d-block" style="width: 75px;" alt="">
+        <img [src]="doctor.profile_pic" class="d-block" style="width: 75px;" alt="">
     </div>     
     <div nz-col nzFlex="5">
         
         <span fs="16px" fw="md" [color]="color?'white':'#12263C'" class="d-block">
-          {{data.name}}
+          Dr. {{doctor.doc_first_name | titlecase}}   {{doctor.doc_last_name | titlecase}}
+
         </span>
         <span fs="12px" fw="reg" [color]="color?'white':'#9EAAB2'"  class="d-block">
-            {{data.qualification}}
+            {{doctor.doctor_education}}
         </span>
         <!-- <span fs="12px" fw="reg" color="#9EAAB2" class="d-block">
             {{data.clinicName}}
         </span> -->
         <div>
-            <nz-rate [ngModel]="data.rating" nzDisabled></nz-rate>
-            <span *ngIf="value" class="ant-rate-text">{{data.rating}}</span>
+            <nz-rate [ngModel]="5" nzDisabled></nz-rate>
+            <span *ngIf="value" class="ant-rate-text">5</span>
         </div>
     </div>
 </div>
