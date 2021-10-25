@@ -22,6 +22,7 @@ import { UtilityDirective } from './directives/utility.directive';
 import { DoctorsSliderComponent } from './doctors-slider/doctors-slider.component';
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
 import { PatientListItemComponent } from './patient-list-item/patient-list-item.component';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { DividerComponent } from './divider/divider.component';
 
 const components = [
@@ -48,7 +49,7 @@ const components = [
 
 @NgModule({
   declarations: [components, DialogBoxComponent],
-  imports: [CommonModule, FormsModule, CarouselModule, antForShareModule()],
+  imports: [CommonModule, FormsModule, CarouselModule, antForShareModule(),NzAvatarModule],
   exports: [components],
 })
 export class ShareComponentsModule {}

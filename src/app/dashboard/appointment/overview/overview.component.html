@@ -1,56 +1,62 @@
-<div class="px-3">
+<nz-spin nzTip="{{loadingText}}" [nzSpinning]="isFetchingData">
 
+<div class="px-3" >
     <div class="my-2">
-        <digi-doctor-card-profile [data]="doctorData">
+        <digi-doctor-card-profile *ngIf="doctor" [doctor]="doctor">
         </digi-doctor-card-profile>
     </div>
 
-    <div class="my-3">
+    <div class="my-3" *ngIf="clinic">
         <span fs="14px" fw="reg" color="#9EAAB2" class="d-block my-1">
             Clinic Center
         </span>
         <div nz-row>
             <div nz-col nzFlex="5">
                 <span fs="16px" fw="reg" class="d-block">
-                    Wilsson Clinic Center</span>
-                <span fs="13px" fw="reg" class="d-block">
-                    Sr Lane, Mumbai</span>
+                    {{clinic.doc_clinic_name}}</span>
+                <span fs="13px" fw="reg" class="d-block" *ngIf="!isTelemedicine">
+                    {{clinic.address_line_1}}, {{clinic.address_line_2}},{{clinic.city}}
+                </span>
+
+                    <span fs="13px" fw="reg" class="d-block" *ngIf="isTelemedicine">
+                       Video Consult
+                    </span>
             </div>
             <div nz-col nzFlex="2" class="center-y-end-x">
-                <a href="">Change Slot</a>
+                <a href="javascript:void(0)" (click)="goBack()">Change Clinic</a>
             </div>
         </div>
     </div>
 
 
-    <div class="my-3">
+    <div class="my-3" *ngIf="slot">
         <span fs="14px" fw="reg" color="#9EAAB2" class="d-block my-1">
             Date and Time
         </span>
         <div nz-row>
             <div nz-col nzFlex="5">
                 <span fs="16px" fw="reg" class="d-block">
-                    Tue, 16 Aug   10:30 AM
+                    {{this.slot.slotTime | date : 'EEE'}}, {{this.slot.slotTime | date : 'mediumDate'}} {{this.slot.slotTime | date : 'shortTime'}}
                 </span>
             </div>
             <div nz-col nzFlex="2" class="center-y-end-x">
-                <a href="">Change Clinic</a>
+                <a href="javascript:void(0)" (click)="goBack()">Change Slot</a>
             </div>
         </div>
     </div>
 
-    <div class="my-3">
+    <div class="my-3" *ngIf="patient">
         <span fs="14px" fw="reg" color="#9EAAB2" class="d-block my-1">
             Patient Name / Book for
         </span>
         <div nz-row>
             <div nz-col nzFlex="5">
                 <span fs="16px" fw="reg" class="d-block">
-                    Darrell Steward
+                    {{(patient.patient_title) ? patient.patient_title : ''}} {{patient.patient_name}}  {{patient.patient_last_name}}
                 </span>
             </div>
             <div nz-col nzFlex="2" class="center-y-end-x">
-                <a href="">Change Patient</a>
+                <a href="javascript:void(0)" (click)="openBottomSheetSelector('patient')" >Change Patient</a>
             </div>
         </div>
     </div>
@@ -58,58 +64,47 @@
 
 
     <!-- Procedure / Service / Packages -->
-    <div class="my-3">
+    <div class="my-3" *ngIf="currentAppointmentAmount && currentAppointmentAmount.billingAmount > 0">
         <span fs="14px" fw="reg" color="#9EAAB2" class="d-block my-1">
             Procedure / Service / Packages
         </span>
         <div nz-row class="my-2">
-            <div nz-col nzFlex="5">
+            <div nz-col nzFlex="4">
                 <span fs="16px" fw="reg" class="d-block">
                     General Consultation
                 </span>
             </div>
-            <div nz-col nzFlex="2" class="center-y-end-x">
-                <span fs="16px" fw="reg" class="d-block">
-                    Rs. 350
+            <div nz-col nzFlex="3" class="center-y-end-x">
+                <span fs="16px" fw="reg" class="d-block" *ngIf="isTelemedicine && currentAppointmentAmount.billingAmount > 0">
+                    Rs.  {{ currentAppointmentAmount.billingAmount }} /-
                 </span>
             </div>
         </div>
 
         <div nz-row class="my-2">
-            <div nz-col nzFlex="5">
+            <div nz-col nzFlex="4">
                 <span fs="16px" fw="reg" class="d-block">
                     Platform Fees
                 </span>
             </div>
-            <div nz-col nzFlex="2" class="center-y-end-x">
+            <div nz-col nzFlex="3" class="center-y-end-x" >
                 <span fs="16px" fw="reg" class="d-block">
-                    Rs. 50
-                </span>
+                    Rs {{ getFixed(currentAppointmentAmount) }} /- 
+                                </span>
             </div>
         </div>
 
-        <div nz-row class="my-2">
-            <div nz-col nzFlex="5">
-                <span fs="16px" fw="reg" class="d-block">
-                    Taxes
-                </span>
-            </div>
-            <div nz-col nzFlex="2" class="center-y-end-x">
-                <span fs="16px" fw="reg" class="d-block">
-                    Rs. 50
-                </span>
-            </div>
-        </div>
+    
         <nz-divider></nz-divider>
         <div nz-row class="my-2">
-            <div nz-col nzFlex="5">
+            <div nz-col nzFlex="4">
                 <span fs="16px" fw="reg" class="d-block">
                     Total Amount
                 </span>
             </div>
-            <div nz-col nzFlex="2" class="center-y-end-x">
+            <div nz-col nzFlex="3" class="center-y-end-x">
                 <span fs="16px" fw="reg" class="d-block">
-                    Rs. 450
+                    Rs. {{currentAppointmentAmount.receivableAmount}} /-
                 </span>
             </div>
         </div>
@@ -118,10 +113,88 @@
 
 
     <!-- button -->
-    <digi-affix>
-        <button nz-button digi-btn color="theme" routerLink="../checkOut">
-            Confirm and Pay
+    <digi-affix *ngIf="!isTelemedicine || this.currentAppointmentAmount.billingAmount === 0">
+        <button nz-button digi-btn color="theme" (click)="saveAppt()">
+            Confirm Appointment
         </button>
     </digi-affix>
     <!-- button -->
+
+    <digi-affix *ngIf="!isFetchingData && isTelemedicine && currentAppointmentAmount.billingAmount > 0">
+        <div nz-row class="digi-tow-side-btn" nzAlign="middle" (click)="initiatePaymentModal(currentAppointmentAmount)">
+            <div nz-col nzFlex="5">
+                <button fs="16px" fw="md">Rs. {{currentAppointmentAmount.receivableAmount}}</button>
+            </div>
+            <div nz-col nzFlex="5" class="center-y-end-x pr-2">
+                <span fs="16px" fw="md" color="white">Pay Now</span>
+            </div>
+        </div>
+    </digi-affix>
+
 </div>
+
+</nz-spin>
+
+
+<digi-bottom-sheet *ngIf="open" (toggle)="open = $event" [type]="bottomSheetType" [title]="bottomSheetTitle" [isOpen]="open" height="100vh"> 
+  
+</digi-bottom-sheet>
+
+
+
+
+<!-- confirm  -->
+<nz-drawer
+  [nzClosable]="false"
+  [nzVisible]="confirm"
+  [nzPlacement]="'bottom'"
+  [nzHeight]="'100%'"
+  [nzBodyStyle]="{'padding':'0px'}">
+  <ng-container *nzDrawerContent>
+    <digi-confirm-box image="assets/images/thanks_for_appoinment.png" *ngIf="slot">
+
+        <ng-container body>
+            <span fs="16px" fw="reg" class="d-block my-3">Thank You</span>
+            <span fs="14px" fw="reg" class="d-block my-3">You have schedule an appointment on {{this.slot.slotTime | date : 'EEE'}}, {{this.slot.slotTime | date : 'mediumDate'}} {{this.slot.slotTime | date : 'shortTime'}} <span *ngIf="paymentResponse && paymentResponse.payment_id">, Booking no. {{paymentResponse.payment_id}} </span> </span>
+            <span fs="16px" fw="reg" class="d-block">You will recieve a notification once your appointment is confirmed</span>
+        </ng-container>
+
+        <ng-container button>
+            <button nz-button digi-btn color="theme">
+                Go To Health Updates
+            </button>
+        </ng-container>
+
+    </digi-confirm-box>
+  </ng-container>
+</nz-drawer>
+
+<!-- error  -->
+<nz-drawer
+  [nzClosable]="false"
+  [nzVisible]="isError"
+  [nzPlacement]="'bottom'"
+  [nzHeight]="'100%'"
+  [nzBodyStyle]="{'padding':'0px'}">
+  <ng-container *nzDrawerContent>
+    <digi-confirm-box image="assets/images/transaction_error.png">
+
+        <ng-container body>
+            <span fs="16px" fw="reg" class="d-block my-3">
+                Oops! that definitely should not happen
+            </span>
+            <span fs="14px" fw="reg" color="#9EAAB2" class="d-block my-3">
+                We’re sorry the transaction cannot be 
+                 processed, please try again later.
+            </span>
+        </ng-container>
+
+        <ng-container button>
+            <button nz-button digi-btn color="theme" (click)="isError = false;">
+                Try Again
+            </button>
+        </ng-container>
+
+    </digi-confirm-box>
+  </ng-container>
+</nz-drawer>
