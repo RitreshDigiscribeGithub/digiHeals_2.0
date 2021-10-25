@@ -16,6 +16,8 @@ import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzTimelineModule } from 'ng-zorro-antd/timeline';
+import { NzStepsModule } from 'ng-zorro-antd/steps';
 
 // Auth module
 export function antForAuth() {
@@ -29,7 +31,7 @@ export function antForShareModule() {
 
 // Dashboard module
 export function antForDashboard() {
-    return [NzInputModule, NzIconModule, NzDividerModule, NzGridModule, NzButtonModule, NzRateModule, NzTagModule, NzDrawerModule, NzListModule, NzUploadModule];
+    return [NzInputModule, NzIconModule, NzDividerModule, NzGridModule, NzButtonModule, NzRateModule, NzTagModule, NzDrawerModule, NzListModule, NzUploadModule,NzTimelineModule,NzStepsModule ];
 }
 
 // Appointment module

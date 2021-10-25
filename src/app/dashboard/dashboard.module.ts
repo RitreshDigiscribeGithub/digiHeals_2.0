@@ -16,6 +16,7 @@ import { AuthGuard } from '@guards/auth-guard.service';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { NzResultModule } from 'ng-zorro-antd/result';
 import { UploadDocsComponent } from './upload-docs/upload-docs.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 const dashboardRoutes: Routes = [
   {
@@ -30,6 +31,7 @@ const dashboardRoutes: Routes = [
       { path: 'appointment', loadChildren: () => import('./appointment/appointment.module').then(m => m.AppointmentModule),canActivate: [AuthGuard]},
       { path: 'health-records', component: HealthRecordsComponent },
       { path: 'scanRx', component: UploadDocsComponent },
+      { path:'orderDetails',component:OrderDetailsComponent}
     ]
   }
 ]
@@ -43,7 +45,8 @@ const dashboardRoutes: Routes = [
     SearchComponent,
     DashboardCardComponent,
     HealthRecordsComponent,
-    UploadDocsComponent
+    UploadDocsComponent,
+    OrderDetailsComponent
   ],
   imports: [
     CommonModule,
