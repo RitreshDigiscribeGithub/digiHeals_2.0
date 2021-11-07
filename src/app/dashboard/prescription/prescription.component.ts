@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'digi-prescription',
@@ -7,7 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrescriptionComponent implements OnInit {
   prescription = false;
-  constructor() { }
+  savedRxData:any =null;
+  constructor( private router:Router,) { 
+
+    if(this.router.getCurrentNavigation() && this.router.getCurrentNavigation().extras.state &&  this.router.getCurrentNavigation().extras.state.rxData){
+      this.savedRxData = this.router.getCurrentNavigation().extras.state.rxData;
+    
+    } else {
+    this.router.navigate(['/records']);  
+    }
+
+  }
 
   ngOnInit(): void {
   }

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { DynamicTitleService } from 'src/app/shared/utility/dynamic-title.service';
+import { Doctor } from '@interface/doctor';
+import { LandingPageData } from '@interface/landingData';
+import { DoctorService } from '@services/doctor-service/doctor.service';
 
 @Component({
   selector: 'digi-clinic-center',
@@ -69,10 +72,20 @@ export class ClinicCenterComponent implements OnInit {
     { icon: 'eye', text: 'Eyes', color: '#52CCBD' },
     { icon: 'dental', text: 'Dentist', color: '#FEA6A2' },
   ];
-
-  constructor(private _dynamicTitleService: DynamicTitleService) {}
+  doctorSub:any;
+  doctor:Doctor;
+  constructor(private _dynamicTitleService: DynamicTitleService,private doctorService:DoctorService ) {}
 
   ngOnInit(): void {
     this._dynamicTitleService.setHeaderTitle('Wilsson Clinic Center');
+
+    this.doctorSub =  this.doctorService.primaryDoctor$.subscribe((d: LandingPageData) => {
+      this.doctor = d.doctor;
+     
+
+  
+   
+ });
+
   }
 }

@@ -71,8 +71,9 @@
     <ng-container *ngFor="let date of updateDateCalender; let i = index">
       <ng-template carouselSlide>
         <div class="ml-2 mb-3">
-          <button nz-button digi-btn color="#2795A0"  [ngClass]="selectedDateCalender == date ? 'activeBtn' :''" [ghost]="i !== isActive" (click)="dateChanged(date)">
-            <span fs="13px" fw="reg" class="d-block" [color]="selectedDateCalender == date ? 'white' : '#2795A0'">
+
+          <button nz-button digi-btn color="#2795A0"  [ngClass]="compareDate(selectedDateCalender,date) ? 'activeBtn' :''" [ghost]="i !== isActive" (click)="dateChanged(date)">
+            <span fs="13px" fw="reg" class="d-block" [color]="compareDate(selectedDateCalender,date) ? 'white' : '#2795A0'">
               <span class="d-block t-t-c">{{ date | date:'EEEE' }}</span>
               <span class="d-block t-t-c">{{ date | date}} </span>
             </span>
@@ -94,7 +95,7 @@
   <div nz-row [nzGutter]="[16, 16]" class="mb-2 full-width mar-10" >
 
     <div nz-col class="gutter-row" [nzSpan]="12"  *ngFor="let item of clinicTimings" (click)="changeTime(item)">
-      <div class="grid-config " [ngClass]="{'is-active': item.doc_id === selectedTime}">{{item.starttime}}  - {{item.endtime}}</div>
+      <div class="grid-config " [ngClass]="{'is-active': item.doc_id === selectedTime?.doc_id}">{{item.starttime}}  - {{item.endtime}}</div>
     </div>
 
 

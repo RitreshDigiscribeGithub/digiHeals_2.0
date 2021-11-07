@@ -1,6 +1,6 @@
 <div nz-row nzAlign="middle" class="doctor-card" [ngStyle]="{'background': color?color:'unset'}">
-    <div nz-col nzFlex="2" class="center-y-start-x">
-        <img [src]="doctor.profile_pic" class="d-block" style="width: 75px;" alt="">
+    <div nz-col nzFlex="2" class="center-y-start-x" *ngIf="doctor">
+        <img  [src]="doctor.profile_pic" class="d-block" style="width: 75px;" alt="">
     </div>     
     <div nz-col nzFlex="5">
         

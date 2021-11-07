@@ -17,6 +17,7 @@ import * as moment from 'moment';
 import { HttpConstants } from '@services/http-constants';
 import { DgPaymentServiceService } from '@services/patient-service/dg-payment-service.service';
 import { MessageService } from '@services/message.service';
+import { slotInterface } from '../appointment/schedule/schedule.component';
 
 @Component({
   selector: 'digi-home',
@@ -185,6 +186,59 @@ export class HomeComponent implements OnInit {
   })
 
   }
+
+  previewRx(item) {
+
+    item.doc_first_name =this.doctor.doc_first_name;
+    item.doc_last_name =this.doctor.doc_last_name;
+
+    this.router.navigate(['/preview/rx'], {
+      state: { rxData: item, isRxAlreadyHave: true }
+
+    })
+  }
+
+  changeAppt(appt: Appointment) {
+
+    const doctor = this.allDoctors.find(item => {
+      return item.doctor.uid === appt.doctor_id;
+    })
+    this.doctorService.setPrimaryDoctor(doctor);
+  
+    let time;
+    const clinic = doctor.clinics.filter((item) => {
+      return item.doc_id === appt.clinic_id;
+    });
+  
+    if (clinic.length > 0) {
+      time = clinic[0].timings.filter((item) => {
+        return item.doc_id === appt.clinic_timimg;
+      });
+    }
+  
+  
+  
+    const userSelectedSlot: slotInterface = {
+      slotTime: appt.startDateTime,
+      endSlot: appt.endDateTime,
+      status: 'block',
+    };
+  
+    const appData = {
+      clinic: clinic ? clinic[0] : '',
+      time: time ? time[0] : '',
+      slot: userSelectedSlot,
+      date: new Date(appt.startDateTime),
+      patient: this.selectedPatient,
+      isTelemedicine: appt.isTelimedicineAppointment,
+      document_id: appt.doc_id
+    };
+  
+    this.router.navigate(['appointment/schedule'], {
+      state: { apptData: appData }
+    });
+  }
+  
 }
 
 export interface patientLastRecords {

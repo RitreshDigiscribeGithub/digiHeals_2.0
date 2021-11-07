@@ -1,6 +1,9 @@
 <div class="px-2">
-  <digi-doctors-slider
-  ></digi-doctors-slider>
+  <digi-doctor-card-profile [doctor]="doctor">
+  </digi-doctor-card-profile>
+
+  <!-- <digi-doctors-slider
+  ></digi-doctors-slider> -->
 </div>
 
 <div nz-row class="cart-nav px-2" nzAlign="middle">
@@ -99,7 +102,7 @@
     <div nz-col nzXs="24">
       <ng-container *ngFor="let item of doctorArray">
         <div class="my-2">
-          <digi-doctor-card-profile [data]="item">
+          <digi-doctor-card-profile [doctor]="doctor">
           </digi-doctor-card-profile>
         </div>
       </ng-container>

@@ -5,7 +5,7 @@
       <span fs="16px" fw="reg" class="d-block text-center my-3"
       color="white">Welcome to Dr {{doctor.doc_first_name}} {{doctor.doc_last_name}} clinic Center</span>
       <div class="px-3">
-         <button nz-button digi-btn color="#2795A0">
+         <button nz-button digi-btn color="#2795A0" (click)="goToPage('/scanRx')">
             <img src="assets/icons/dashboard_icon/light-prescription.svg" alt="">&nbsp; &nbsp;
             <span fs="17px" color="white">Scan My Prescription</span>
          </button>
@@ -51,7 +51,7 @@
                </div>
             <div nz-col nzXs="12" class="center-xy"  >
                <button digi-button-inline  nzBlock nz-button color="#FC8F1B"
-               routerLink="../appointment/reschedule">
+                 (click)="changeAppt(todaysAppointment)">
                   Reschedule
                </button>
             </div>
@@ -108,7 +108,7 @@
             iconWidth="18%">
             <div nz-row>
                <div nz-col nzXs="18">
-                  <button digi-button-inline nz-button color="#2795A0">
+                  <button digi-button-inline nz-button color="#2795A0" (click)="previewRx(patientLastRxRecords)">
                      View My Prescription
                   </button>
                </div>
@@ -124,7 +124,7 @@ pharmacy services at your doorsteps" color="#FFEAD3" icon="rxScan" iconWidth="20
       <div nz-row>
          <div nz-col nzXs="18">
             <button digi-button-inline nz-button color="#4E7CFF"
-            routerLink="../scanRx">
+            (click)="goToPage('/scanRx')">
                Scan Rx Now
             </button>
          </div>

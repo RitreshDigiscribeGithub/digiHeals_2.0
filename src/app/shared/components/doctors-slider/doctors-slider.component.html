@@ -1,5 +1,5 @@
 
-<ng-container *ngIf="allDoctors.length > 1">
+<ng-container >
 <owl-carousel-o [options]="swiperConfig" (translated)="carouselEvent($event)">
   <ng-container *ngFor="let item of allDoctors; let i = index">
     <ng-template carouselSlide>
@@ -21,7 +21,7 @@
                Dr. {{item.doctor.doc_first_name | titlecase  }} {{item.doctor.doc_last_name | titlecase   }}         
               
               </span>
-              <span fs="12px" fw="reg" [color]="color?'white':'#9EAAB2'"  class="d-block">
+              <span fs="12px" fw="reg" [color]="color ? 'white':'#9EAAB2'"  class="d-block">
                 {{item.doctor.doctor_education | uppercase }} 
               </span>
               <!-- <span fs="12px" fw="reg" color="#9EAAB2" class="d-block">

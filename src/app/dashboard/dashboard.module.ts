@@ -39,7 +39,7 @@ const dashboardRoutes: Routes = [
       { path: 'health-records', component: HealthRecordsComponent },
       { path: 'scanRx', component: UploadDocsComponent },
       { path:'orderDetails',component:OrderDetailsComponent},
-       { path: 'preview', component: PrescriptionComponent },
+       { path: 'preview/rx', component: PrescriptionComponent },
 
     ]
   }

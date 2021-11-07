@@ -85,11 +85,12 @@ export class ScheduleComponent implements OnInit {
 
       if(this.routerLinkData){
              
-      
+        console.info(this.routerLinkData);
+
         this.selectedTime = this.routerLinkData.time;
         this.isTeleMedicine= this.routerLinkData.isTelemedicine;
         this.userSelectedSlot= this.routerLinkData.slot;
-        this.selectedDateCalender = this.routerLinkData.date;
+        this.selectedDateCalender = new Date(this.routerLinkData.date);
         this.rescheduledDocId  = this.routerLinkData.document_id;   
         this.dateChanged(this.selectedDateCalender)
           
@@ -115,7 +116,15 @@ export class ScheduleComponent implements OnInit {
     date.setDate(date.getDate());
     return this.dates(date, 10);
   }
+  compareDate(selectedDate,date) {
 
+
+    if(moment(selectedDate).format('DD-MM-YYYY') === moment(date).format('DD-MM-YYYY')) {
+      return true
+    } else {
+      return false
+    }
+  }
 
 
   ngOnDestroy(): void {
@@ -174,7 +183,7 @@ export class ScheduleComponent implements OnInit {
   }
 
 
-  selectedTime: ClinicTime;
+  selectedTime: ClinicTime = null;
   currentStime: number;
   loopTime: number;
   currentTimeSlot: number = 15;
@@ -348,6 +357,7 @@ export class ScheduleComponent implements OnInit {
             });
           }
         } else {
+          
           // finalSlots1.push({slotTime:data[c].slotTime,status:'block'});
         }
       }

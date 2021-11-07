@@ -168,6 +168,13 @@ export class RecordsComponent implements OnInit {
     this.labReports = this.labReports.concat(labReports);
     this.otherDocuments = this.otherDocuments.concat(audios, videos, images);
   }
+
+  previewRx(item) {
+    this.router.navigate(['/preview/rx'], {
+      state: { rxData: item.acutalDoc, isRxAlreadyHave: true }
+
+    })
+  }
 }
 
 export interface HealthDocumentResponse {
