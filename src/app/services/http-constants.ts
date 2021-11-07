@@ -41,7 +41,11 @@ export class HttpConstants {
   };
   static getDashboardData = "/patient/getDashboardData";
   static getAgoraToken = "/otp/getAgoraToken/";
+  static digiheals = {
+    
+    getLatetRx:'/digiheals/getLatestPrescriptionForPatient'
 
+  }
   }
   
 

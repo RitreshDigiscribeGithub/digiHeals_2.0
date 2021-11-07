@@ -15,6 +15,8 @@ import { LandingPageData } from '@interface/landingData';
 import { Patient } from '@interface/patient';
 import * as moment from 'moment';
 import { HttpConstants } from '@services/http-constants';
+import { DgPaymentServiceService } from '@services/patient-service/dg-payment-service.service';
+import { MessageService } from '@services/message.service';
 
 @Component({
   selector: 'digi-home',
@@ -28,7 +30,9 @@ export class HomeComponent implements OnInit {
     private http: BaseHttpService,
     private patientService: PatientService,
     private titleService: DynamicTitleService,
-    private geoLocationService: GeoLocationService
+    private geoLocationService: GeoLocationService,
+    private digiHttp:DgPaymentServiceService,
+    private msg:MessageService
   ) {}
 
   OwlConfig: OwlOptions = {
@@ -72,7 +76,8 @@ export class HomeComponent implements OnInit {
   isSpinning: boolean = true;
   patients: Patient[] = [];
   todaysAppointment: Appointment;
-
+  btnLoader:boolean = false;
+  isContentLoading:boolean = true;
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
@@ -88,9 +93,6 @@ export class HomeComponent implements OnInit {
         this.doctor = r.doctor;
         const doctorLabPartner = r.partners?.labPartner || [];
         const doctorPharmaPartner = r.partners?.pharmacyPartner || [];
-        console.log(doctorLabPartner);
-        console.log(doctorPharmaPartner);
-
         this.doctorPartners = doctorLabPartner.concat(doctorPharmaPartner);
       }
     });
@@ -121,13 +123,13 @@ export class HomeComponent implements OnInit {
     this.http
       .makePartnerRequest<patientLastRecords>({
         method: 'POST',
-        url: '/api/v1/digiheals/getLatestPrescriptionForPatient',
+        url: `/api/v1${HttpConstants.digiheals.getLatetRx}`,
         data: { patientId: id },
       })
       .subscribe((res) => {
         this.isSpinning = false;
         if (res.hasErrors()) {
-          alert(res.getErrorsText());
+          this.msg.createMessage('Something went wrong');
         } else {
           if (res.status) {
             this.patientLastRxRecords = res.data.patientRx;
@@ -150,7 +152,7 @@ export class HomeComponent implements OnInit {
         }
       )
       .subscribe((res) => {
-        this.isSpinning = false;
+        this.isContentLoading = false;
 
         if (res.hasErrors()) {
         } else {
@@ -164,7 +166,24 @@ export class HomeComponent implements OnInit {
   }
 
   goToPage(url) {
+    if (url != 'whatsapp') {
     this.router.navigate([url]);
+    } else {
+      window.open('https://wa.me/message/MCPYI3GIIRGSO1', '_blank');
+    }
+  }
+
+
+
+  markasArrived(appt:Appointment) {
+
+  this.btnLoader = true;
+  appt.isCheckin = true;
+
+  this.digiHttp.createDocument(appt).subscribe(r =>{
+    this.btnLoader = false;
+  })
+
   }
 }
 

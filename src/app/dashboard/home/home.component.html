@@ -1,3 +1,5 @@
+<nz-spin  [nzIndicator]="indicatorTemplate" [nzSpinning]="isContentLoading">
+
 <div class="pt-1 pb-5" style="background: #104B60;">
    <span class="d-block mb-5 px-4" *ngIf="doctor">
       <span fs="16px" fw="reg" class="d-block text-center my-3"
@@ -14,7 +16,8 @@
 <div class="px-3" style="position: relative;top: -73px;">
 
    <!-- Book an Appointment -->
-   <digi-dashboard-card title="Like to consult Dr {{doctor.doc_first_name}} {{doctor.doc_last_name}}" description="Click on Book Appointment to schedule your appointment with the doctor hassle free" color="#A293FA" icon="appointment" iconWidth="30%">
+   <ng-container *ngIf="doctor && !todaysAppointment">
+   <digi-dashboard-card  title="Like to consult Dr {{doctor.doc_first_name}} {{doctor.doc_last_name}}" description="Click on Book Appointment to schedule your appointment with the doctor hassle free" color="#A293FA" icon="appointment" iconWidth="30%">
       <div nz-row>
          <div nz-col nzXs="18">
             <button digi-button-inline nz-button color="#4D4CAE" 
@@ -27,9 +30,96 @@
       </div>
    </digi-dashboard-card>
    <!-- Book an Appointment -->
+   </ng-container>
+
+
+   <!--  Appointment is scheduled:I’ve Arrived -->
+   <ng-container *ngIf="todaysAppointment && !todaysAppointment.appointment_status && todaysAppointment.isCheckin === false &&  todaysAppointment.isTelimedicineAppointment === false">
+   
+      <digi-dashboard-card title="Your Appointment is scheduled with 
+   Dr {{todaysAppointment.doc_first_name}} {{todaysAppointment.doc_last_name}} at {{todaysAppointment.startDateTime | date : 'HH:mm a'}}, {{todaysAppointment.startDateTime | date : 'd MMM'}}" description="Click on arrived and we will let the doctor know you have arrived"
+         color="#FFEAD3">
+
+       
+         <div nz-row>
+            <div nz-col nzXs="11" class="center-xy"  >
+               <button digi-button-inline  nzBlock nz-button color="#2795A0" [nzLoading]="btnLoader" (click)="markasArrived(todaysAppointment)">
+                  I’ve Arrived
+               </button>
+            </div>
+            <div nz-col nzXs="1" class="center-xy"  >
+               </div>
+            <div nz-col nzXs="12" class="center-xy"  >
+               <button digi-button-inline  nzBlock nz-button color="#FC8F1B"
+               routerLink="../appointment/reschedule">
+                  Reschedule
+               </button>
+            </div>
+         </div>
+
+      </digi-dashboard-card>
+      <!--  Appointment is scheduled:I’ve Arrived -->
+   </ng-container>
+   
+   <ng-container *ngIf="todaysAppointment && !todaysAppointment.appointment_status &&  todaysAppointment.isTelimedicineAppointment === true">
+   
+      <!-- Appointment is scheduled:Start Consultation -->
+      <digi-dashboard-card title="Your Appointment is scheduled with 
+      Dr {{todaysAppointment.doc_first_name}} {{todaysAppointment.doc_last_name}} at {{todaysAppointment.startDateTime | date : 'HH:mm a'}}, {{todaysAppointment.startDateTime | date : 'd MMM'}}" description="Click on Start Consultation to start Video call and we will let the doctor know you have joined"
+         color="#F5E0BA">
+         <div nz-row>
+            <div nz-col nzXs="12" class="center-xy">
+               <button digi-button-inline nz-button color="#2795A0">
+                  <i nz-icon nzType="video-camera" nzTheme="outline"></i> 
+                   Start Consultation
+               </button>
+            </div>
+            <div nz-col nzXs="12" class="center-xy">
+               <button digi-button-inline nz-button color="#FC8F1B">
+                  Reschedule Appt.
+               </button>
+            </div>
+         </div>
+      </digi-dashboard-card>
+      </ng-container>
+      <!-- Appointment is scheduled:Start Consultation -->
+   
+      <ng-container *ngIf="todaysAppointment && !todaysAppointment.appointment_status && todaysAppointment.isCheckin === true && !todaysAppointment.isTelimedicineAppointment">
+
+      <!-- Thank You -->
+      <digi-dashboard-card title="Dr {{doctor.doc_first_name}} {{doctor.doc_last_name}} will attend you shortly" description="Dear {{todaysAppointment.patient_name | titlecase}}, thank you for your patience
+   please wait until your name is called out" color="#FFD2DD" icon="dr-icon" iconWidth="20%">
+         <div nz-row>
+            <div nz-col nzXs="18">
+               <button nz-button nzShape="round">
+                  Thank You
+               </button>
+            </div>
+            <div nz-col nzXs="6">
+            </div>
+         </div>
+      </digi-dashboard-card>
+      <!-- Thank You -->
+   </ng-container>
+
+      <!-- View My Prescription -->
+      <digi-dashboard-card  *ngIf="todaysAppointment && todaysAppointment.appointment_status || patientLastRxRecords" title="Your prescription from {{doctor.doc_first_name}} {{doctor.doc_last_name}}
+      is ready to view" description="Click below to view your prescription" color="#FFEAD3" icon="prescription"
+            iconWidth="18%">
+            <div nz-row>
+               <div nz-col nzXs="18">
+                  <button digi-button-inline nz-button color="#2795A0">
+                     View My Prescription
+                  </button>
+               </div>
+               <div nz-col nzXs="6">
+               </div>
+            </div>
+         </digi-dashboard-card>
+         <!-- View My Prescription -->
 
    <!-- Scan Rx Now -->
-   <digi-dashboard-card title="Scan Your Prescription for" description="Now Enjoy the best in class diagnostics and 
+   <digi-dashboard-card *ngIf="!todaysAppointment || !patientLastRxRecords" title="Scan Your Prescription for" description="Now Enjoy the best in class diagnostics and 
 pharmacy services at your doorsteps" color="#FFEAD3" icon="rxScan" iconWidth="20%">
       <div nz-row>
          <div nz-col nzXs="18">
@@ -59,12 +149,26 @@ NABL accredited labs" color="#CBEBFF" icon="diagnostics" iconWidth="25%">
    </digi-dashboard-card>
    <!-- Book Diagnostics Now -->
 
+   <digi-dashboard-card *ngIf="followUpAppt" title="Your follow up appointment"
+   description="Your next follow up appointment with Dr {{followUpAppt.doc_first_name | titlecase}} {{followUpAppt.doc_last_name}} is on {{followUpAppt.startDateTime | date:'dd MMM,YYYY'}}" color="#FFD2DD"
+   icon="follow-prescription" iconWidth="18%">
+   <div nz-row>
+      <div nz-col nzXs="12">
+         <button digi-button-inline nz-button nzBlock color="#FC8F1B">
+            Confirm Date
+         </button>
+      </div>
+      <div nz-col nzXs="6">
+      </div>
+   </div>
+</digi-dashboard-card>
+
    <!-- Connect to WahtsApp -->
    <digi-dashboard-card title="Connect with the doctor" description="Subscribe to doctors WhatsApp and connect 
 with doctor when you need anytime" color="#9BDAA2" icon="whatsApp" iconWidth="30%">
       <div nz-row>
          <div nz-col nzXs="18">
-            <button digi-button-inline nz-button color="#34917E">
+            <button digi-button-inline nz-button color="#34917E" (click)="goToPage('whatsapp')">
                Connect to WhatsApp
             </button>
          </div>
@@ -91,66 +195,6 @@ with doctor when you need anytime" color="#9BDAA2" icon="whatsApp" iconWidth="30
    </digi-dashboard-card>
    <!-- Check Doctor Profile -->
 
-   <!--  Appointment is scheduled:I’ve Arrived -->
-   <ng-container *ngIf="todaysAppointment && todaysAppointment.isCheckin === false">
-   
-   <digi-dashboard-card title="Your Appointment is scheduled with 
-Dr Jenny at 5:30 PM, 20 Sep" description="Click on arrived and we will let the doctor know you have arrived"
-      color="#FFEAD3">
-      <div nz-row>
-         <div nz-col nzXs="12" class="center-xy">
-            <button digi-button-inline nz-button color="#2795A0">
-               I’ve Arrived
-            </button>
-         </div>
-         <div nz-col nzXs="12" class="center-xy">
-            <button digi-button-inline nz-button color="#FC8F1B"
-            routerLink="../appointment/reschedule">
-               Reschedule
-            </button>
-         </div>
-      </div>
-   </digi-dashboard-card>
-   <!--  Appointment is scheduled:I’ve Arrived -->
-</ng-container>
-
-<ng-container *ngIf="todaysAppointment && todaysAppointment.isCheckin === true">
-
-   <!-- Appointment is scheduled:Start Consultation -->
-   <digi-dashboard-card title="Your Appointment is scheduled with 
-Dr Jenny at 5:30 PM, 20 Sep" description="Click on arrived and we will let the doctor know you have arrived"
-      color="#F5E0BA">
-      <div nz-row>
-         <div nz-col nzXs="12" class="center-xy">
-            <button digi-button-inline nz-button color="#2795A0">
-               Start Consultation
-            </button>
-         </div>
-         <div nz-col nzXs="12" class="center-xy">
-            <button digi-button-inline nz-button color="#FC8F1B">
-               Reschedule Appt.
-            </button>
-         </div>
-      </div>
-   </digi-dashboard-card>
-   </ng-container>
-   <!-- Appointment is scheduled:Start Consultation -->
-
-   <!-- Thank You -->
-   <digi-dashboard-card title="Dr {{doctor.doc_first_name}} {{doctor.doc_last_name}} will attend you shortly" description="Dear Sara Howard, thank you for your patience
-please wait until ypur name is called out" color="#FFD2DD" icon="dr-icon" iconWidth="20%">
-      <div nz-row>
-         <div nz-col nzXs="18">
-            <button nz-button nzShape="round">
-               Thank You
-            </button>
-         </div>
-         <div nz-col nzXs="6">
-         </div>
-      </div>
-   </digi-dashboard-card>
-   <!-- Thank You -->
-
    <!-- Update My Health -->
    <digi-dashboard-card title="How are you feeling today?" description="While you wait in line for your turn, let the 
 doctor know how are doing today" color="#F5E0BA" icon="hart" iconWidth="18%">
@@ -167,21 +211,7 @@ doctor know how are doing today" color="#F5E0BA" icon="hart" iconWidth="18%">
    </digi-dashboard-card>
    <!-- Update My Health -->
 
-   <!-- View My Prescription -->
-   <digi-dashboard-card title="Your prescription from {{doctor.doc_first_name}} {{doctor.doc_last_name}}
-is ready to view" description="Click below to view your prescription" color="#FFEAD3" icon="prescription"
-      iconWidth="18%">
-      <div nz-row>
-         <div nz-col nzXs="18">
-            <button digi-button-inline nz-button color="#2795A0">
-               View My Prescription
-            </button>
-         </div>
-         <div nz-col nzXs="6">
-         </div>
-      </div>
-   </digi-dashboard-card>
-   <!-- View My Prescription -->
+
 
    <!-- Health Manager -->
    <digi-dashboard-card title="How are you feeling today?" [list]="
@@ -202,21 +232,7 @@ is ready to view" description="Click below to view your prescription" color="#FF
    </digi-dashboard-card>
    <!-- Health Manager -->
 
-   <!-- Confirm Date -->
-   <digi-dashboard-card title="Your follow up appointment"
-      description="Your next follow up appointment with Dr Jenny is on 24 Aug, 2021" color="#FFD2DD"
-      icon="follow-prescription" iconWidth="18%">
-      <div nz-row>
-         <div nz-col nzXs="18">
-            <button digi-button-inline nz-button color="#FC8F1B">
-               Confirm Date
-            </button>
-         </div>
-         <div nz-col nzXs="6">
-         </div>
-      </div>
-   </digi-dashboard-card>
-   <!-- Confirm Date -->
+
 
    <!-- Now pay digital -->
    <digi-dashboard-card title="Now pay digital"
@@ -236,7 +252,7 @@ is ready to view" description="Click below to view your prescription" color="#FF
    <!-- Now pay digital -->
 
    <!-- Book Diagnostics Now -->
-   <digi-dashboard-card title="Get Instant Diagnostic Reports"
+   <!-- <digi-dashboard-card title="Get Instant Diagnostic Reports"
       description="Your doctors will get your reports directly from NABL accredited labs" color="#CBEBFF">
       <div nz-row>
          <div nz-col nzXs="18">
@@ -247,10 +263,12 @@ is ready to view" description="Click below to view your prescription" color="#FF
          <div nz-col nzXs="6">
          </div>
       </div>
-   </digi-dashboard-card>
+   </digi-dashboard-card> -->
    <!-- Book Diagnostics Now -->
 
    <!-- Scan QR code -->
+   <ng-container *ngIf="doctor"> 
+   
    <digi-dashboard-card title="Dr {{doctor.doc_first_name}} {{doctor.doc_last_name}} Health Assistant will 
 always be there for you 24x7"
       description="Connect with your doctor for health updates Get 100% genuine medicine delivered at your doorstep
@@ -265,6 +283,7 @@ Book Diagnostics services from best in class NABL accredited labs Access your he
          </div>
       </div>
    </digi-dashboard-card>
+</ng-container>
    <!-- Scan QR code -->
 
    <!-- scroll Health Partners -->
@@ -306,3 +325,7 @@ Book Diagnostics services from best in class NABL accredited labs Access your he
    <!-- scroll Health Partners -->
 
 </div>
+
+</nz-spin>
+
+<ng-template #indicatorTemplate ><i style="margin-top:50%" fs="25px" nz-icon nzType="loading"></i></ng-template>

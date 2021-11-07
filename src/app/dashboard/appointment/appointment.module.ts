@@ -14,6 +14,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { MessageService } from '@services/message.service';
 import { NzNotificationModule, NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
 
 const appointmentRoutes: Routes = [
   {
@@ -22,7 +23,7 @@ const appointmentRoutes: Routes = [
       { path: 'clinic-center', component: ClinicCenterComponent },
       { path: '', redirectTo: 'clinic-center', pathMatch: 'full' },
       { path: 'schedule', component: ScheduleComponent },
-      { path: 'reschedule', component: ScheduleComponent },
+      { path: 'reschedule/:id', component: ScheduleComponent },
       { path: 'overview', component: OverviewComponent },
       { path: 'checkOut', component: CheckOutComponent },
     ]
@@ -39,7 +40,8 @@ const appointmentRoutes: Routes = [
     RouterModule.forChild(appointmentRoutes),
     NzAlertModule,
     NzSpinModule,
-    NzNotificationModule
+    NzNotificationModule,
+    NzSpaceModule
   ],
   providers:[MessageService,NzNotificationService,NzModalService]
 })

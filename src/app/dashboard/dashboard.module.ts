@@ -16,6 +16,11 @@ import { AuthGuard } from '@guards/auth-guard.service';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { NzResultModule } from 'ng-zorro-antd/result';
 import { UploadDocsComponent } from './upload-docs/upload-docs.component';
+import { MessageService } from '@services/message.service';
+import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 const dashboardRoutes: Routes = [
   {
@@ -53,7 +58,9 @@ const dashboardRoutes: Routes = [
     antForDashboard(),
     RouterModule.forChild(dashboardRoutes),
     NzSkeletonModule,
-    NzResultModule
-  ]
+    NzResultModule,
+    NzSpinModule
+  ],
+  providers:[MessageService,NzMessageModule,NzMessageService,NzNotificationService,NzModalService  ]
 })
 export class DashboardModule { }
