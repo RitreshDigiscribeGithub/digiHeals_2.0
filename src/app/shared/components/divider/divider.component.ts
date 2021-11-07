@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-@Component({
+@Component({ 
   selector: 'divider',
   templateUrl: './divider.component.html',
   styleUrls: ['./divider.component.less'],

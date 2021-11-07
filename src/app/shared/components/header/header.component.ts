@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
   menu_list: any[] = [
     { name: 'Home', icon: 'home', path: 'home' },
     { name: 'Health Records', icon: 'record', path: 'records' },
-    { name: 'Your Orders', icon: 'orders', path: 'cart' },
+    { name: 'Your Orders', icon: 'orders', path: 'orderDetails' },
     { name: 'Your Bookings', icon: 'bookings', path: 'appointment' },
     { name: 'Your Account', icon: 'profile', path: 'profile' },
   ];
