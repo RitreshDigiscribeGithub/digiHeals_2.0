@@ -23,6 +23,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { PrescriptionComponent } from './prescription/prescription.component';
 
 const dashboardRoutes: Routes = [
   {
@@ -37,7 +38,9 @@ const dashboardRoutes: Routes = [
       { path: 'appointment', loadChildren: () => import('./appointment/appointment.module').then(m => m.AppointmentModule),canActivate: [AuthGuard]},
       { path: 'health-records', component: HealthRecordsComponent },
       { path: 'scanRx', component: UploadDocsComponent },
-      { path:'orderDetails',component:OrderDetailsComponent}
+      { path:'orderDetails',component:OrderDetailsComponent},
+       { path: 'preview', component: PrescriptionComponent },
+
     ]
   }
 ]
@@ -52,7 +55,8 @@ const dashboardRoutes: Routes = [
     DashboardCardComponent,
     HealthRecordsComponent,
     UploadDocsComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    PrescriptionComponent
   ],
   imports: [
     CommonModule,
@@ -63,7 +67,8 @@ const dashboardRoutes: Routes = [
     RouterModule.forChild(dashboardRoutes),
     NzSkeletonModule,
     NzResultModule,
-    NzSpinModule
+    NzSpinModule,
+    NgxExtendedPdfViewerModule
   ],
   providers:[MessageService,NzMessageModule,NzMessageService,NzNotificationService,NzModalService  ]
 })

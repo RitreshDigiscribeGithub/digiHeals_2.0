@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { antForHealsCart } from 'src/app/shared/themes/antModule';
 import { HealCartComponent } from './heal-cart/heal-cart.component';
 import { ShareComponentsModule } from 'src/app/shared/components/share-components.module';
-import { PrescriptionComponent } from './prescription/prescription.component';
+import { PrescriptionComponent } from '../prescription/prescription.component';
 import { MedicinesComponent } from './heal-cart/medicines/medicines.component';
 import { DiagnosticComponent } from './heal-cart/diagnostic/diagnostic.component';
 import { ReviewOrderComponent } from './review-order/review-order.component';
@@ -25,7 +25,6 @@ const cartRoutes: Routes = [
   {
     path: '', component: CartComponent,
     children: [
-      { path: 'prescription', component: PrescriptionComponent },
       { path: '', redirectTo: 'prescription', pathMatch: 'full' },
       { path: 'healCart', component: HealCartComponent },
       { path: 'order', component: OrderComponent },
@@ -41,7 +40,7 @@ const cartRoutes: Routes = [
 ]
 
 @NgModule({
-  declarations: [CartComponent, HealCartComponent, PrescriptionComponent, MedicinesComponent, DiagnosticComponent, ReviewOrderComponent, OrderConfirmedComponent, YourAddressComponent, CheckOutComponent, AddedCartComponent, DropOffComponent, ScheduleTimeComponent, OrderComponent, SelectPartnerComponent, AddAddressComponent],
+  declarations: [CartComponent, HealCartComponent, MedicinesComponent, DiagnosticComponent, ReviewOrderComponent, OrderConfirmedComponent, YourAddressComponent, CheckOutComponent, AddedCartComponent, DropOffComponent, ScheduleTimeComponent, OrderComponent, SelectPartnerComponent, AddAddressComponent],
   imports: [
     CommonModule,
     FormsModule,
