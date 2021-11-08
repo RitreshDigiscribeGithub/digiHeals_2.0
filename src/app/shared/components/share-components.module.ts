@@ -19,18 +19,37 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { ConfirmBoxComponent } from './confirm-box/confirm-box.component';
 import { Btn2Directive } from './directives/btn2.directive';
 import { UtilityDirective } from './directives/utility.directive';
+import { DoctorsSliderComponent } from './doctors-slider/doctors-slider.component';
+import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
+import { PatientListItemComponent } from './patient-list-item/patient-list-item.component';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { DividerComponent } from './divider/divider.component';
 
-const components = [CalendarComponent, SanitizeHtmlPipe, TruncatePipe, BtnDirective, HeaderComponent, FontDirective, InputComponent, TabGroupComponent, AffixComponent, CardComponent, DoctorCardProfileComponent, TimeSlotComponent, Btn2Directive, ConfirmBoxComponent, UtilityDirective];
+const components = [
+  CalendarComponent,
+  SanitizeHtmlPipe,
+  TruncatePipe,
+  BtnDirective,
+  HeaderComponent,
+  FontDirective,
+  InputComponent,
+  TabGroupComponent,
+  AffixComponent,
+  CardComponent,
+  DoctorCardProfileComponent,
+  TimeSlotComponent,
+  Btn2Directive,
+  ConfirmBoxComponent,
+  UtilityDirective,
+  DoctorsSliderComponent,
+  BottomSheetComponent,
+  PatientListItemComponent,
+  DividerComponent,
+];
 
 @NgModule({
-  declarations: [components, DialogBoxComponent,],
-  imports: [
-    CommonModule,
-    FormsModule,
-    CarouselModule,
-    antForShareModule()
-  ],
-  exports: [components]
+  declarations: [components, DialogBoxComponent],
+  imports: [CommonModule, FormsModule, CarouselModule, antForShareModule(),NzAvatarModule],
+  exports: [components],
 })
-
-export class ShareComponentsModule { }
+export class ShareComponentsModule {}

@@ -6,17 +6,47 @@ import { DynamicTitleService } from 'src/app/shared/utility/dynamic-title.servic
 @Component({
   selector: 'digi-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.less']
+  styleUrls: ['./profile.component.less'],
 })
 export class ProfileComponent implements OnInit {
-
-  doctorData = {
-    photo: 'assets/images/user_placeholder.svg',
-    name: 'Dr. Jenny Wilsson',
-    qualification: 'General Medicine, MBBS, FCPS',
-    clinicName: 'Amet Minim Hospita',
-    rating: 5
-  };
+  num;
+  doctorArray = [
+    {
+      photo: 'assets/images/user_placeholder.svg',
+      name: 'Dr. Jenny Wilsson',
+      qualification: 'General Medicine, MBBS, FCPS',
+      clinicName: 'Amet Minim Hospita',
+      rating: 3.2,
+    },
+    {
+      photo: 'assets/images/user_placeholder.svg',
+      name: 'Dr. Jenny Wilsson',
+      qualification: 'General Medicine, MBBS, FCPS',
+      clinicName: 'Amet Minim Hospita',
+      rating: 5,
+    },
+    {
+      photo: 'assets/images/user_placeholder.svg',
+      name: 'Dr. Jenny Wilsson',
+      qualification: 'General Medicine, MBBS, FCPS',
+      clinicName: 'Amet Minim Hospita',
+      rating: 2.4,
+    },
+    {
+      photo: 'assets/images/user_placeholder.svg',
+      name: 'Dr. Jenny Wilsson',
+      qualification: 'General Medicine, MBBS, FCPS',
+      clinicName: 'Amet Minim Hospita',
+      rating: 4.4,
+    },
+    {
+      photo: 'assets/images/user_placeholder.svg',
+      name: 'Dr. Jenny Wilsson',
+      qualification: 'General Medicine, MBBS, FCPS',
+      clinicName: 'Amet Minim Hospita',
+      rating: 2.9,
+    },
+  ];
 
   OwlConfig: OwlOptions = {
     loop: false,
@@ -28,31 +58,37 @@ export class ProfileComponent implements OnInit {
     navText: ['', ''],
     responsive: {
       0: {
-        items: 1
+        items: 1,
       },
       400: {
-        items: 2
+        items: 2,
       },
       740: {
-        items: 3
+        items: 3,
       },
       940: {
-        items: 4
-      }
+        items: 4,
+      },
     },
-    nav: false
-  }
+    nav: false,
+  };
 
-  constructor(private _router: Router, private _dynamicTitleService: DynamicTitleService) { }
+  constructor(
+    private _router: Router,
+    private _dynamicTitleService: DynamicTitleService
+  ) {}
 
   ngOnInit(): void {
-    this._dynamicTitleService.headerTitleSubject.next('Profile')
+    this._dynamicTitleService.setHeaderTitle('Profile');
   }
-
+  slide(e) {
+    console.log(`current card is ${e}`);
+    this.num = e;
+  }
   scheduleAppointment() {
-    this._router.navigateByUrl('appointment/schedule')
+    this._router.navigateByUrl('appointment/schedule');
   }
   cilnicNow() {
-    this._router.navigateByUrl('appointment/clinic-center')
+    this._router.navigateByUrl('appointment/clinic-center');
   }
 }

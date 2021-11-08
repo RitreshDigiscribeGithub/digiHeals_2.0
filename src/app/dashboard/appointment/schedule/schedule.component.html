@@ -1,88 +1,146 @@
+
 <div class="px-3">
-    <div class="my-2">
-        <digi-doctor-card-profile [data]="doctorData">
-        </digi-doctor-card-profile>
-    </div>
-     
-    <div nz-row nzAlign="middle" class="info_box px-2 my-2">
-        <div nz-col nzFlex="5">
-           <span fs="14px" fw="reg">Name of the patient</span> 
-        </div>
-        <div nz-col nzFlex="1" class="center-y-end-x">
-            <img class="b-block" src="assets/icons/back_as_changes.svg" alt="">
-        </div>
-    </div>
-    
-    <div nz-row nzAlign="middle" class="info_box px-2 my-2">
-        <div nz-col nzFlex="5">
-           <span fs="14px" fw="reg">
-               General Consultation &nbsp;&nbsp;&nbsp;Rs. 350
-            </span> 
-        </div>
-        <div nz-col nzFlex="1" class="center-y-end-x">
-            <img class="b-block" src="assets/icons/back_as_changes.svg" alt="">
-        </div>
-    </div>
+  <div class="my-2">
+    <digi-doctors-slider ></digi-doctors-slider>
+  </div>
 
-    <div class="my-3">
-        <button nz-button digi-button-inline color="#2795A0">
-            Online Visit
-        </button>&nbsp;
-        <button nz-button digi-button-inline color="#EEEEEE">
-            <span fs="13px" color="#12263C">Clinic Visit</span>
-        </button>
+  <div nz-row nzAlign="middle" class="info_box px-2 my-2" (click)="openBottomSheetSelector('patient')">
+    <div nz-col nzFlex="5">
+      <span fs="14px" fw="reg"> {{selectedPatient?.patient_title ? selectedPatient?.patient_title : ''}} {{selectedPatient?.patient_name | titlecase }} {{selectedPatient?.patient_last_name | titlecase }}</span>
     </div>
+    <div nz-col nzFlex="1" class="center-y-end-x">
+      <img class="b-block" src="assets/icons/back_as_changes.svg" alt="" />
+    </div>
+  </div>
 
-    <div class="my-3" nz-row>
-        <div nz-col nzFlex="5">
-            <span fs="16px" fw="reg" class="d-block">
-                Wilsson Clinic Center</span>
-            <span fs="13px" fw="reg" class="d-block">
-                Sr Lane, Mumbai</span>
+  <div nz-row nzAlign="left" >
+    <div nz-col nzFlex="2" style="margin-right: 10px;">
+      <button nz-button digi-button-inline nzBlock class="px-2 my-2 " (click)="changeApptToggle(true)" [ngClass]="isTeleMedicine == true ? 'activeBtn' : 'btnapptType'" >Online Visit</button>
+      </div>
+
+      <div nz-col nzFlex="2">
+        <button nz-button digi-button-inline nzBlock class="px-2 my-2 " (click)="changeApptToggle(false)" [ngClass]="isTeleMedicine == false ? ' activeBtn' : 'btnapptType'">Clinic Visit</button>
+  
         </div>
-        <div nz-col nzFlex="2" class="center-y-end-x">
-            <a href="">Change Clinic</a>
-        </div>
+   </div>
+
+
+  <!-- <div class="my-3" nz-row *ngIf="isTeleMedicine">
+    <div nz-col nzFlex="5">
+      <span fs="16px" fw="reg" class="d-block"> {{selectedDoctor?.virtualClinic.doc_clinic_name | titlecase }} </span>
+      <span fs="13px" fw="reg" class="d-block"> Video Call Consultation</span>
     </div>
-    <nz-divider></nz-divider>
+    <div nz-col nzFlex="2" class="center-y-end-x">
+      <a href="javascript:void(0)"  *ngIf="!isTeleMedicine" (click)="openBottomSheetSelector('clinic')">Change Clinic</a>
+    </div>
+  </div> -->
+
+
+  <div class="my-3" nz-row *ngIf="!isTeleMedicine">
+    <div nz-col nzFlex="5">
+      <span fs="16px" fw="reg" class="d-block"> {{selectedDoctor?.actualClinic.doc_clinic_name | titlecase }} </span>
+      <span fs="13px" fw="reg" class="d-block"> {{selectedDoctor?.actualClinic.address_line_1 | titlecase }},{{selectedDoctor?.actualClinic.address_line_2  }} </span>
+    </div>
+    <div nz-col nzFlex="2" class="center-y-end-x">
+      <a href="javascript:void(0)" (click)="openBottomSheetSelector('clinic')">Change Clinic</a>
+    </div>
+  </div>
+
+  <div nz-row nzAlign="middle" class="info_box px-2 my-2" *ngIf="isTeleMedicine && selectedDoctor && selectedDoctor?.telemedicineSetup &&  selectedDoctor?.telemedicineSetup?.billingDetails[0].billingAmount > 0">
+    <div nz-col nzFlex="4">
+      <span fs="14px" fw="reg">
+        General Consultation 
+      </span>
+    </div>
+    <div nz-col nzFlex="1">
+      <span fs="14px" fw="reg">
+        Rs. {{selectedDoctor?.telemedicineSetup?.billingDetails[0].billingAmount}}
+      </span>
+    </div>
+    <div nz-col nzFlex="1" class="center-y-end-x">
+      <img class="b-block" src="assets/icons/back_as_changes.svg" alt="" />
+    </div>
+  </div>
+
+
+  <nz-divider></nz-divider>
   <!-- Pick a time slot -->
-  <span fs="16px" fw="reg" class="d-block my-3">Pick a time slot</span>
-  <owl-carousel-o [options]="OwlConfig">
-    <ng-container *ngFor="let slot of slots;let i=index">
-        <ng-template carouselSlide>
-             <div class="ml-2 mb-3">
-                <button nz-button digi-btn color="#2795A0" 
-                [ghost]="i!==isActive" (click)="selectSlot(i)">
-                    <span fs="13px" fw="reg" class="d-block" 
-                    [color]="i==isActive?'white':'#2795A0'">
-                    <span class="d-block t-t-c">{{slot.time}}</span>
-                    <span class="d-block t-t-c">{{slot.slot}} Slots</span>
-                    </span>
-                 </button>
-             </div>
-        </ng-template>
+  <span fs="16px" fw="reg" class="d-block my-2">Appointment Date</span>
+  <!-- <digi-calendar></digi-calendar> -->
+  <owl-carousel-o [options]="scrollConfig(breakpoint2)">
+    <ng-container *ngFor="let date of updateDateCalender; let i = index">
+      <ng-template carouselSlide>
+        <div class="ml-2 mb-3">
+
+          <button nz-button digi-btn color="#2795A0"  [ngClass]="compareDate(selectedDateCalender,date) ? 'activeBtn' :''" [ghost]="i !== isActive" (click)="dateChanged(date)">
+            <span fs="13px" fw="reg" class="d-block" [color]="compareDate(selectedDateCalender,date) ? 'white' : '#2795A0'">
+              <span class="d-block t-t-c">{{ date | date:'EEEE' }}</span>
+              <span class="d-block t-t-c">{{ date | date}} </span>
+            </span>
+          </button>
+        </div>
+      </ng-template>
     </ng-container>
   </owl-carousel-o>
   <!-- Pick a time slot -->
 
-    <!-- Morning :time slot -->
-    <digi-time-slot duration="Morning" [slots]="[1,2,3,4,5,6,7,8]">
-    </digi-time-slot>
-    
-    <!-- Afternoon :time slot -->
-    <digi-time-slot duration="Afternoon" [slots]="[1,2,3,4,5,6,7,8,9,10]">
-    </digi-time-slot>
+  
+  <nz-divider></nz-divider>
+  <!-- Pick a time slot -->
+  <nz-spin nzTip="Fetching Time Slots" [nzSpinning]="isFetchingData">
+
+  <span fs="16px" fw="reg" class="d-block my-2">Clinic Time</span>
 
 
-    <div class="mb-5">
-        <br><br><br>
+  <div nz-row [nzGutter]="[16, 16]" class="mb-2 full-width mar-10" >
+
+    <div nz-col class="gutter-row" [nzSpan]="12"  *ngFor="let item of clinicTimings" (click)="changeTime(item)">
+      <div class="grid-config " [ngClass]="{'is-active': item.doc_id === selectedTime?.doc_id}">{{item.starttime}}  - {{item.endtime}}</div>
     </div>
 
-    <!-- button -->
-    <digi-affix>
-        <button nz-button digi-btn color="theme" routerLink="../overview">
-            Book Appointment
-        </button>
-    </digi-affix>
-    <!-- button -->
+
+    <nz-alert *ngIf="clinicTimings.length === 0" nzType="info" class="px-2 my-2" nzMessage="Sorry Clinic not open on this days. Please select another date."></nz-alert>
+             
+  </div>
+</nz-spin>
+
+  <ng-container *ngIf="selectedTime" >
+  
+  <span fs="12px" fw="reg" class="d-block mt-2">Slot&nbsp;&nbsp;
+    <nz-tag fs="11px" fw="reg" color="#2EBCA6" [nzColor]="'#CAF7F4'">
+        {{finalSlots.length}} slots
+    </nz-tag>
+</span>
+
+<div nz-row [nzGutter]="[16,16]" class="my-2">
+    <ng-container *ngFor="let item of finalSlots;let i=index">
+        <div nz-col nzXs="6">
+            <button fs="12px" fw="md" class="time-slots" (click)="selectSlot(item)"
+            [ngClass]="{'is-active': item === userSelectedSlot}">
+            {{item.slotTime | date:'h:mm a' }}
+           </button>
+            <!-- active class: active-slots -->
+        </div>
+    </ng-container>
 </div>
+
+<nz-alert *ngIf="this.finalSlots.length === 0" nzType="info" class="px-2 my-2"  nzMessage="Sorry No slot available for the day please choose other time or date."></nz-alert>
+
+
+</ng-container>
+
+  <div class="mb-5"><br /><br /><br /></div>
+
+  <!-- button -->
+  <digi-affix>
+    <button nz-button digi-btn color="theme" (click)="bookAppointment()">
+      Book Appointment
+    </button>
+  </digi-affix>
+  <!-- button -->
+</div>
+
+
+<digi-bottom-sheet *ngIf="open" (toggle)="open = $event" [type]="bottomSheetType" [title]="bottomSheetTitle" [isOpen]="open" height="100vh"> 
+
+</digi-bottom-sheet>

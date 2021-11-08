@@ -1,57 +1,85 @@
 <!-- <div nz-row nzAlign="middle" [ngClass]="headerByUrl()">
-    <div nz-col nzFlex="1">
-        <img src="assets/icons/back.svg" class="mx-auto d-block" 
-        (click)="backTo()" alt="">
-    </div>
-    <div nz-col nzFlex="5">
-        <span fs="16px" fw="md" class="t-t-c">{{title}}</span>
-    </div>
-</div>
-  -->
+  <div nz-col nzFlex="1">
+    <img
+      src="assets/icons/back.svg"
+      class="mx-auto d-block"
+      (click)="backTo()"
+      alt=""
+    />
+  </div>
+  <div nz-col nzFlex="5">
+    <span fs="16px" fw="md" class="t-t-c">{{ title }}</span>
+  </div>
+</div> -->
 
 <div class="site-page-header-ghost-wrapper">
   <nz-page-header [nzGhost]="false">
+    <!-- backTo -->
     <nz-page-header-title fs="16px" fw="reg" color="#FFFFFF">
-
+      <!-- backTo -->
+      <ng-template [ngIf]="title !== 'Dashboard'">
+        <img src="assets/icons/back.svg" (click)="backTo()" alt="" />
+      </ng-template>
       <!-- dynamic title -->
-      <ng-template [ngIf]="title !=='dashboard'">
-        <span class="t-t-c">{{title}}</span>
+      <ng-template [ngIf]="title !== 'Dashboard'">
+        <span class="t-t-c">&nbsp;&nbsp;{{ title }}</span>
       </ng-template>
       <!-- logo -->
-      <ng-template [ngIf]="title==='dashboard'">
-        <img src="assets/icons/header_icon/logo.png" class="d-block" width="130" alt="">
+      <ng-template [ngIf]="title === 'Dashboard'">
+        <img
+          src="assets/icons/header_icon/logo.png"
+          class="d-block"
+          width="130"
+          alt=""
+        />
       </ng-template>
-
     </nz-page-header-title>
-    <nz-page-header-extra>
-      <img src="assets/icons/search.svg" alt="">&nbsp;&nbsp;
-      <img src="assets/icons/menu.svg" (click)="drawer=true" alt="">
+
+    <nz-page-header-extra *ngIf="authHeader()">
+      <img src="assets/icons/search.svg" alt="" />&nbsp;&nbsp;
+      <img src="assets/icons/menu.svg" (click)="drawer = true" alt="" />
     </nz-page-header-extra>
   </nz-page-header>
 </div>
 
-<nz-drawer [nzClosable]="false" [nzVisible]="drawer" [nzPlacement]="'left'" (nzOnClose)="close()" [nzWidth]="'85%'" [nzBodyStyle]="{'padding':'0px'}">
+<nz-drawer
+  [nzClosable]="false"
+  [nzVisible]="drawer"
+  [nzPlacement]="'left'"
+  (nzOnClose)="close()"
+  [nzWidth]="'85%'"
+  [nzBodyStyle]="{ padding: '0px' }"
+>
   <ng-container *nzDrawerContent>
     <div class="p-4">
-      <img src="assets/icons/header_icon/logo.png" width="160" 
-      class="mb-2" alt="">
+      <img
+        src="assets/icons/header_icon/logo.png"
+        width="160"
+        class="mb-2"
+        alt=""
+      />
       <div nz-row nzAlign="middle" *ngFor="let list of menu_list" class="mt-4">
         <div nz-col nzFlex="1">
-          <img src="assets/icons/header_icon/{{list.icon}}.svg" alt="">
+          <img src="assets/icons/header_icon/{{ list.icon }}.svg" alt="" />
         </div>
         <div nz-col nzFlex="5" (click)="nav(list.path)">
-          <span fs="16px" fw="reg">{{list.name}}</span>
+          <span fs="16px" fw="reg">{{ list.name }}</span>
         </div>
       </div>
     </div>
-    
+
     <div class="p-4 bottom-card">
-      <div nz-row nzAlign="middle" *ngFor="let list of bottom_list" class="mb-4">
+      <div
+        nz-row
+        nzAlign="middle"
+        *ngFor="let list of bottom_list"
+        class="mb-4"
+      >
         <div nz-col nzFlex="1">
-          <img src="assets/icons/header_icon/{{list.icon}}.svg" alt="">
+          <img src="assets/icons/header_icon/{{ list.icon }}.svg" alt="" />
         </div>
         <div nz-col nzFlex="5" (click)="list.events()">
-          <span fs="16px" fw="reg">{{list.name}}</span>
+          <span fs="16px" fw="reg">{{ list.name }}</span>
         </div>
       </div>
     </div>

@@ -1,0 +1,44 @@
+
+<ng-container >
+<owl-carousel-o [options]="swiperConfig" (translated)="carouselEvent($event)">
+  <ng-container *ngFor="let item of allDoctors; let i = index">
+    <ng-template carouselSlide>
+      <div class="mb-4">
+        <!-- <digi-doctor-card-profile
+          [data]="item"
+          [color]="i == activeSilde && activeColor"
+        >
+        </digi-doctor-card-profile> -->
+
+
+        <div nz-row nzAlign="middle" class="doctor-card" [ngStyle]="{'background': color ? color:'unset'}">
+          <div nz-col nzFlex="2" class="center-y-start-x">
+              <img [src]="item.doctor?.profile_pic" class="d-block" style="width: 75px;" alt="">
+          </div>     
+          <div nz-col nzFlex="5">
+              
+              <span fs="16px" fw="md" [color]="color ? 'white':'#12263C'" class="d-block">
+               Dr. {{item.doctor.doc_first_name | titlecase  }} {{item.doctor.doc_last_name | titlecase   }}         
+              
+              </span>
+              <span fs="12px" fw="reg" [color]="color ? 'white':'#9EAAB2'"  class="d-block">
+                {{item.doctor.doctor_education | uppercase }} 
+              </span>
+              <!-- <span fs="12px" fw="reg" color="#9EAAB2" class="d-block">
+                  {{data.clinicName}}
+              </span> -->
+              <div>
+                  <nz-rate [ngModel]="item.doctor?.rating" nzDisabled></nz-rate>
+                  <span *ngIf="value" class="ant-rate-text">{{item.doctor?.rating}}</span>
+              </div>
+          </div>
+      </div>
+
+      
+
+      </div>
+    </ng-template>
+  </ng-container>
+</owl-carousel-o>
+
+</ng-container>

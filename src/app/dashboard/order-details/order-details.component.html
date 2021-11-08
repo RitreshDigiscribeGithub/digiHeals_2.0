@@ -1,0 +1,239 @@
+<div class="px-3">
+  <span fs="17px" fw="md" class="d-block mt-3">Your Order History</span>
+
+  <!-- Ordered loop  -->
+  <ng-container *ngFor="let item of [1, 2]">
+    <span fs="13px" fw="md" color="#2795A0" class="d-block mb-3 mt-3"
+      >Ordered on 25 Aug 2021, Presciption by Dr Jenny</span
+    >
+    <div nz-row nzAlign="middle" class="info_box px-2 py-2 my-2">
+      <div nz-col nzFlex="5">
+        <div nz-row>
+          <div nz-col nzSpan="10">
+            <div fs="14px" fw="reg">Order Date</div>
+            <div fs="14px" fw="reg">Order no #</div>
+            <div fs="14px" fw="reg">Total Amount</div>
+          </div>
+          <div nz-col nzSpan="14">
+            <div fs="14px" fw="reg">25 Aug 2021</div>
+            <div fs="14px" fw="reg">406 - 0215463 - 36</div>
+            <div fs="14px" fw="reg">Rs. 2720</div>
+          </div>
+        </div>
+      </div>
+      <div nz-col nzFlex="1" class="center-y-end-x">
+        <img src="assets/icons/back_as_changes.svg" alt="" />
+      </div>
+    </div>
+
+    <div nz-row nzAlign="middle" class="info_box px-2 py-3 my-2">
+      <div nz-col nzFlex="1">
+        <img
+          class="mx-auto d-block"
+          src="assets/icons/download-invoice.svg"
+          alt=""
+        />
+      </div>
+      <div nz-col nzFlex="5">
+        <span fs="14px" fw="md">Download Invoice</span>
+      </div>
+      <div nz-col nzFlex="1" class="center-y-end-x">
+        <img src="assets/icons/back_as_changes.svg" alt="" />
+      </div>
+    </div>
+
+    <div nz-row nzAlign="middle" class="info_box px-2 py-3 my-2">
+      <div nz-col nzFlex="1">
+        <img
+          class="mx-auto d-block"
+          src="assets/icons/track-order.svg"
+          alt=""
+        />
+      </div>
+      <div nz-col nzFlex="5">
+        <span fs="14px" fw="md">Track order</span>
+      </div>
+      <div nz-col nzFlex="1" class="center-y-end-x">
+        <img src="assets/icons/back_as_changes.svg" alt="" />
+      </div>
+    </div>
+
+    <div nz-row nzAlign="middle" class="info_box px-2 py-3 my-2">
+      <div nz-col nzFlex="1">
+        <img
+          class="mx-auto d-block"
+          src="assets/icons/request-cancellation.svg"
+          alt=""
+        />
+      </div>
+      <div nz-col nzFlex="5">
+        <span fs="14px" fw="md">Request cancellation</span>
+      </div>
+      <div nz-col nzFlex="1" class="center-y-end-x">
+        <img src="assets/icons/back_as_changes.svg" alt="" />
+      </div>
+    </div>
+
+    <div nz-row nzAlign="middle" class="info_box px-2 py-3 my-2">
+      <div nz-col nzFlex="1">
+        <img
+          class="mx-auto d-block"
+          src="assets/icons/change-time.svg"
+          alt=""
+        />
+      </div>
+      <div nz-col nzFlex="5">
+        <span fs="14px" fw="md">Change time and date for services</span>
+      </div>
+      <div nz-col nzFlex="1" class="center-y-end-x">
+        <img src="assets/icons/back_as_changes.svg" alt="" />
+      </div>
+    </div>
+  </ng-container>
+  <!-- Ordered loop  -->
+
+  <!-- Medications -->
+  <span fs="17px" fw="md" class="d-block mt-3">Medications</span>
+  <div class="info_box my-1">
+    <ng-container *ngFor="let item of [1, 2, 3]">
+      <div nz-row nzAlign="middle" class="my-2" utility minHeight="55px">
+        <div nz-col nzFlex="2" class="center-xy">
+          <img src="assets/icons/medicine.svg" class="d-block" alt="" />
+        </div>
+        <div nz-col nzFlex="5">
+          <span fs="14px" fw="md" class="d-block"> Methotrexate </span>
+          <span fs="12px" fw="reg" color="#9EAAB2" class="d-block">
+            Cholecalciferol (10% w/v)
+          </span>
+        </div>
+        <div nz-col nzFlex="2" class="center-y-end-x">
+          <span fs="14px" fw="reg" class="d-block"> Rs. 350 </span>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div nz-row nzAlign="middle" class="info_box px-2 py-3 my-2">
+    <div nz-col nzFlex="1">
+      <img class="mx-auto d-block" src="assets/icons/track-order.svg" alt="" />
+    </div>
+    <div nz-col nzFlex="5">
+      <span fs="14px" fw="md">Track order</span>
+    </div>
+    <div nz-col nzFlex="1" class="center-y-end-x">
+      <img src="assets/icons/back_as_changes.svg" alt="" />
+    </div>
+  </div>
+
+  <!-- Track Order -->
+  <ng-template [ngIf]="true">
+    <span fs="17px" fw="md" class="d-block my-3">Track Order</span>
+    <ng-container *ngFor="let track of trackOrder; let i = index">
+      <div nz-row nzAlign="middle" class="info_box px-2 py-3 mt-3">
+        <div nz-col nzFlex="1">
+          <img class="b-block" src="assets/icons/checked.svg" alt="" />
+        </div>
+        <div nz-col nzFlex="5">
+          <span fs="14px" fw="md">{{ track.status }}</span>
+        </div>
+      </div>
+    </ng-container>
+  </ng-template>
+
+  <!--  -->
+  <div nz-row nzAlign="middle" class="info_box px-2 py-3 my-2">
+    <div nz-col nzFlex="1">
+      <img class="mx-auto d-block" src="assets/icons/request-cancellation.svg" alt="" />
+    </div>
+    <div nz-col nzFlex="5">
+      <span fs="14px" fw="md">Request cancellation</span>
+    </div>
+    <div nz-col nzFlex="1" class="center-y-end-x">
+      <img src="assets/icons/back_as_changes.svg" alt="" />
+    </div>
+  </div>
+  <!-- Medications -->
+
+  <span fs="17px" fw="md" class="d-block mt-3">Payment Info</span>
+  <div class="info_box px-2 my-2 py-3">
+    <span fs="14px" fw="md" class="d-block">Payment Method</span>
+    <span fs="12px" fw="reg" class="d-block">Payment made online</span>
+
+    <span fs="14px" fw="md" class="d-block mt-3">Billing Address</span>
+    <span fs="14px" fw="md" class="d-block">Esther Howard</span>
+    <span fs="12px" fw="reg" class="d-block"
+      >4140 Parker Rd. Allentown, New Mexico Sion West, Mumbai - 400022
+      Maharastra, India</span
+    >
+  </div>
+
+  <span fs="17px" fw="md" class="d-block mt-3">Delivery Address</span>
+  <div class="info_box px-2 my-2 py-3">
+    <span fs="14px" fw="md" class="d-block">Payment Method</span>
+    <span fs="14px" fw="md" class="d-block">Esther Howard</span>
+    <span fs="12px" fw="reg" class="d-block"
+      >4140 Parker Rd. Allentown, New Mexico Sion West, Mumbai - 400022
+      Maharastra, India 4140 Parker Rd. Allentown, New Mexico Sion West, Mumbai
+      - 400022 Maharastra, India</span
+    >
+  </div>
+
+  <span fs="17px" fw="md" class="d-block mt-3">Order Summary</span>
+  <div nz-row nzAlign="middle" class="info_box px-2 py-3 my-2">
+    <!--  -->
+    <div nz-col nzSpan="16">
+      <span fs="13px" fw="md">Items</span>
+    </div>
+    <div nz-col nzSpan="8" class="center-y-end-x">
+      <span fs="13px" fw="md">Rs. 2123</span>
+    </div>
+    <!--  -->
+    <!--  -->
+    <div nz-col nzSpan="16">
+      <span fs="13px" fw="md">Delivery Charges</span>
+    </div>
+    <div nz-col nzSpan="8" class="center-y-end-x">
+      <span fs="13px" fw="md">Rs. 00</span>
+    </div>
+    <!--  -->
+    <!--  -->
+    <div nz-col nzSpan="16">
+      <span fs="13px" fw="md">Home Collection Charges</span>
+    </div>
+    <div nz-col nzSpan="8" class="center-y-end-x">
+      <span fs="13px" fw="md">Rs. 60</span>
+    </div>
+    <!--  -->
+    <!--  -->
+    <div nz-col nzSpan="16">
+      <span fs="13px" fw="md">Taxes</span>
+    </div>
+    <div nz-col nzSpan="8" class="center-y-end-x">
+      <span fs="13px" fw="md">Rs. 80 </span>
+    </div>
+    <!--  -->
+    <!--  -->
+    <div nz-col nzSpan="16">
+      <span fs="13px" fw="md">Platform Fee</span>
+    </div>
+    <div nz-col nzSpan="8" class="center-y-end-x">
+      <span fs="13px" fw="md">Rs. 20</span>
+    </div>
+    <!--  -->
+    <!--  -->
+    <div nz-col nzSpan="16">
+      <span fs="13px" fw="md">Promotion applied</span>
+    </div>
+    <div nz-col nzSpan="8" class="center-y-end-x">
+      <span fs="13px" fw="md">Rs. 220</span>
+    </div>
+    <!--  -->
+    <!--  -->
+    <div nz-col nzSpan="16">
+      <span fs="13px" fw="md">Total Amount</span>
+    </div>
+    <div nz-col nzSpan="8" class="center-y-end-x">
+      <span fs="13px" fw="md">Rs. 2720</span>
+    </div>
+    <!--  -->
+  </div>
+</div>

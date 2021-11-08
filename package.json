@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "as-hmr": "ng s --open --hmr",
     "test": "ng test"
   },
   "private": true,
@@ -18,8 +19,10 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "moment": "^2.29.1",
     "ng-otp-input": "^1.7.1",
     "ng-zorro-antd": "^12.0.1",
+    "ngx-extended-pdf-viewer": "^10.5.0",
     "ngx-owl-carousel-o": "^6.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",

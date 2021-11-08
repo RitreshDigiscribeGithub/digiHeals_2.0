@@ -2,36 +2,48 @@
 <!--  -->
 <div nz-row class="btn-nav" nzAlign="middle">
     <div nz-col nzSpan="8" class="text-center">
-        <button nz-button class="digi-sm-btn dig-bg">Prescription</button>
+        <button nz-button class="digi-sm-btn" (click)="viewRecords('Rx')" [ngClass]="activeStep == 'Rx' ? 'dig-bg' : 'dig-bg-active'">Prescription</button>
     </div>
     <div nz-col nzSpan="8" class="text-center">
-        <button nz-button class="digi-sm-btn dig-bg-active">Lab Report</button>
+        <button nz-button class="digi-sm-btn" (click)="viewRecords('Lab')" [ngClass]="activeStep == 'Lab' ? 'dig-bg' : 'dig-bg-active'">Lab Report</button>
     </div>
     <div nz-col nzSpan="8" class="text-center">
-        <button nz-button class="digi-sm-btn dig-bg-active">Medicine</button>
+        <button nz-button class="digi-sm-btn" (click)="viewRecords('Other')" [ngClass]="activeStep == 'Other' ? 'dig-bg' : 'dig-bg-active'">Others</button>
     </div>
 </div>
 <!--  -->
 
 <!-- Record list -->
-<ng-container *ngFor="let item of [1,2,3,4,5,6]">
+<nz-skeleton [nzLoading]="loading" [nzActive]="true" [nzAvatar]="true" [nzParagraph]="{ rows: 4 }">
+
+<ng-container *ngFor="let item of previewDocuments;trackBy:trackById">
     <div class="record-list px-2" nz-row style="min-height: 78px;" nzAlign="middle">
         <div nz-col nzFlex="5">
             <span>
-                <span fs="15px" fw="md" class="d-block">hend arthropathy</span>
-                <span fs="12px" fw="reg" color="#b1afaf" class="d-block">3/8/2021</span>
+                <span fs="15px" fw="md" class="d-block"> Dr. {{  item.acutalDoc?.doc_first_name }} {{  item.acutalDoc?.doc_last_name }}</span>
+                <span fs="12px" fw="reg" color="#b1afaf" class="d-block">{{item.date}}</span>
             </span>
         </div>
         <div nz-col nzFlex="auto" class="center-y-end-x">
             <span>
                 <button class="digi-sm-btn sky-bg-ligth px-2" nz-button
-                [nzSize]="'small'">View</button>&nbsp;&nbsp;
-                <button class="digi-sm-btn pink-bg-ligth px-2" nz-button
-                [nzSize]="'small'">Oreder</button>
+                [nzSize]="'small'" (click)="previewRx(item)" >View</button>&nbsp;&nbsp;
+                <button class="digi-sm-btn pink-bg-ligth px-2" (click)="orderRx(item)" nz-button
+                [nzSize]="'small'">Order</button>
             </span>
         </div>
     </div>
 </ng-container>
+
+<ng-container *ngIf="!loading && previewDocuments.length === 0">
+    <nz-result nzStatus="404" nzTitle="No Records Found" nzSubTitle="Sorry, the page you visited does not exist.">
+        <div nz-result-extra>
+          <button nz-button nzType="primary">Back Home</button>
+        </div>
+      </nz-result>
+</ng-container>
+</nz-skeleton>
+
 <!-- Record list -->
 
 <!-- digi-affix use for fixed item -->

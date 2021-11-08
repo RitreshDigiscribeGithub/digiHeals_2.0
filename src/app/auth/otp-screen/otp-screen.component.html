@@ -16,8 +16,11 @@
 
     <div nz-col nzSpan="24" class="mt-3">
       <button nz-button digi-btn color="theme" 
-        (click)="verify()">Verify</button>
-        <a href="" fs="16px" fw="md" class="d-block text-center my-2">Resend Code</a>
+        (click)="verify()" [nzLoading]="isLoading" >Verify</button>
+
+        <a href="javascript:void(0)" fs="16px" fw="md" class="d-block text-center my-2" [disabled]="isLoading"  *ngIf="timeLeft != 0"> Wait for {{timeLeft}} seconds</a>
+        <a href="javascript:void(0)" fs="16px" fw="md" class="d-block text-center my-2" [disabled]="isLoading" *ngIf="timeLeft == 0"> Resend Code</a>
+
     </div>
 
   </div>

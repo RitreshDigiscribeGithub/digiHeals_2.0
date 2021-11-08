@@ -1,0 +1,12 @@
+[type="file"] {
+  display: none;
+}
+input[type="radio"] {
+  display: none;
+}
+input[type="radio"] + label img {
+  filter: grayscale(100%) !important;
+}
+input[type="radio"]:checked + label img {
+  filter: grayscale(0%) !important;
+}
