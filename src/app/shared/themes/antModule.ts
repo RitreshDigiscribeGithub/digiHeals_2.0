@@ -41,7 +41,7 @@ export function antForAppointment() {
 
 // HealsCart module
 export function antForHealsCart() {
-    return [NzGridModule, NzTagModule, NzIconModule, NzInputModule, NzButtonModule, NzDividerModule, NzSelectModule, NzDrawerModule, NzCheckboxModule];
+    return [NzGridModule, NzTagModule, NzIconModule, NzInputModule, NzButtonModule, NzDividerModule, NzSelectModule, NzDrawerModule, NzCheckboxModule,NzCardModule];
 }
 
 //Chat module

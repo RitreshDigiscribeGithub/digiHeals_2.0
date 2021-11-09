@@ -1,0 +1,84 @@
+<div nz-row>
+  <div nz-col nzXs="24">
+    <span fs="14px" fw="reg" color="#2795A0" class="d-block py-3">
+      Your Heal cart is ready
+    </span>
+    <nz-card [nzBodyStyle]="{ padding: '10px' }">
+      <div nz-row>
+        <div nz-col nzFlex="2" class="center-xy">
+          <img src="assets/icons/prescription_from.svg" alt="" />
+        </div>
+        <div nz-col nzFlex="5">
+          <span fs="12px" fw="reg" color="#9EAAB2" class="d-block">
+            Prescription from
+          </span>
+          <span fs="16px" fw="reg" color="#12263C" class="d-block">
+            Dr. Jenny Wilson
+          </span>
+          <span fs="14px" fw="reg" color="#9EAAB2" class="d-block mt-1">
+            Tue, 19 Jun 21, 10:30 AM
+          </span>
+          <span fs="14px" fw="reg" color="#9EAAB2" class="d-block py-2">
+            Prepared by:
+            <span fs="14px" color="#12263C"> Ms Uma</span>
+          </span>
+        </div>
+      </div>
+      <div class="my-2">
+        <button nz-button digi-btn color="theme" routerLink="../partner">
+          Review and Book
+        </button>
+      </div>
+    </nz-card>
+  </div>
+
+  <div nz-col nzXs="24">
+    <span fs="14px" fw="reg" color="#2795A0" class="d-block py-3">
+      Previous Heal cart
+    </span>
+    <ng-container *ngFor="let item of [1, 2, 3]; let i = index">
+      <nz-card class="mb-4" [nzBodyStyle]="{ padding: '10px' }">
+        <div nz-row class="my-2">
+          <div nz-col nzXs="12" class="text-start">
+            <span fs="13px" fw="reg" color="#12263C">
+              Ordered on 6 April, 2021
+            </span>
+          </div>
+          <div nz-col nzXs="12" class="text-end">
+            <nz-tag [nzColor]="'red'">Rx Expired</nz-tag>
+          </div>
+        </div>
+        <div nz-row>
+          <div nz-col nzFlex="2" class="center-xy">
+            <img src="assets/icons/prescription_from.svg" alt="" />
+          </div>
+          <div nz-col nzFlex="5">
+            <span fs="12px" fw="reg" color="#9EAAB2" class="d-block">
+              Prescription from
+            </span>
+            <span fs="16px" fw="reg" color="#12263C" class="d-block">
+              Dr. Badresh Shah
+            </span>
+            <span fs="14px" fw="reg" color="#9EAAB2" class="d-block mt-1">
+              Tue, 19 Jun 21, 10:30 AM
+            </span>
+            <span fs="14px" fw="reg" color="#9EAAB2" class="d-block py-2">
+              Prepared by:
+              <span fs="14px" color="#12263C"> Ms Uma</span>
+            </span>
+          </div>
+        </div>
+        <div nz-row class="my-2" [nzGutter]="16">
+          <div nz-col nzXs="12">
+            <button nz-button digi-btn color="theme" [ghost]="true">
+              View Order
+            </button>
+          </div>
+          <div nz-col nzXs="12">
+            <button nz-button digi-btn color="theme">Refill</button>
+          </div>
+        </div>
+      </nz-card>
+    </ng-container>
+  </div>
+</div>

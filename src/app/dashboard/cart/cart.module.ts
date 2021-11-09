@@ -19,15 +19,16 @@ import { OrderComponent } from './order/order.component';
 import { SelectPartnerComponent } from './select-partner/select-partner.component';
 import { AddAddressComponent } from './your-address/add-address/add-address.component';
 import { FormsModule } from '@angular/forms';
-
+import { ReviewAndRefillComponent } from './heal-cart/review-and-refill/review-and-refill.component';
 
 const cartRoutes: Routes = [
   {
-    path: '', component: CartComponent,
+    path: '',
+    component: CartComponent,
     children: [
-      { path: '', redirectTo: 'prescription', pathMatch: 'full' },
+      { path: '', redirectTo: 'healCart', pathMatch: 'full' },
       { path: 'healCart', component: HealCartComponent },
-      { path: 'order', component: OrderComponent },
+      { path: 'orders', component: OrderComponent },
       { path: 'partner', component: SelectPartnerComponent },
       { path: 'allCart', component: AddedCartComponent },
       { path: 'checkOut', component: CheckOutComponent },
@@ -35,19 +36,35 @@ const cartRoutes: Routes = [
       { path: 'dropOff', component: DropOffComponent },
       { path: 'reviewOrder', component: ReviewOrderComponent },
       { path: 'schedule-time', component: ScheduleTimeComponent },
-    ]
-  }
-]
+    ],
+  },
+];
 
 @NgModule({
-  declarations: [CartComponent, HealCartComponent, MedicinesComponent, DiagnosticComponent, ReviewOrderComponent, OrderConfirmedComponent, YourAddressComponent, CheckOutComponent, AddedCartComponent, DropOffComponent, ScheduleTimeComponent, OrderComponent, SelectPartnerComponent, AddAddressComponent],
+  declarations: [
+    CartComponent,
+    HealCartComponent,
+    MedicinesComponent,
+    DiagnosticComponent,
+    ReviewOrderComponent,
+    OrderConfirmedComponent,
+    YourAddressComponent,
+    CheckOutComponent,
+    AddedCartComponent,
+    DropOffComponent,
+    ScheduleTimeComponent,
+    OrderComponent,
+    SelectPartnerComponent,
+    AddAddressComponent,
+    ReviewAndRefillComponent,
+  ],
+
   imports: [
     CommonModule,
     FormsModule,
     antForHealsCart(),
     RouterModule.forChild(cartRoutes),
-    ShareComponentsModule
-  ]
+    ShareComponentsModule,
+  ],
 })
-
-export class CartModule { }
+export class CartModule {}

@@ -33,7 +33,7 @@ const dashboardRoutes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'search', component: SearchComponent },
       { path: 'records', component: RecordsComponent },
-      { path: 'cart', loadChildren: () => import('./cart/cart.module').then(m => m.CartModule) },
+      { path: 'order', loadChildren: () => import('./cart/cart.module').then(m => m.CartModule) },
       { path: 'profile', component: ProfileComponent },
       { path: 'appointment', loadChildren: () => import('./appointment/appointment.module').then(m => m.AppointmentModule),canActivate: [AuthGuard]},
       { path: 'health-records', component: HealthRecordsComponent },
