@@ -1,58 +1,58 @@
-<!-- <span fs="14px" fw="reg" class="d-block mt-3 mb-2 t-t-c">
-    select Option
-</span>
-<nz-radio-group>
-    <label nz-radio nzValue="A">Option A</label>
-    <label nz-radio nzValue="B">Option B</label>
-    <label nz-radio nzValue="C">Option C</label>
-</nz-radio-group>
+<form nz-form [formGroup]="healthForm" class="mar-20">
+  <nz-form-item class="bottom-5">
+    <digi-input label="Weight (in Kgs)"> </digi-input>
+    <nz-form-control>
+      <nz-select  nzBorderless class="in-select" nzShowSearch nzAllowClear 
+        formControlName="patient_weight_kgs" autocomplete="false" id="weight">
+        <nz-option *ngFor="let item of weightArray" [nzLabel]="item" [nzValue]="item"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item class="bottom-5">
+    <digi-input label="Height (in cms)"> </digi-input>
+    <nz-form-control>
+      <nz-select  nzBorderless class="in-select" nzShowSearch nzAllowClear 
+        formControlName="patient_height" autocomplete="false" id="height">
+        <nz-option *ngFor="let item of heightArray" [nzLabel]="item" [nzValue]="item"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
 
 
-<span fs="14px" fw="reg" class="d-block mt-3 mb-2 t-t-c">
-    select Option
-</span>
-<nz-radio-group>
-    <label nz-radio class="d-block" nzValue="A">python</label>
-    <label nz-radio class="d-block"  nzValue="B">java</label>
-    <label nz-radio  class="d-block"  nzValue="C">JavaScript</label>
-</nz-radio-group> -->
+  <nz-form-item class="bottom-5">
+    <digi-input label="Blood Group"> </digi-input>
+    <nz-form-control>
+      <nz-select  nzBorderless class="in-select" nzShowSearch nzAllowClear 
+        formControlName="patient_blood_group" autocomplete="false" id="bg">
+        <nz-option *ngFor="let item of bloodGroups" [nzLabel]="item" [nzValue]="item"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
 
-<digi-input label="Mention (in Kgs)">
-  <input nz-input class="digi-input" nzSize="large" nzBorderless />
-</digi-input>
 
-<digi-input label="Mention (in cms)">
-  <input nz-input class="digi-input" nzSize="large" nzBorderless />
-</digi-input>
 
-<digi-input label="Blood Group">
-  <nz-select nzSize="large" nzBorderless class="in-select">
-    <nz-option nzValue="A+" nzLabel="A+"></nz-option>
-    <nz-option nzValue="A-" nzLabel="A-"></nz-option>
-    <nz-option nzValue="B+" nzLabel="B+"></nz-option>
-    <nz-option nzValue="B-" nzLabel="B-"></nz-option>
-    <nz-option nzValue="O+" nzLabel="O+"></nz-option>
-    <nz-option nzValue="O-" nzLabel="O-"></nz-option>
-    <nz-option nzValue="AB+" nzLabel="AB+"></nz-option>
-    <nz-option nzValue="AB-" nzLabel="AB-"></nz-option>
-    <nz-option nzValue="I Don’t know" nzLabel="I Don’t know"></nz-option>
+  <span fs="14px" fw="reg" class="d-block mt-3 mb-2 t-t-c">
+    Any Current Illness
+  </span>
+  <nz-select formControlName="illnessBrief" nzMode="tags" [nzTokenSeparators]="[',']" nzPlaceHolder=""
+    class="digi-input" nzBorderless [nzOpen]="false">
   </nz-select>
-</digi-input>
 
-<span fs="14px" fw="reg" class="d-block mt-3 mb-2 t-t-c">
-  Any Current Illness
-</span>
-<nz-select [(ngModel)]="listOfTagOptions" nzMode="tags" [nzTokenSeparators]="[',']" nzPlaceHolder="Select tags"
-  class="digi-input" nzBorderless [nzOpen]="false">
-</nz-select>
+  <span fs="14px" fw="reg" class="d-block mt-3 mb-2 t-t-c">
+    Allergic to
+  </span>
+  <nz-select formControlName="allergicData" nzMode="tags" [nzTokenSeparators]="[',']" nzPlaceHolder=""
+    class="digi-input" nzBorderless [nzOpen]="false">
+  </nz-select>
 
-<span fs="14px" fw="reg" class="d-block mt-3 mb-2 t-t-c">
-  Allergic to
-</span>
-<nz-select [(ngModel)]="listOfTagOptions" nzMode="tags" [nzTokenSeparators]="[',']" nzPlaceHolder="Select tags"
-  class="digi-input" nzBorderless [nzOpen]="false">
-</nz-select>
 
-  <div class="mb-5">
-    <br><br><br><br>
+  <div nz-col nzXs="24" class="mt-3">
+    <span fs="14px" fw="reg" class="d-block text-center mb-3"> By continuing, you agree to the DigiHeals
+      <a href="javascript:void(0)">Terms of Services</a> and <a href="javascript:void(0)">Privacy Policy</a></span>
+    <button nz-button digi-btn color="theme" [nzLoading]="isLoading" (click)="createPatient()">Agree and Continue</button>
   </div>
+  <br>
+  <br>
+
+</form>

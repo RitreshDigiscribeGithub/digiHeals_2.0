@@ -10,6 +10,7 @@ export class InputComponent implements OnInit {
   @Input() label: string;
   @Input() isValid: boolean;
   @Input() message: string;
+  @Input() isRequired:boolean;
   constructor() { }
 
   ngOnInit(): void {

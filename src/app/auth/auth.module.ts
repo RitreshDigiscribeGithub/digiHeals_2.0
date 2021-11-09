@@ -17,16 +17,19 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { DynamicTitleService } from '@app/shared/utility/dynamic-title.service';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 
 const authRoues: Routes = [
   {
     path: '',
     component: AuthComponent,
     children: [
-      { path: 'login', component: LoginComponent },
       { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'login', component: LoginComponent },
       { path: 'verifyCode', component: OtpScreenComponent },
-      { path: 'registration', component: RegistrationComponent },
+      { path: 'register/:mobile', component: RegistrationComponent },
     ],
   },
 ];
@@ -49,6 +52,9 @@ const authRoues: Routes = [
     RouterModule.forChild(authRoues),
     NzFormModule,
     ReactiveFormsModule,
+    NzCheckboxModule,
+    NzSelectModule,
+    NzAutocompleteModule
   ],
   providers: [
     MessageService,

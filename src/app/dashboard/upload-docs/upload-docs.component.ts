@@ -3,11 +3,12 @@ import { DynamicTitleService } from '@app/shared/utility/dynamic-title.service';
 import { DgPaymentServiceService } from '@services/patient-service/dg-payment-service.service';
 import { Subscription } from 'rxjs';
 import { Doctor } from '@interface/doctor';
-import { DigitalData, HealthDocuments } from '@interface/health-document';
+import { DigitalData, HealthDocuments, rxpartnerShare } from '@interface/health-document';
 import { Patient } from '@interface/patient';
 import { DoctorService } from '@services/doctor-service/doctor.service';
 import { PatientService } from '@services/patient-service/patient.service';
 import { MessageService } from '../../services/message.service';
+import { LandingPageData } from '../../interface/landingData';
 
 @Component({
   selector: 'digi-upload-docs',
@@ -24,16 +25,21 @@ export class UploadDocsComponent implements OnInit {
   patientSub:Subscription;
   doctorSub:Subscription;
   selectedPatient:Patient;
-  selectedDoctor:Doctor
-  successPopUp:boolean = false
+  selectedDoctor:LandingPageData;
+  successPopUp:boolean = false;
+
   ngOnInit(): void {
     this.titleService.setHeaderTitle('DigiHeals | Scan Docs');
     this.patientSub = this.patientService.selectedPatient$.subscribe(data => {
       this.selectedPatient = data;
     })
 
-    this.doctorSub = this.doctorService.getDoctorData.subscribe(r => {
+    
+    this.doctorSub = this.doctorService.primaryDoctor$.subscribe((r:LandingPageData) => {
+
       this.selectedDoctor = r;
+     
+      
     })
 
   }
@@ -97,14 +103,28 @@ export class UploadDocsComponent implements OnInit {
       const fileObject: DigitalData = { name: item.name || '', text: '', photo: item.uploadFileUrl, thumb: item.uploadFileUrl, description: '', selected: false }
       return fileObject;
     });
+    const pharmaPartner = []
+    const labPartner = [];
+
+    if(this.selectedDoctor.partners?.pharmacyPartner){
+    
+      const data:rxpartnerShare = {partnerId:this.selectedDoctor.partners?.pharmacyPartner[0].partnerId,partnerName:this.selectedDoctor.partners?.pharmacyPartner[0].partnerName,partnerServiceType:null,partnerStoreId:null};
+      pharmaPartner.push(data);
+     
+    }
+
+    if(this.selectedDoctor.partners?.labPartner){
+          const data:rxpartnerShare = {partnerId:this.selectedDoctor.partners?.labPartner[0].partnerId,partnerName:this.selectedDoctor.partners?.labPartner[0].partnerName,partnerServiceType:null,partnerStoreId:null};
+         labPartner.push(data);
+    }
 
 
     if (otherImgData.length > 0) {
       const body: HealthDocuments = {
         doc_id: `digital_prec_${this.selectedPatient.patient_id}_${Math.floor(new Date().getTime())}`,
         patient_id: this.selectedPatient.patient_id,
-        channels: [this.selectedPatient.patient_id, this.selectedDoctor.uid],
-        doctor_id: this.selectedDoctor.uid,
+        channels: [this.selectedPatient.patient_id, this.selectedDoctor.doctor.uid],
+        doctor_id: this.selectedDoctor.doctor.uid,
         appointment_id: '',
         digital_data: otherImgData,
         endtime: Math.floor(new Date().getTime()),
@@ -113,8 +133,8 @@ export class UploadDocsComponent implements OnInit {
         type: 'digital_pres',
         uploadedBy: 'patient',
         isSentToPartner: false,
-        pharmacyPartners:[],
-        labPartners:[]
+        pharmacyPartners:  pharmaPartner,
+        labPartners:labPartner
       }
 
       this.digiHttp.createPrescription(body).subscribe(r =>{

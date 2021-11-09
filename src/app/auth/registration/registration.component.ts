@@ -20,4 +20,8 @@ export class RegistrationComponent implements OnInit {
   continue() {
     this._router.navigateByUrl('home');
   }
+
+  nextHealthForm() {
+    this.tab = 2;
+  }
 }

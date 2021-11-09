@@ -1,13 +1,13 @@
 <!-- tab -->
 <div nz-row class="pt-3">
-    <div nz-col nzXs="12" [class.active-tab]="tab==1" >
+    <div nz-col nzXs="12" [class.active-tab]="tab==1">
         <button nz-button nzType="text" nzBlock (click)="tab = 1">
             <span fs="14px" fw="reg">Personal Information</span>
         </button>
     </div>
     <div nz-col nzXs="12" [class.active-tab]="tab==2">
         <button nz-button nzType="text" nzBlock (click)="tab = 2">
-          <span fs="14px" fw="reg">Health Information</span>  
+            <span fs="14px" fw="reg">Health Information</span>
         </button>
     </div>
 </div>
@@ -16,20 +16,12 @@
 <!-- tab container-->
 <div nz-row class="px-3">
     <div nz-col nzXs="24" *ngIf="tab === 1">
-        <digi-personal-info></digi-personal-info>
+        <digi-personal-info (nextForm_)="nextHealthForm()"></digi-personal-info>
     </div>
-    <div nz-col nzXs="24"  *ngIf="tab === 2">
+    <div nz-col nzXs="24" *ngIf="tab === 2">
         <digi-health-info></digi-health-info>
     </div>
-    <div nz-col nzXs="24" class="my-2" *ngIf="tab === 1">
-        <digi-affix toBottom="2%">
-            <button nz-button digi-btn color="theme" (click)="tab = 2">Next</button>
-        </digi-affix>
-    </div>
-    <div nz-col nzXs="24" class="p-3" *ngIf="tab === 2">
-        <span fs="14px" fw="reg" class="d-block text-center mb-3"> By continuing, you agree to the DigiHeals
-            <a href="">Terms of Services</a> and <a href="">Privacy Policy</a></span>
-        <button nz-button digi-btn color="theme" (click)="continue()">Agree and Continue</button>
-    </div>
+   
+  
 </div>
 <!-- tab container-->

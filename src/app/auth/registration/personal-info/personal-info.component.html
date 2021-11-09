@@ -1,104 +1,256 @@
 <div nz-row nzAlign="bottom">
 
-    <!-- TODO part-1 -->
-    <ng-container *ngIf="part==1">
+  <!-- TODO part-1 -->
+
+
+  <div nz-col nzXs="24">
+
+    <form nz-form [formGroup]="validateForm" class="full-width register-form">
+
+      <ng-container *ngIf="part == 1">
         <div nz-col nzXs="24" class="text-center py-2">
-            <div class="profile">
-                <img src="assets/images/user_placeholder.svg" class="rounded" alt="" width="90">
-                <div class="icon-bg">
-                    <img src="assets/icons/camera.svg" class="rounded" alt="" width="22">
-                </div>
+          <div class="profile">
+            <img src="assets/images/user_placeholder.svg" class="rounded" alt="" width="90">
+            <div class="icon-bg">
+              <img src="assets/icons/camera.svg" class="rounded" alt="" width="22">
             </div>
+          </div>
         </div>
-    
-        <div nz-col nzXs="24">
-            <digi-input label="Full Name">
-              <input nz-input class="digi-input" nzSize="large" nzBorderless/>
-            </digi-input>
 
-            <digi-input label="Select Gender">
-                <nz-select nzSize="large" nzBorderless class="in-select">
-                    <nz-option nzValue="jack" nzLabel="male"></nz-option>
-                    <nz-option nzValue="lucy" nzLabel="female"></nz-option>
-                    <nz-option nzValue="other" nzLabel="other"></nz-option>
+        <nz-form-item class="bottom-5  mar-10" *ngIf="allDoctors && allDoctors.length > 0 && !selectedDoctor">
+          <nz-form-label [nzSm]="6" [nzXs]="24" class="form-label" nzRequired>Select Doctor</nz-form-label>
+          <nz-form-control nzErrorTip="Please select your doctor!">
+            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a Doctor" formControlName="doctor_id"
+              autocomplete="false">
+              <nz-option *ngFor="let item of allDoctors" [nzValue]="item.doctor.uid"
+                nzLabel="Dr. {{item.doctor.doc_first_name}} {{item.doctor.doc_last_name}}"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item class="bottom-5">
+          <digi-input label="First Name " [isRequired]="true" class="width-100"></digi-input>
+          <nz-form-control nzErrorTip="Please input your First name!">
+            <nz-input-group [nzAddOnBefore]="addOnBeforeTemplateTitle" nzSize="large" class="digi-input">
+              <ng-template #addOnBeforeTemplateTitle>
+                <nz-select formControlName="patient_title">
+                  <nz-option *ngFor="let item of allTitle" [nzLabel]="item" [nzValue]="item"></nz-option>
                 </nz-select>
-             </digi-input>
-           
-             <digi-input label="Date of Birth">
-                <div nz-row [nzGutter]="16">
-                    <div nz-col nzFlex="3">
-                        <nz-select nzPlaceHolder="day" nzBorderless class="in-select">
-                            <nz-option *ngFor="let p of dateObj.day()" [nzValue]="p" [nzLabel]="p"></nz-option>
-                          </nz-select>
-                    </div>
-                    <div nz-col nzFlex="3">
-                        <nz-select nzPlaceHolder="month" nzBorderless class="in-select">
-                            <nz-option *ngFor="let c of dateObj.month" [nzValue]="c" [nzLabel]="c"></nz-option>
-                          </nz-select>
-                    </div>
-                    <div nz-col nzFlex="3">
-                        <nz-select nzPlaceHolder="year" nzBorderless class="in-select">
-                            <nz-option *ngFor="let c of dateObj.years()" [nzValue]="c" [nzLabel]="c"></nz-option>
-                          </nz-select>
-                    </div>
-                  </div>
-               
-                 
-             </digi-input>
-           
-             <digi-input label="Marital Status">
-                <nz-select nzSize="large" nzBorderless class="in-select">
-                    <nz-option nzValue="married" nzLabel="Married"></nz-option>
-                    <nz-option nzValue="single" nzLabel="Single"></nz-option>
-                    <nz-option nzValue="widowed" nzLabel="Widowed"></nz-option>
-                    <nz-option nzValue="divorced" nzLabel="divorced"></nz-option>
-                    <nz-option nzValue="Separated" nzLabel="Separated"></nz-option>
-                </nz-select>
-             </digi-input>
+              </ng-template>
+              <input type="text" nz-input formControlName="patient_name" nzBorderless name="patient_name"
+               />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+
+
+        <nz-form-item class="bottom-5">
+          <digi-input label="Last Name " [isRequired]="true" class="width-100"></digi-input>
+          <nz-form-control nzErrorTip="Please input your Last name!">
+            <nz-input-group nzSize="large" class="digi-input">
+              <input type="text" nzBorderless nz-input formControlName="patient_last_name" name="patient_last_name"
+               />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item class="bottom-5">
+          <digi-input label="Gender " [isRequired]="true" class="width-100"></digi-input>
+
+          <nz-form-control nzErrorTip="Please select gender!">
+            <nz-select nzSize="large" nzBorderless class="in-select" 
+              formControlName="patient_gender">
+              <nz-option nzValue="Male" nzLabel="Male"></nz-option>
+              <nz-option nzValue="Female" nzLabel="Female"></nz-option>
+              <nz-option nzValue="Other" nzLabel="Other"></nz-option>
+            </nz-select>
+
+
+          </nz-form-control>
+        </nz-form-item>
+
+
+
+
+        <div nz-row class="bottom-5">
+          <div nz-col class="center_f_y" [nzXs]="{ span: 24 }" [nzMd]="{ span: 6}">
+            <digi-input label="Date Of Birth" class="width-100">
+            </digi-input>
+          </div>
+
+          <div nz-col class="p-1 no-left-p" [nzXs]="{ span: 8 }" [nzMd]="{ span: 9}">
+            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Day" nzSize="large" class="in-select" nzBorderless
+              formControlName="patient_dob_year" name="day">
+              <nz-option *ngFor="let p of dateObj.day()" [nzValue]="p" [nzLabel]="p"></nz-option>
+
+            </nz-select>
+          </div>
+          <div nz-col class="p-1 no-left-p" [nzXs]="{ span: 8 }" [nzMd]="{ span: 9}">
+            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="month" nzSize="large" class="in-select" nzBorderless
+              formControlName="patient_dob_month" name="momth">
+              <nz-option *ngFor="let Month of allMonth" [nzLabel]="Month.label" [nzValue]="Month.value"></nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col class="p-1 no-left-p" [nzXs]="{ span: 8 }" [nzMd]="{ span: 9}">
+            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Year" nzSize="large" class="in-select" nzBorderless
+              formControlName="patient_dob_year" name="year">
+              <nz-option *ngFor="let c of dateObj.years()" [nzValue]="c" [nzLabel]="c"></nz-option>
+            </nz-select>
+          </div>
 
         </div>
-    </ng-container>
-    
-     <!-- TODO part-2 -->
 
-     <ng-container  *ngIf="part==2">
-        <div nz-col nzXs="24">
-            <digi-input label="* Email">
-                <input nz-input class="digi-input" nzSize="large" nzBorderless />
-            </digi-input>
-             
-            <digi-input label="* Mobile Number">
-                <input nz-input class="digi-input" nzSize="large" nzBorderless />
-            </digi-input>
 
-            <span fs="12px" fw="reg" class="d-block mt-2">Location</span>
-            <digi-input label="Address Line 1">
-                <input nz-input class="digi-input" nzSize="large" nzBorderless />
-            </digi-input>
-            
-            <digi-input label="Address Line 2">
-                <input nz-input class="digi-input" nzSize="large" nzBorderless />
-            </digi-input>
 
-            <digi-input label="* City">
-                <input nz-input class="digi-input" nzSize="large" nzBorderless />
-            </digi-input>
+        <nz-form-item class="bottom-5  mar-10">
+          <digi-input label="Marital Status" class="width-100">
+            <nz-form-control>
+              <nz-select nzShowSearch nzAllowClear class="in-select" nzSize="large" nzBorderless
+                 formControlName="patient_marital_status" autocomplete="false">
+                <nz-option *ngFor="let item of marriedStatus" [nzLabel]="item" [nzValue]="item"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </digi-input>
 
-            <digi-input label="Pincode">
-                <input nz-input class="digi-input" nzSize="large" nzBorderless />
-            </digi-input>
-        </div>
-     </ng-container>
-   
-    <div nz-col nzXs="24" class="mt-3">
-        <digi-affix toBottom="9%">
-            <div class="center-xy pt-2 pb-3">
-                <div class="indicator" (click)="part=1" 
-                [ngClass]="{'i-active': part==1}"></div>
-                <div class="indicator" (click)="part=2"
-                [ngClass]="{'i-active': part==2}"></div>
+        </nz-form-item>
+
+      </ng-container>
+
+      <ng-container *ngIf="part == 2">
+
+        <div nz-col nzXs="24" class="mt-3">
+          <nz-form-item class="bottom-5">
+            <digi-input label="Mobile Number "  [isRequired]="true" class="width-100"></digi-input>
+            <nz-form-control nzErrorTip="Please input your mobile name!">
+              <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate" class="digi-input" nzSize="large">
+                <ng-template #addOnBeforeTemplate>
+                  <nz-select formControlName="phoneNumberPrefix" class="phone-select">
+                    <nz-option nzLabel="+91" nzValue="+91"></nz-option>
+                  </nz-select>
+                </ng-template>
+                <input formControlName="patient_phone" name="phone" id="phoneNumber" nzBorderless nz-input
+                  inputmode="numeric" maxlength="10" />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+
+
+          <div nz-row class="bottom-5">
+            <div nz-col class="p-2 text-left" [nzXs]="{ span: 24 }" [nzMd]="{ span: 24}">
+              <label nz-checkbox formControlName="notification">
+                <span class="checkbox_text">Receive WhatsApp notifications from clinic.
+                </span>
+              </label>
             </div>
-        </digi-affix>
-    </div>
-  
+          </div>
+
+
+          <nz-form-item class="bottom-5 mar-10">
+            <digi-input label="Email "  [isRequired]="true" class="width-100"></digi-input>
+            <nz-form-control nzErrorTip="Please input your email!">
+              <nz-input-group nzSize="large" class="digi-input">
+                <input nzBorderless autocomplete="email" nz-input formControlName="patient_email" name="email"
+                  (input)="onInput($event)" [nzAutocomplete]="autoEmail" />
+                <nz-autocomplete #autoEmail>
+                  <nz-auto-option *ngFor="let option of emailOptions" [nzValue]="option">{{ option }}</nz-auto-option>
+                </nz-autocomplete>
+                <!-- <input type="email" nz-input formControlName="patient_email" name="email" placeholder="Email-Id" /> -->
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item class="bottom-5">
+            <digi-input label="House / Flat / Block No."></digi-input>
+            <nz-form-control>
+              <nz-input-group nzSize="large" class="digi-input">
+                <input type="text" nz-input class="digi-input" nzBorderless formControlName="patient_address_line_2"
+                  name="house_number" />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item class="bottom-5">
+            <digi-input label="Area / Colony / Location"></digi-input>
+            <nz-form-control>
+              <nz-input-group nzSize="large" class="digi-input">
+                <input type="text" nz-input nzBorderless formControlName="patient_address_line_1"
+                  name="house_number_" />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+
+          <div nz-row>
+
+            <div nz-col [nzXs]="11" [nzMd]="24">
+
+              <nz-form-item class="bottom-5">
+                <digi-input label="State "  [isRequired]="true"></digi-input>
+
+                <nz-form-control nzErrorTip="Please input your state name!">
+                  <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a State" nzSize="large" class="in-select"
+                    nzBorderless autocomplete="none" formControlName="stateId" autocomplete="false">
+                    <nz-option *ngFor="let item of allState" [nzValue]="item" [nzLabel]="item.stateName"></nz-option>
+                  </nz-select>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col [nzXs]="1">
+            </div>
+
+            <div nz-col [nzXs]="12" [nzMd]="24">
+
+              <nz-form-item class="bottom-5">
+                <digi-input label="City "  [isRequired]="true" class="width-100"></digi-input>
+
+                <nz-form-control nzErrorTip="Please input your City Name!">
+                  <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a City" nzSize="large" class="in-select"
+                    nzBorderless autocomplete="none" formControlName="patient_city" autocomplete="false">
+                    <nz-option *ngFor="let item of allCitiesState" [nzLabel]="item.cityName" [nzValue]="item.cityName">
+                    </nz-option>
+                  </nz-select>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <nz-form-item class="bottom-5">
+            <digi-input label="Pincode "  [isRequired]="true" class="width-100"></digi-input>
+            <nz-form-control nzErrorTip="Please input your pincode!">
+              <nz-input-group nzSize="large" class="digi-input">
+                <input type="number" nz-input formControlName="patient_pincode" class="digi-input" nzBorderless
+                  maxlength="6" minlength="6" inputmode="numeric" name="pincode" autocomplete="false" />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+
+        </div>
+      </ng-container>
+
+
+    </form>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </div>
+
+  <!-- TODO part-2 -->
+
+  <div nz-col nzXs="24" class="mt-3">
+    <digi-affix toBottom="2%">
+      <button nz-button digi-btn color="theme" (click)="nextForm()">Next</button>
+    </digi-affix>
+
+    <digi-affix toBottom="9%">
+      <div class="center-xy pt-2 pb-3">
+        <div class="indicator" (click)="part=1" [ngClass]="{'i-active': part==1}"></div>
+        <div class="indicator" (click)="nextForm()" [ngClass]="{'i-active': part==2}"></div>
+      </div>
+    </digi-affix>
+  </div>
+
 </div>

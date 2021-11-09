@@ -1,7 +1,8 @@
 <ng-template [ngIf]="label">
-    <span fs="13px" fw="reg" class="d-block mt-2 mb-2 t-t-c label"
-    [innerHtml]="label">
+    <span fs="13px" fw="reg" class=" mt-2 mb-2 t-t-c label"
+    [innerHtml]="label"> 
     </span>
+    <span *ngIf="isRequired" style="color: red;">*</span>
 </ng-template>
 <ng-content></ng-content>
 <ng-template [ngIf]="isValid">

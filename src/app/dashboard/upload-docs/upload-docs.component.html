@@ -109,8 +109,8 @@
             <span fs="16px" fw="reg" class="d-block my-3">Thank You</span>
             <span fs="14px" fw="reg" class="d-block my-3">Our Health manager will call you shortly</span>
         </ng-container>
-
-        <ng-container button>
+        
+        <ng-container button *ngIf="successPopUp">
             <button nz-button digi-btn color="theme" routerLink="../home">
                 Go To Home
             </button>

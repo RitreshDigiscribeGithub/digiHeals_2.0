@@ -44,7 +44,7 @@ export interface DigitalData {
 
     partnerId:number;
     partnerName:string;
-    partnerStoreId:number;
-    partnerServiceType:Array<{partnerSubTypeId:number,partnerSubTypeName:string}>
+    partnerStoreId?:number;
+    partnerServiceType?:Array<{partnerSubTypeId:number,partnerSubTypeName:string}>
 
 }
