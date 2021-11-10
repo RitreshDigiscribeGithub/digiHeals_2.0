@@ -21,7 +21,6 @@ import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { OrderDetailsComponent } from './order-details/order-details.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { PrescriptionComponent } from './prescription/prescription.component';
 
@@ -38,7 +37,6 @@ const dashboardRoutes: Routes = [
       { path: 'appointment', loadChildren: () => import('./appointment/appointment.module').then(m => m.AppointmentModule),canActivate: [AuthGuard]},
       { path: 'health-records', component: HealthRecordsComponent },
       { path: 'scanRx', component: UploadDocsComponent },
-      { path:'orderDetails',component:OrderDetailsComponent},
        { path: 'preview/rx', component: PrescriptionComponent },
 
     ]
@@ -55,7 +53,6 @@ const dashboardRoutes: Routes = [
     DashboardCardComponent,
     HealthRecordsComponent,
     UploadDocsComponent,
-    OrderDetailsComponent,
     PrescriptionComponent
   ],
   imports: [
