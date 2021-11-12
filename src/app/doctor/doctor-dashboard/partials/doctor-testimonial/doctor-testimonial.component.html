@@ -1,0 +1,40 @@
+<div nz-row>
+    <div nz-col [nzXs]="{ span: 22, offset: 1}" [nzMd]="{ span: 22, offset: 1 }" [nzLg]="{ span: 22, offset: 1 }"
+        [nzXl]="{ span: 20, offset: 2 }">
+        <span class="d-block section-heading">Testimonial</span>
+        <!-- o -->
+        <swiper [slidesPerView]="slides" [spaceBetween]="20">
+            <ng-container *ngFor="let item of reviews">
+
+                <ng-template swiperSlide>
+                    <div [ngStyle]="innerCard" style="position: relative;">
+                        <span class="d-block text-center" style="position: relative;">
+                            <!-- -->
+                            <nz-avatar nzSrc="https://pbs.twimg.com/profile_images/560836708820721666/5yfAGnQy.jpeg"
+                                [nzSize]="75" nzIcon="user"></nz-avatar>
+                            <h5 nz-typography class="font-lg-16 font-sm-16 mt-3" style="color: #2e7c86;">
+                                {{item.name}}
+                            </h5>
+
+                            <span nz-typography nzType="secondary" class="font-lg-16 font-sm-16"
+                                [innerHtml]="item.description">
+                            </span>
+                        </span>
+                        <i nz-icon class="HugeIcon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="27.697" height="25.038"
+                                viewBox="0 0 27.697 25.038">
+                                <path id="testimonialHugeIcon"
+                                    d="M15.288-30.654V-42.666H10.14a10.01,10.01,0,0,1,1.092-4.875,6.9,6.9,0,0,1,4.056-3v-5.148A12.621,12.621,0,0,0,10.8-54.249,12.688,12.688,0,0,0,7.254-51.4a12.566,12.566,0,0,0-2.3,3.978,12.928,12.928,0,0,0-.741,4.836v11.934Zm16.614,0V-42.666H26.754a10.01,10.01,0,0,1,1.092-4.875,6.9,6.9,0,0,1,4.056-3v-5.148a12.621,12.621,0,0,0-4.485,1.443A12.688,12.688,0,0,0,23.868-51.4a12.566,12.566,0,0,0-2.3,3.978,12.928,12.928,0,0,0-.741,4.836v11.934Z"
+                                    transform="translate(-4.205 55.692)" />
+                            </svg>
+                        </i>
+                    </div>
+
+                </ng-template>
+
+            </ng-container>
+        </swiper>
+
+    </div>
+
+</div>

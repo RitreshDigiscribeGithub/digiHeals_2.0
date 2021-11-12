@@ -32,6 +32,7 @@ export class OtpScreenComponent implements OnInit {
       width: '100%',
       'text-align': 'center',
     },
+    allowNumbersOnly: true,
   };
 
   isMobileNumberCheck: boolean = false;
@@ -51,8 +52,8 @@ export class OtpScreenComponent implements OnInit {
     private http: BaseHttpService,
     private doctorService: DoctorService,
     private patientService: PatientService,
-    private msg:MessageService,
-    private auth:AuthGuard
+    private msg: MessageService,
+    private auth: AuthGuard
   ) {
     if (!this._router.getCurrentNavigation().extras.state) {
       this.goBack();

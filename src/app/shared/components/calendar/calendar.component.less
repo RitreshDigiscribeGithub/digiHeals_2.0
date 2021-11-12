@@ -1,15 +1,55 @@
-.date-slots {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 6px;
-  border: 1px solid #eeeeee;
-  box-sizing: border-box;
-  border-radius: 6px;
-  background-color: white;
-}
-.active-slots {
-  background: #2795a0;
+.month-select-box {
+  background: #1aaaa6;
+  border-radius: 9px;
+  margin-right: 8px;
+  height: 69px;
   color: white;
+}
+
+.month-select-box p {
+  text-align: center;
+  padding-top: 28%;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.date-select-box {
+  display: flex;
+}
+.date-pick {
+  height: 69px;
+  min-width: 45px;
+  border-radius: 6px;
+  padding: 2px;
+  margin-right: 8px;
+  cursor: pointer;
+  border: 1px solid;
+  border-color: rgba(27, 175, 171, 0.4);
+  padding-top: 10px;
+}
+.date-pick div span {
+  display: block;
+  text-align: center;
+}
+.date-pick div span:nth-child(1) {
+  font-size: 14px;
+  font-weight: bold;
+  color: #000;
+  opacity: .4;
+}
+.date-pick div span:nth-child(2) {
+  font-size: 14px;
+  font-weight: bold;
+  color: #707070;
+}
+// .date-pick div input {
+//   visibility: hidden;
+// }
+.date-select-box label {
+  margin: 3px;
+}
+[type="radio"] {
+  visibility: hidden;
+}
+[type="radio"]:checked + label {
+  border: 1px solid red;
 }

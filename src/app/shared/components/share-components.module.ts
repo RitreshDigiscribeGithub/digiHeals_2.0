@@ -24,6 +24,8 @@ import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
 import { PatientListItemComponent } from './patient-list-item/patient-list-item.component';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { DividerComponent } from './divider/divider.component';
+import { ContainerDirective } from './directives/container.directive';
+import { Convert24to12HourPipe } from './pipes/convert24to12-hour.pipe';
 
 const components = [
   CalendarComponent,
@@ -45,11 +47,19 @@ const components = [
   BottomSheetComponent,
   PatientListItemComponent,
   DividerComponent,
+  ContainerDirective,
+  Convert24to12HourPipe,
 ];
 
 @NgModule({
   declarations: [components, DialogBoxComponent],
-  imports: [CommonModule, FormsModule, CarouselModule, antForShareModule(),NzAvatarModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    CarouselModule,
+    antForShareModule(),
+    NzAvatarModule,
+  ],
   exports: [components],
 })
 export class ShareComponentsModule {}

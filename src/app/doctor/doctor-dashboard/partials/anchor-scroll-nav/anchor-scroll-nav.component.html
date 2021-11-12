@@ -1,0 +1,29 @@
+<!-- anchor scroll desktop -->
+<ng-template [ngIf]="!willOnlyMobile">
+    <ng-container *ngIf="type === 'desktop'">
+        <span class="side_page_nav_desktop app_shadow_r">
+            <ng-container *ngFor="let item of scroll">
+                <button (click)="jumpToSection(item.Id)" nz-tooltip [nzTooltipTitle]="item.tooltip">
+                    <img [ngStyle]="{'transform': (item.Id=='slide')?'rotate(0deg)':'rotate(90deg)'}"
+                        src="assets/doctor-assets/anchor-nav/{{item.iconName}}" alt="">
+                </button>
+            </ng-container>
+        </span>
+    </ng-container>
+</ng-template>
+<!-- anchor scroll desktop -->
+
+<!-- anchor scroll mobile -->
+<ng-template [ngIf]="willOnlyMobile">
+    <ng-container *ngIf="type === 'mobile'">
+        <span class="side_page_nav_mobile">
+            <ng-container *ngFor="let item of scroll">
+                <button (click)="jumpToSection(item.Id)">
+                    <img [ngStyle]="{'transform': (item.Id=='slide')?'rotate(0deg)':'rotate(90deg)'}"
+                        src="assets/doctor-assets/anchor-nav/{{item.iconName}}" alt="">
+                </button>
+            </ng-container>
+        </span>
+    </ng-container>
+</ng-template>
+<!-- anchor scroll mobile -->

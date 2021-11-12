@@ -4,15 +4,36 @@ import { LoginAuthGuard } from '@guards/login-auth-guard.service';
 import { SplashScreenComponent } from './splash-screen/splash-screen.component';
 
 const routes: Routes = [
-  { path: '', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),canActivate:[LoginAuthGuard] },
-  { path: 'languages', loadChildren: () => import('./languages/languages.module').then(m => m.LanguagesModule) },
-  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
-  { path: 'chat', loadChildren: () => import('./chat/chat.module').then(m => m.ChatModule) },
-  {path:'quickscan/sso/:username',component:SplashScreenComponent}
+  {
+    path: '',
+    loadChildren: () =>
+      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+    canActivate: [LoginAuthGuard],
+  },
+  {
+    path: 'languages',
+    loadChildren: () =>
+      import('./languages/languages.module').then((m) => m.LanguagesModule),
+  },
+  {
+    path: 'doctor',
+    loadChildren: () =>
+      import('./doctor/doctor.module').then((m) => m.DoctorModule),
+  },
+
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: 'chat',
+    loadChildren: () => import('./chat/chat.module').then((m) => m.ChatModule),
+  },
+  { path: 'quickscan/sso/:username', component: SplashScreenComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, { anchorScrolling: 'enabled' })],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

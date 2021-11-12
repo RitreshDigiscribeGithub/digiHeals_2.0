@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   @Input() public title: string;
-
+  @Input() public fixedTop: Boolean;
   constructor(private _router: Router, private _location: Location) {}
 
   drawer: boolean = false;
@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
     { name: 'Your Orders', icon: 'orders', path: 'orderDetails' },
     { name: 'Your Bookings', icon: 'bookings', path: 'appointment' },
     { name: 'Your Account', icon: 'profile', path: 'profile' },
+    { name: 'Your appointment', icon: 'profile', path: 'profile' },
   ];
 
   bottom_list: any[] = [

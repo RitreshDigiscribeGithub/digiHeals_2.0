@@ -1,0 +1,59 @@
+<div nz-row>
+    <div nz-col [nzXs]="{ span: 22, offset: 1  }" [nzLg]="{ span: 20, offset: 2 }">
+        <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 40 }">
+            <div nz-col [nzXs]="{ span: 24 }">
+                <span class="d-block section-heading">Services</span>
+            </div>
+
+            <div nz-col [nzXs]="{ span: 24 }" [nzLg]="{ span: 14 }" class="mt-3">
+                <nz-collapse nzAccordion [nzExpandIconPosition]="'right'">
+
+                    <ng-container *ngFor="let item of treatments;let i = index">
+                        <nz-collapse-panel [nzActive]="item.active" [nzHeader]="panelName" [nzShowArrow]="false"
+                            [ngClass]="{'themes_bg': num==i}" (click)="collapse(i)" (nzActiveChange)="panelEv = $event">
+                            <!--  -->
+                            <ng-template #panelName>
+                                <div nz-row>
+                                    <div nz-col nzFlex="4">
+                                        <span fs="19px" fw="reg" [color]="num==i?'white':'#104B60'">
+                                            {{item.categoryName}}
+                                        </span>
+                                    </div>
+                                    <div nz-col nzFlex="1" class="text-end">
+                                        <span fs="20px" fw="md" [color]="num==i?'white':'#104B60'">
+
+                                            <i nz-icon [innerHtml]="right_icon | sanitizeHtml"
+                                                [ngStyle]="{'transform': num==i?'rotate(90deg)':'rotate(0deg)'}">
+                                            </i>
+
+                                        </span>
+                                    </div>
+                                </div>
+                            </ng-template>
+                            <!--  -->
+                            <div class="accordion-box">
+                                <p>Lorem Ipsum is simply dummy text of the
+                                    printing and
+                                    typesetting industry. Lorem Ipsum has been the industry’s
+                                    standard dummy text ever since the 1500s, when an
+                                    unknown printer took a galley of type and
+                                    scrambled.</p>
+                                <div>
+                                    <p class="list_heading proxyNova font-lg-14">qualification</p>
+                                    <p class="list AvenirRegular">Lorem ipsum dolor sit amet consectetur adipisicing</p>
+                                    <p class="list AvenirRegular">Lorem ipsum dolor sit amet consectetur adipisicing</p>
+                                </div>
+                            </div>
+                            <!--  -->
+                        </nz-collapse-panel>
+                    </ng-container>
+                </nz-collapse>
+            </div>
+            <div nz-col [nzXs]="{ span: 24 }" [nzLg]="{ span: 10 }" class="mt-3" *ngIf="!willOnlyMobile">
+                <div class="profile-container">
+                    <img [src]="pic" alt="" style="height: inherit;width: 100%;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

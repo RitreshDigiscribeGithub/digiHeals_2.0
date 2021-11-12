@@ -1,0 +1,85 @@
+<div nz-row>
+    <div nz-col [nzXs]="{ span: 22, offset: 1  }" [nzLg]="{ span: 20, offset: 2 }">
+        <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 40 }">
+            <div nz-col [nzXs]="{ span: 24 }">
+                <span class="d-block section-heading">About Your Doctor</span>
+            </div>
+            <ng-template [ngIf]="doctor">
+                <div nz-col [nzXs]="{ span: 24 }" [nzLg]="{ span: 12 }" class="mt-3">
+                    <div class="profile-container">
+                        <ng-container *ngIf="doctor.profile_pic && doctor.profile_pic !=''">
+                            <img [src]="doctor.profile_pic" alt="" style="height: inherit;width: 100%;">
+
+                        </ng-container>
+                        <ng-container *ngIf="!doctor.profile_pic">
+                            <img [src]="pic" alt="" style="height: inherit;width: 100%;">
+                        </ng-container>
+
+                        <div nz-row class="profile-info p-2">
+                            <div nz-col nzFlex="4">
+                                <span class="d-block font-lg-46 font-sm-25 text-white fw-semi-bold">
+                                    Dr. {{doctor.doc_first_name}}
+                                    {{doctor.doc_last_name}}
+                                </span>
+                                <span class="d-block font-lg-23 font-sm-18 text-white fw-md">
+                                    {{doctor.doctor_education}}
+                                </span>
+                                <span class="d-block font-lg-23 font-sm-18 text-white fw-md">
+                                    {{doctor.doc_speciality}}
+                                </span>
+                            </div>
+                            <div nz-col nzFlex="2" class="text-end">
+                                <nz-tag nzColor="#55acee">
+                                    <i nz-icon nzType="environment"></i>
+                                    <span>{{location}}</span>
+                                </nz-tag>
+                                <ng-container *ngIf="drCMS">
+                                    <span class="d-block font-lg-20 font-sm-18 text-white fw-md">
+                                        Experience
+                                    </span>
+                                    <span class="d-block font-lg-23 font-sm-18 text-white fw-md">
+                                        {{drCMS.yearsOfExperience}} Years
+                                    </span>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <div nz-col [nzXs]="{ span: 24 }" [nzLg]="{ span: 12 }" class="mt-3">
+                <nz-collapse nzAccordion [nzExpandIconPosition]="'right'">
+
+                    <ng-container *ngFor="let item of Overview;let i = index">
+                        <nz-collapse-panel [nzActive]="item.active" [nzHeader]="panelName" [nzShowArrow]="false"
+                            [ngClass]="{'themes_bg': num==i}" (click)="collapse(i)" (nzActiveChange)="panelEv = $event">
+                            <!--  -->
+                            <ng-template #panelName>
+                                <div nz-row>
+                                    <div nz-col nzFlex="4">
+                                        <span fs="19px" fw="reg" [color]="num==i?'white':'#104B60'">
+                                            {{item.categoryName}}
+                                        </span>
+                                    </div>
+                                    <div nz-col nzFlex="1" class="text-end">
+                                        <span fs="20px" fw="md" [color]="num==i?'white':'#104B60'">
+
+                                            <i nz-icon [innerHtml]="right_icon | sanitizeHtml"
+                                                [ngStyle]="{'transform': num==i?'rotate(90deg)':'rotate(0deg)'}">
+                                            </i>
+
+                                        </span>
+                                    </div>
+                                </div>
+                            </ng-template>
+                            <!--  -->
+                            <div class="accordion-box">
+                                <p [innerHTML]="item.text">{{item.text}}</p>
+                            </div>
+                            <!--  -->
+                        </nz-collapse-panel>
+                    </ng-container>
+                </nz-collapse>
+            </div>
+        </div>
+    </div>
+</div>

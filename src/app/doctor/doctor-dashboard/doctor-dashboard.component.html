@@ -1,0 +1,48 @@
+<!-- anchor scroll desktop -->
+<anchor-scroll-nav type="desktop">
+</anchor-scroll-nav>
+<!-- anchor scroll desktop -->
+<!--  -->
+<ng-container>
+  <section id="slide">
+    <digi-home-carousel></digi-home-carousel>
+  </section>
+
+  <section id="doctor-appointment">
+    <doctor-appointment *ngIf="clinics" [clinics]="clinics" [open]="allStartTime"></doctor-appointment>
+  </section>
+
+  <section id="about-doctor">
+    <about-doctor [drCMS]="doctorCms" [doctor]="doctor" [location]="location"></about-doctor>
+  </section>
+
+  <section id="doctor-services">
+    <ng-container *ngIf="doctorCms && doctorCms.treatmentCategories.length > 0">
+      <doctor-services [treatments]="doctorCms.treatmentCategories">
+      </doctor-services>
+    </ng-container>
+  </section>
+
+  <section id="doctor-gallery">
+    <doctor-gallery *ngIf="doctorCms" [galleryImg]="doctorCms">
+    </doctor-gallery>
+  </section>
+
+  <section id="doctor-testimonial">
+    <doctor-testimonial *ngIf="doctorCms && doctorCms.testimonials" [reviews]="doctorCms.testimonials">
+    </doctor-testimonial>
+  </section>
+
+  <section id="patient-education">
+    <patient-education></patient-education>
+  </section>
+
+  <section id="doctor-clinic-locations">
+    <doctor-clinic-locations *ngIf="clinics" [clinics]="clinics">
+    </doctor-clinic-locations>
+  </section>
+
+  <section id="footer">
+    <digi-footer></digi-footer>
+  </section>
+</ng-container>
