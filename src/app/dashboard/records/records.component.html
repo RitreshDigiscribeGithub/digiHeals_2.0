@@ -20,7 +20,9 @@
     <div class="record-list px-2" nz-row style="min-height: 78px;" nzAlign="middle">
         <div nz-col nzFlex="5">
             <span>
-                <span fs="15px" fw="md" class="d-block"> Dr. {{  item.acutalDoc?.doc_first_name }} {{  item.acutalDoc?.doc_last_name }}</span>
+                <span fs="15px" fw="md" class="d-block" *ngIf="!item.acutalDoc?.uploadedBy"> Dr. {{  item.acutalDoc?.doc_first_name }} {{  item.acutalDoc?.doc_last_name }}</span>
+                <span fs="15px" fw="md" class="d-block" *ngIf="item.acutalDoc?.uploadedBy"> Self Upload</span>
+
                 <span fs="12px" fw="reg" color="#b1afaf" class="d-block">{{item.date}}</span>
             </span>
         </div>
@@ -28,7 +30,7 @@
             <span>
                 <button class="digi-sm-btn sky-bg-ligth px-2" nz-button
                 [nzSize]="'small'" (click)="previewRx(item)" >View</button>&nbsp;&nbsp;
-                <button class="digi-sm-btn pink-bg-ligth px-2" (click)="orderRx(item)" nz-button
+                <button class="digi-sm-btn pink-bg-ligth px-2" (click)="previewRx(item)" nz-button
                 [nzSize]="'small'">Order</button>
             </span>
         </div>

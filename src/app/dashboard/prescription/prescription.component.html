@@ -1,5 +1,7 @@
 
 
+<nz-spin  [nzIndicator]="indicatorTemplate" [nzSpinning]="isUploadingFiles">
+
 <ng-container *ngIf="savedRxData">
  
 
@@ -42,9 +44,12 @@
 </div>
 
 <digi-affix>
-  <button nz-button digi-btn color="theme" routerLink="../partner">
+  <button nz-button digi-btn color="theme" (click)="bookHealthService()">
     Book Healthcare Services
   </button>
 </digi-affix>
 
 </ng-container>
+
+</nz-spin>
+<ng-template #indicatorTemplate ><i style="margin-top:50%" fs="25px" nz-icon nzType="loading"></i></ng-template>

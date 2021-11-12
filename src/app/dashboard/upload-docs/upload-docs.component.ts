@@ -7,8 +7,11 @@ import { DigitalData, HealthDocuments, rxpartnerShare } from '@interface/health-
 import { Patient } from '@interface/patient';
 import { DoctorService } from '@services/doctor-service/doctor.service';
 import { PatientService } from '@services/patient-service/patient.service';
-import { MessageService } from '../../services/message.service';
-import { LandingPageData } from '../../interface/landingData';
+import { MessageService } from '@services/message.service';
+import { LandingPageData } from '@interface/landingData';
+import { BaseHttpService } from '@services/base-http.service';
+import { HttpConstants } from '../../services/http-constants';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'digi-upload-docs',
@@ -16,7 +19,7 @@ import { LandingPageData } from '../../interface/landingData';
   styleUrls: ['./upload-docs.component.less'],
 })
 export class UploadDocsComponent implements OnInit {
-  constructor(private msg:MessageService, private titleService: DynamicTitleService,private digiHttp:DgPaymentServiceService,private patientService:PatientService,private doctorService:DoctorService ) {}
+  constructor(private router_:Router, private http:BaseHttpService, private msg:MessageService, private titleService: DynamicTitleService,private digiHttp:DgPaymentServiceService,private patientService:PatientService,private doctorService:DoctorService ) {}
   ListItems: any[] = [];
 
   imgPreview = null;
@@ -41,6 +44,13 @@ export class UploadDocsComponent implements OnInit {
      
       
     })
+
+  }
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.doctorSub.unsubscribe();
+    this.patientSub.unsubscribe();
 
   }
 
@@ -100,57 +110,73 @@ export class UploadDocsComponent implements OnInit {
 
     this.isUploadingFiles = true;
     const otherImgData = await this.ListItems.map((item) => {
-      const fileObject: DigitalData = { name: item.name || '', text: '', photo: item.uploadFileUrl, thumb: item.uploadFileUrl, description: '', selected: false }
+      const fileObject: DigitalData = { name: item.name || '', text: '', photo: item.uploadFileUrl, thumb: item.uploadFileUrl, description: '', selected: false,mimeType:item.extension }
       return fileObject;
     });
-    const pharmaPartner = []
-    const labPartner = [];
 
-    if(this.selectedDoctor.partners?.pharmacyPartner){
-    
-      const data:rxpartnerShare = {partnerId:this.selectedDoctor.partners?.pharmacyPartner[0].partnerId,partnerName:this.selectedDoctor.partners?.pharmacyPartner[0].partnerName,partnerServiceType:null,partnerStoreId:null};
-      pharmaPartner.push(data);
-     
-    }
+    const patient:any = this.selectedPatient
+    patient.patient_pincode =  this.selectedPatient.patient_pincode.toString();
+    this.http.makePartnerRequest({method:'POST',url:HttpConstants.digiheals.createScannnedOrder,data:{patientDetail:patient,upload:otherImgData}}).subscribe(r =>{
 
-    if(this.selectedDoctor.partners?.labPartner){
-          const data:rxpartnerShare = {partnerId:this.selectedDoctor.partners?.labPartner[0].partnerId,partnerName:this.selectedDoctor.partners?.labPartner[0].partnerName,partnerServiceType:null,partnerStoreId:null};
-         labPartner.push(data);
-    }
+      this.isUploadingFiles = false;
 
-
-    if (otherImgData.length > 0) {
-      const body: HealthDocuments = {
-        doc_id: `digital_prec_${this.selectedPatient.patient_id}_${Math.floor(new Date().getTime())}`,
-        patient_id: this.selectedPatient.patient_id,
-        channels: [this.selectedPatient.patient_id, this.selectedDoctor.doctor.uid],
-        doctor_id: this.selectedDoctor.doctor.uid,
-        appointment_id: '',
-        digital_data: otherImgData,
-        endtime: Math.floor(new Date().getTime()),
-        isOnline: true,
-        timestamp: Math.floor(new Date().getTime()),
-        type: 'digital_pres',
-        uploadedBy: 'patient',
-        isSentToPartner: false,
-        pharmacyPartners:  pharmaPartner,
-        labPartners:labPartner
-      }
-
-      this.digiHttp.createPrescription(body).subscribe(r =>{
-        const res:any = r;
-        this.isUploadingFiles = false;
-        if(res && res.status) {
+        if(r.status === true) {
           this.msg.createMessage('success','Thanks You, you will receive a call shortly');
-          this.successPopUp = true;
+          this.router_.navigate(['/home']);
         } else {
           this.msg.createMessage('error','something went wrong please try again');
         }
 
       })
 
-      console.log(body)
-  }
+
+    // const pharmaPartner = []
+    // const labPartner = [];
+
+    // if(this.selectedDoctor.partners?.pharmacyPartner){
+    
+    //   const data:rxpartnerShare = {partnerId:this.selectedDoctor.partners?.pharmacyPartner[0].partnerId,partnerName:this.selectedDoctor.partners?.pharmacyPartner[0].partnerName,partnerServiceType:null,partnerStoreId:null};
+    //   pharmaPartner.push(data);
+     
+    // }
+
+    // if(this.selectedDoctor.partners?.labPartner){
+    //       const data:rxpartnerShare = {partnerId:this.selectedDoctor.partners?.labPartner[0].partnerId,partnerName:this.selectedDoctor.partners?.labPartner[0].partnerName,partnerServiceType:null,partnerStoreId:null};
+    //      labPartner.push(data);
+    // }
+
+
+    // if (otherImgData.length > 0) {
+    //   const body: HealthDocuments = {
+    //     doc_id: `digital_prec_${this.selectedPatient.patient_id}_${Math.floor(new Date().getTime())}`,
+    //     patient_id: this.selectedPatient.patient_id,
+    //     channels: [this.selectedPatient.patient_id, this.selectedDoctor.doctor.uid],
+    //     doctor_id: this.selectedDoctor.doctor.uid,
+    //     appointment_id: '',
+    //     digital_data: otherImgData,
+    //     endtime: Math.floor(new Date().getTime()),
+    //     isOnline: true,
+    //     timestamp: Math.floor(new Date().getTime()),
+    //     type: 'digital_pres',
+    //     uploadedBy: 'patient',
+    //     isSentToPartner: false,
+    //     pharmacyPartners:  pharmaPartner,
+    //     labPartners:labPartner
+    //   }
+
+    //   this.digiHttp.createPrescription(body).subscribe(r =>{
+    //     const res:any = r;
+    //     this.isUploadingFiles = false;
+    //     if(res && res.status) {
+    //       this.msg.createMessage('success','Thanks You, you will receive a call shortly');
+    //       this.successPopUp = true;
+    //     } else {
+    //       this.msg.createMessage('error','something went wrong please try again');
+    //     }
+
+    //   })
+
+
 }
 
 }

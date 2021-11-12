@@ -46,6 +46,8 @@ export class RecordsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    
     this._dynamicTitleService.setHeaderTitle('Records');
     this.doctorSub = this.doctorService.primaryDoctor$.subscribe((r) => {
       this.doctor = r.doctor;

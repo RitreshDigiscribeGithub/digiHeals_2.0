@@ -43,11 +43,11 @@ export class HttpConstants {
   static getAgoraToken = "/otp/getAgoraToken/";
   static digiheals = {
     
-    getLatetRx:'/digiheals/getLatestPrescriptionForPatient'
+    getLatetRx:'/digiheals/getLatestPrescriptionForPatient',
+    createScannnedOrder:'/api/v1/prescription/scanedLabOrderFromMachine',
+    shareRxToPartner:'/api/v1/prescription/shareDigirecordsPrescriptionToMachine'
 
   }
-  }
-  
 
 
-
+}

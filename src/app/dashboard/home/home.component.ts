@@ -125,7 +125,7 @@ export class HomeComponent implements OnInit {
       .makePartnerRequest<patientLastRecords>({
         method: 'POST',
         url: `/api/v1${HttpConstants.digiheals.getLatetRx}`,
-        data: { patientId: id },
+        data: { patientId: id,timestamp: moment().startOf('day').valueOf() },
       })
       .subscribe((res) => {
         this.isSpinning = false;

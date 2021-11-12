@@ -5,6 +5,7 @@ export interface DigitalData {
     text: string;
     thumb: string;
     description: string;
+    mimeType?:string
   }
   
   export interface HealthDocuments {

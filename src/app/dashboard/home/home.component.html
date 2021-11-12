@@ -103,7 +103,7 @@
    </ng-container>
 
       <!-- View My Prescription -->
-      <digi-dashboard-card  *ngIf="todaysAppointment && todaysAppointment.appointment_status || patientLastRxRecords" title="Your prescription from {{doctor.doc_first_name}} {{doctor.doc_last_name}}
+      <digi-dashboard-card  *ngIf="todaysAppointment && todaysAppointment.appointment_status || patientLastRxRecords && ( patientLastRxRecords.doctor_id || patientLastRxRecords.doctr_id) && !patientLastRxRecords.uploadedBy" title="Your prescription from {{doctor.doc_first_name}} {{doctor.doc_last_name}}
       is ready to view" description="Click below to view your prescription" color="#FFEAD3" icon="prescription"
             iconWidth="18%">
             <div nz-row>
@@ -117,6 +117,43 @@
             </div>
          </digi-dashboard-card>
          <!-- View My Prescription -->
+
+            <!-- Update My Health -->
+   <digi-dashboard-card *ngIf="todaysAppointment && !todaysAppointment.appointment_status" title="How are you feeling today?" description="While you wait in line for your turn, let the 
+   doctor know how are doing today" color="#F5E0BA" icon="hart" iconWidth="18%">
+         <div nz-row>
+            <div nz-col nzXs="18">
+               <button digi-button-inline nz-button color="#FC8F1B"
+               routerLink="../health-records">
+                  Update My Health 
+               </button>
+            </div>
+            <div nz-col nzXs="6">
+            </div>
+         </div>
+      </digi-dashboard-card>
+      <!-- Update My Health -->
+
+          <!-- Health Manager -->
+          <ng-container *ngIf="patientLastLabOrder || patientLastPharmaOrder"> 
+   <digi-dashboard-card title="Health Assistant will always be there for you 24x7" [list]="
+   ['Health manager will always be there for you', 'She will be helping you manage your healthcare hassel free',
+   'Book <strong>follow</strong> up appointments',
+   'She will assist you to organise prescribed medicines for you at your doorsteps at discounted price',
+   'Assist you with booking diagnostics prescribed by the doctor at discounted price'
+   ]" tag="Health Manager" color="#CBEBFF" icon="health-manager" iconWidth="18%">
+         <div nz-row>
+            <div nz-col nzXs="18">
+               <button digi-button-inline nz-button color="#4E7CFF">
+                  Request Call Back
+               </button>
+            </div>
+            <div nz-col nzXs="6">
+            </div>
+         </div>
+      </digi-dashboard-card>
+   </ng-container>
+      <!-- Health Manager -->
 
    <!-- Scan Rx Now -->
    <digi-dashboard-card *ngIf="!todaysAppointment || !patientLastRxRecords" title="Scan Your Prescription for" description="Now Enjoy the best in class diagnostics and 
@@ -195,47 +232,16 @@ with doctor when you need anytime" color="#9BDAA2" icon="whatsApp" iconWidth="30
    </digi-dashboard-card>
    <!-- Check Doctor Profile -->
 
-   <!-- Update My Health -->
-   <digi-dashboard-card title="How are you feeling today?" description="While you wait in line for your turn, let the 
-doctor know how are doing today" color="#F5E0BA" icon="hart" iconWidth="18%">
-      <div nz-row>
-         <div nz-col nzXs="18">
-            <button digi-button-inline nz-button color="#FC8F1B"
-            routerLink="../health-records">
-               Update My Health 
-            </button>
-         </div>
-         <div nz-col nzXs="6">
-         </div>
-      </div>
-   </digi-dashboard-card>
-   <!-- Update My Health -->
 
 
 
-   <!-- Health Manager -->
-   <digi-dashboard-card title="How are you feeling today?" [list]="
-['Ms <strong>Uma Jangam</strong> is your health manager', 'She will be helping you manage your healthcare hassel free',
-'Book <strong>follow</strong> up appointments',
-'She will assist you to organise prescribed medicines for you at your doorsteps at discounted price',
-'Assist you with booking diagnostics prescribed by the doctor at discounted price'
-]" tag="Health Manager" color="#CBEBFF" icon="health-manager" iconWidth="18%">
-      <div nz-row>
-         <div nz-col nzXs="18">
-            <button digi-button-inline nz-button color="#4E7CFF">
-               Request Call Back
-            </button>
-         </div>
-         <div nz-col nzXs="6">
-         </div>
-      </div>
-   </digi-dashboard-card>
-   <!-- Health Manager -->
+
+  
 
 
 
    <!-- Now pay digital -->
-   <digi-dashboard-card title="Now pay digital"
+   <!-- <digi-dashboard-card title="Now pay digital"
       description="You can make your payment of Rs 2560 online using our secured online payment gateway"
       color="#F5E27B">
       <div nz-row>
@@ -248,7 +254,7 @@ doctor know how are doing today" color="#F5E0BA" icon="hart" iconWidth="18%">
             <img src="assets/icons/dashboard_icon/pay-card.svg" class="img-res" alt="">
          </div>
       </div>
-   </digi-dashboard-card>
+   </digi-dashboard-card> -->
    <!-- Now pay digital -->
 
    <!-- Book Diagnostics Now -->
