@@ -18,6 +18,13 @@ import { NzListModule } from 'ng-zorro-antd/list';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzTimelineModule } from 'ng-zorro-antd/timeline';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
+import { NzCarouselModule } from 'ng-zorro-antd/carousel';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 
 // Auth module
 export function antForAuth() {
@@ -26,7 +33,7 @@ export function antForAuth() {
 
 // Share Component module
 export function antForShareModule() {
-    return [NzButtonModule, NzLayoutModule, NzGridModule, NzFormModule, NzIconModule, NzCardModule, NzRateModule, NzTagModule, NzPageHeaderModule, NzDrawerModule,NzRadioModule];
+    return [NzButtonModule, NzLayoutModule, NzGridModule, NzFormModule, NzIconModule, NzCardModule, NzRateModule, NzTagModule, NzPageHeaderModule, NzDrawerModule,NzRadioModule,NzPageHeaderModule,ScrollingModule,NzDropDownModule];
 }
 
 // Dashboard module
@@ -47,4 +54,8 @@ export function antForHealsCart() {
 //Chat module
 export function antForChat() {
     return [NzGridModule, NzIconModule, NzInputModule, NzButtonModule, NzDividerModule, NzTagModule, NzDrawerModule];
+}
+
+export function antForDoctorModule(){
+    return [NzGridModule, NzTagModule, NzIconModule, NzInputModule, NzButtonModule, NzDividerModule, NzSelectModule, NzDrawerModule, NzCheckboxModule,NzCardModule,NzCarouselModule,NzToolTipModule,NzCollapseModule ,NzBadgeModule,NzAvatarModule];
 }

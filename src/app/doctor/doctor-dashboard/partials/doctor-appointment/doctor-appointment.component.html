@@ -1,0 +1,72 @@
+<div nz-row class="my-4">
+  <div nz-col [nzXs]="{ span: 22, offset: 1 }" [nzLg]="{ span: 20, offset: 2 }">
+
+    <div nz-row class="center-xy px-2 cardStyle" style="min-height: 140px" *ngIf="!willOnlyMobile">
+      <div nz-col nzFlex="1">
+        <img src="assets/doctor-assets/icons/bandage.png" class="mx-auto d-block" width="100" alt="" />
+      </div>
+      <div nz-col nzFlex="5">
+        <div>
+          <span fs="27px" fw="reg" color="#707070" class="d-block">
+            For Emergency Consultation
+          </span>
+          <span fs="21px" fw="reg" color="#707070" class="d-block">
+            Consult now
+          </span>
+        </div>
+      </div>
+      <div nz-col nzFlex="1" class="center-y-end-x">
+        <img src="assets/doctor-assets/icons/rigtht-arrow.svg" width="30" alt="" />
+      </div>
+    </div>
+
+    <div nz-row nzJustify="space-around" nzAlign="middle" class="cardStyle mt-3 p-3" style="min-height: 42px" *ngIf="willOnlyMobile">
+      <div nz-col [nzXs]="{ span: 24 }" [nzSm]="{ span: 9 }">
+        <span fs="17px" fw="md" color="gray" class="text-center d-block py-2">
+          Consulted With Doctor Before
+        </span>
+      </div>
+      <div class="text-center mar_10" nz-col [nzXs]="{ span: 15 }">
+        <button nz-button digi-button-inline color="theme" style="min-height: 50px">
+          <img src="assets/doctor-assets/icons/health-record.png" class="round-bg" width="40" alt="" />&nbsp;&nbsp;
+          <span fs="14px" fw="reg" color="white"> My Health Records </span>
+        </button>
+      </div>
+    </div>
+
+    <div nz-row class="center-xy p-3 my-4 cardStyle">
+      <div nz-col nzXs="24">
+        <h2 class="appointment_calendar_card_heading proxyNova" *ngIf="open.length > 0">
+          Clinic Open at {{ open[0].time }}
+        </h2>
+        <app-calendar [datePicker]="true" (dateChanged)="dateChanged($event)" [activeDate]="selectedDateCalender">
+        </app-calendar>
+
+        <div nz-row nzAlign="bottom">
+          <div nz-col [nzXs]="{ span: 24 }" [nzLg]="{ span: 12 }">
+            <ng-container *ngFor="let item of clinics">
+              <ng-container *ngFor="let data of item?.clinicTimings">
+                <span fs="17px" fw="md" class="d-block mt-2" color="#707070">
+                  {{ data.isVirtualClinic ? "Virtual Visit" : "Clinic Visit" }}
+                </span>
+                <span fs="17px" fw="md" class="d-block" color="#9a9a9a">
+                  {{ data.starttime | convert24to12Hour }}
+                  &nbsp;to&nbsp;
+                  {{ data.endtime | convert24to12Hour }}
+                </span>
+              </ng-container>
+            </ng-container>
+          </div>
+          <div nz-col [nzXs]="{ span: 24 }" [nzLg]="{ span: 12 }" class="">
+            <div style="float: right">
+              <button nz-button digi-button-inline color="theme" style="min-height: 50px">
+                <img src="assets/doctor-assets/icons/appointment.png" class="round-bg" width="40" alt="" />&nbsp;&nbsp;
+                <span fs="14px" fw="reg" color="white"> Book Now </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

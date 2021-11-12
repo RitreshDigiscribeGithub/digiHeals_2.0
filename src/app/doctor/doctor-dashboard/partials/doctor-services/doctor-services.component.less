@@ -1,0 +1,33 @@
+@accordion-height: 80vh;
+@accordion-md-height: 45vh;
+.profile-container {
+  position: relative;
+  background: rgb(202, 197, 197);
+  height: @accordion-height;
+}
+nz-collapse-panel {
+  border-radius: 8px;
+}
+nz-collapse {
+  padding: 0px;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px !important;
+}
+nz-collapse-panel {
+  background-color: white;
+}
+.accordion-box {
+  min-height: calc(@accordion-height - 195px);
+  overflow-y: scroll;
+}
+.themes_bg {
+  background: #104b60 !important;
+}
+.ant-collapse-icon-position-right > .ant-collapse-item > .ant-collapse-header {
+  padding-right: 10px !important;
+}
+@media screen and (max-width: 768px) {
+  .accordion-box {
+    min-height: 45vh;
+  }
+}

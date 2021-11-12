@@ -142,3 +142,26 @@ span.ant-input-group-addon{
 .ant-form-item-has-error .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled), .ant-form-item-has-error .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover, .ant-form-item-has-error .ant-input:not(.ant-input-disabled), .ant-form-item-has-error .ant-input:not(.ant-input-disabled):hover{
   background-color: #eeeeee !important;
 }
+.cdk-virtual-scroll-data-source .cal-viewport {
+  height: 87px;
+  width: 100%;
+  overflow-y: hidden;
+}
+
+.cdk-virtual-scroll-data-source
+  .cal-viewport
+  .cdk-virtual-scroll-content-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.cdk-virtual-scroll-data-source .cal-item {
+  height: 100%;
+  /* writing-mode: horizontal-tb; */
+  margin-right: 0.2rem;
+}
+
+// rest swiper
+.swiper-wrapper {
+  display: inline-flex !important;
+}

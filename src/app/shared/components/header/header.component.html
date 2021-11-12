@@ -12,7 +12,10 @@
   </div>
 </div> -->
 
-<div class="site-page-header-ghost-wrapper">
+<div
+  class="site-page-header-ghost-wrapper"
+  [ngClass]="{ 'fixed-top': fixedTop }"
+>
   <nz-page-header [nzGhost]="false">
     <!-- backTo -->
     <nz-page-header-title fs="16px" fw="reg" color="#FFFFFF">
@@ -40,6 +43,10 @@
       <img src="assets/icons/menu.svg" (click)="drawer = true" alt="" />
     </nz-page-header-extra>
   </nz-page-header>
+
+  <!-- dynamic bottom conten -->
+  <ng-content></ng-content>
+  <!-- dynamic bottom conten -->
 </div>
 
 <nz-drawer

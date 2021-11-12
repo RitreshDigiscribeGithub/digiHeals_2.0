@@ -20,6 +20,7 @@ import { SelectPartnerComponent } from './select-partner/select-partner.componen
 import { AddAddressComponent } from './your-address/add-address/add-address.component';
 import { FormsModule } from '@angular/forms';
 import { ReviewAndRefillComponent } from './heal-cart/review-and-refill/review-and-refill.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 const cartRoutes: Routes = [
   {
@@ -36,6 +37,7 @@ const cartRoutes: Routes = [
       { path: 'dropOff', component: DropOffComponent },
       { path: 'reviewOrder', component: ReviewOrderComponent },
       { path: 'schedule-time', component: ScheduleTimeComponent },
+      { path: 'details', component: OrderDetailsComponent },
     ],
   },
 ];
@@ -57,6 +59,7 @@ const cartRoutes: Routes = [
     SelectPartnerComponent,
     AddAddressComponent,
     ReviewAndRefillComponent,
+    OrderDetailsComponent,
   ],
 
   imports: [

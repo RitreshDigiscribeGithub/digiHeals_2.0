@@ -1,0 +1,64 @@
+<div nz-col [nzXs]="{ span: 22, offset: 1 }" [nzMd]="{ span: 22, offset: 1 }" [nzLg]="{ span: 22, offset: 1 }"
+    [nzXl]="{ span: 22, offset: 1 }">
+    <span class="d-block section-heading">Clinic Location</span>
+    <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+        <ng-container *ngFor="let item of clinics">
+            <div nz-col [nzXs]="{ span: 24 }" [nzLg]="{ span: 8}">
+                <!-- card -->
+                <div class="location_card" [ngClass]="{'app_shadow_b': !willOnlyMobile,'border-b':willOnlyMobile}">
+                    <div class="card_map" *ngIf="!willOnlyMobile">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4582816.0441649305!2d72.44234849426877!3d23.59652146295064!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDMwJzM0LjgiTiA3NcKwNDMnMjMuOCJF!5e0!3m2!1sen!2sin!4v1609488939678!5m2!1sen!2sin"
+                            width="100%" height="265px" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                    </div>
+                    <div [ngStyle]="{'min-height': willOnlyMobile?'auto':'257px;'}" class="card_content p-2">
+                        <div nz-row [ngClass]="{'row_rev': false}">
+                            <div nz-col [nzXs]="{ span: 24 }" [nzLg]="{ span: 24}">
+                                <div class="text-end">
+                                    <nz-tag nzColor="#55acee">
+                                        <i nz-icon nzType="info-circle"></i>
+                                        <span> {{ (item.isVirtualClinic && item.isVirtualClinic === true) ?
+                                            'Online-Consult' : 'Clinic-Visit'}}</span>
+                                    </nz-tag>
+                                </div>
+                                <h2 class="card_data proxyNovaBold">
+                                    {{item.doc_clinic_name}}
+                                </h2>
+
+                                <h2 class="card_data mt-2 proxyNovaBold" *ngIf="item.address_line_1"
+                                    style="min-height: 44px;">
+                                    <img src="assets/icon/pin.svg" width="15" alt="">
+                                    {{item.address_line_1}}
+                                    {{item.address_line_2}}
+                                    {{item.city}}, {{item.pincode}}
+                                </h2>
+                                <h2 class="card_data mt-1 proxyNovaBold">
+                                    <img src="assets/icon/phone-call.svg" width="15" alt="">
+                                    {{item.doc_clinic_phone}}
+                                </h2>
+
+                                <h2 class="clinic_day_time mt-2" *ngFor="let time of item?.clinicTimings">
+                                    <span class="day proxyNovaBold">
+                                        {{time.days}}
+                                    </span>
+                                    <span class="time proxyNovaBold">{{time.timings}}</span>
+                                </h2>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <ng-template [ngIf]="item.lat  !='' && item.long != '' && item.lat != '0.0'">
+                        <div class="direction_link p-2 proxyNova">
+                            <a target="_blank" href="https://www.google.com/maps?q={{item.lat}},{{item.long}}">
+                                <img src="assets/icon/direction.svg" width="15px" alt="">&nbsp;&nbsp;Click for
+                                direction
+                            </a>
+                        </div>
+                    </ng-template>
+                </div>
+                <!-- card -->
+            </div>
+        </ng-container>
+    </div>
+</div>

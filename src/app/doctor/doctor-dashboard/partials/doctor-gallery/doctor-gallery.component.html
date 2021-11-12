@@ -1,0 +1,42 @@
+<ng-template [ngIf]="isGalleryData">
+    <div nz-col [nzXs]="{ span: 22, offset: 1 }" [nzMd]="{ span: 22, offset: 1 }" [nzLg]="{ span: 22, offset: 1 }"
+        [nzXl]="{ span: 22, offset: 1 }">
+        <div nz-row>
+            <div nz-col nzXs="24">
+                <span class="d-block section-heading">Gallery</span>
+            </div>
+            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="12" nzXl="12">
+                <div class="gallerySideImg">
+                    <img [src]="imageObject[num].recovery" style="width: 100%; height: inherit;" alt="">
+                </div>
+            </div>
+            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="12" nzXl="12" class="slider-container">
+                <ng-image-slider [imageSize]="styleObj" [images]="imageObject" [slideImage]="1" [showArrow]="false"
+                    #nav>
+                </ng-image-slider>
+
+                <!-- imageClick arrowClick -->
+                <div class="overelay p-3" nz-row nzJustify="space-around" nzAlign="middle">
+                    <button class="prev-btn" nz-button nzType="default" nzShape="circle" (click)="prevBtn()">
+                        <i nz-icon nzType="left" nzTheme="outline"></i>
+                    </button>
+                    <button class="next-btn" nz-button nzType="default" nzShape="circle" (click)="nextBtn()">
+                        <i nz-icon nzType="right" nzTheme="outline"></i>
+                    </button>
+                    <div nz-col nzSpan="24">
+                        <h4 class="text-white proxyNova font-sm-14 font-lg-25">
+                            {{imageObject[num].title}}
+                        </h4>
+                        <div class="text-end">
+                            <button nz-button nzType="primary" [nzSize]="'large'" class="proxyNova mt-2">
+                                <img src="assets/icon/conultNow.svg" class="width-15" alt="">&nbsp;Consult now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ngIf]="isGalleryData" -->
+
+</ng-template>

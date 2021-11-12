@@ -1,0 +1,80 @@
+<div nz-col [nzXs]="{ span: 22, offset: 1 }" [nzMd]="{ span: 22, offset: 1 }" [nzLg]="{ span: 22, offset: 1 }"
+    [nzXl]="{ span: 22, offset: 1 }">
+
+    <div class="patient-education-page">
+        <span class="d-block section-heading">Patient Education</span>
+        <swiper [slidesPerView]="slides" [spaceBetween]="20">
+            <!-- imageObject.length == 0 -->
+            <ng-container *ngFor="let item of imageObject; let i=index">
+                <ng-template swiperSlide>
+                    <nz-card [nzBodyStyle]="innerCard">
+                        <!--  -->
+                        <div nz-row>
+                            <div nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24" nzXl="24">
+                                <h3 *ngIf="slides!== 1 && slides!== 2" class="mb-3 proxyNova">
+                                    Card Title here {{imageObject.length}}
+                                </h3>
+                            </div>
+                            <div nz-col nzXs="24" nzSm="24" nzMd="24" [nzLg]="slides== 1 || slides == 2?8:24"
+                                [nzXl]="slides== 1 || slides == 2?8:24">
+                                <nz-ribbon [nzText]="item.fileType | uppercase ">
+                                    <div class="media-container">
+                                        <img [src]="item.thumbImage" alt="" style="height: inherit;width: 100%;">
+                                    </div>
+                                </nz-ribbon>
+                            </div>
+                            <div nz-col nzXs="24" nzSm="24" nzMd="24" [nzLg]="slides== 1 || slides == 2?16:24"
+                                [nzXl]="slides== 1 || slides == 2?16:24" class="p-3">
+                                <span class="mb-3 font-sm-25 font-lg-20 proxyNova" *ngIf="slides== 1 || slides == 2">
+                                    Card Title here
+                                </span>
+                                <p class="mt-2 proxyNova">
+                                    {{item.description | truncate:[275, '...']}}
+                                    <a (click)="drawer = true" style="color: #40A9FF;">
+                                        Know More
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </nz-card>
+                </ng-template>
+            </ng-container>
+        </swiper>
+    </div>
+
+    <!-- blog -->
+    <nz-drawer [nzClosable]="false" [nzVisible]="drawer" [nzPlacement]="'bottom'" (nzOnClose)="drawer = false"
+        [nzHeight]="'100%'" [nzTitle]="header">
+
+        <ng-template #header>
+            <span (click)="drawer = false">
+                <img src="assets/icon/left-arrow.svg" width="15" alt="">
+                &nbsp;<span>Patient Education Blog</span>
+            </span>
+        </ng-template>
+
+        <ng-container *nzDrawerContent>
+
+
+            <div nz-row>
+                <div nz-col [nzXs]="{ span: 24, offset: 0 }" [nzLg]="{ span: 18, offset: 3 }" class="p-3">
+                    <img src="https://pbs.twimg.com/media/EUIZ_nyXYAE7IUH.jpg" class="img-res mx-auto d-block" alt="">
+                    <h1 class="mt-2 mb-2">Guest Post: Patient-centered discussion of COVID-19 infection and mRNA
+                        vaccines</h1>
+                    <div *ngFor="let item of [1,2,3,4]">
+                        <h3>Step : {{item}}</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio ad veritatis nesciunt,
+                            provident a aspernatur maxime quia commodi tempora error perferendis, voluptatum sapiente
+                            corporis debitis quisquam, autem voluptatibus qui labore Lorem ipsum dolor sit amet
+                            consectetur, adipisicing elit. Odio ad veritatis nesciunt, provident a aspernatur maxime
+                            quia commodi tempora error perferendis, voluptatum sapiente corporis debitis quisquam, autem
+                            voluptatibus qui labore??</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </ng-container>
+    </nz-drawer>
+
+</div>

@@ -175,3 +175,26 @@ button {
 .phoneInput {
   background-color: #eeeeee !important;
 }
+
+//sm
+@media screen and (max-width: 768px) {
+  @iterations: 50;
+  .span-loop (@i) when (@i > 0) {
+    .font-sm-@{i} {
+      font-size: ~"@{i}px";
+    }
+    .span-loop(@i - 1);
+  }
+  .span-loop (@iterations);
+}
+//lg
+@media screen and (min-width: 768px) {
+  @iterations: 50;
+  .span-loop (@i) when (@i > 0) {
+    .font-lg-@{i} {
+      font-size: ~"@{i}px";
+    }
+    .span-loop(@i - 1);
+  }
+  .span-loop (@iterations);
+}

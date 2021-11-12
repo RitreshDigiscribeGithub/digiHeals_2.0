@@ -1,0 +1,42 @@
+.slider-container {
+  position: relative;
+}
+.overelay {
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 200px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 11;
+}
+.ng-image-slider .ng-image-slider-container .main .next,
+.ng-image-slider .ng-image-slider-container .main .prev {
+  z-index: 12 !important;
+}
+.gallerySideImg {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+}
+.next-btn {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+}
+.prev-btn {
+  position: absolute;
+  top: -12px;
+  left: 20px;
+}
+@media screen and (max-width: 768px) {
+  .overelay {
+    height: 50%;
+  }
+}
+
+.btn_primary {
+  border-radius: 8px !important;
+}
